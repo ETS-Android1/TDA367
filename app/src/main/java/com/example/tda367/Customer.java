@@ -1,15 +1,15 @@
 package com.example.tda367;
 
 public class Customer {
-    private String customerId;
+    private Long customerId;
     private String username;
     private String email;
     private String adress;
-    private int phoneNumber;
+    private String phoneNumber;
     private int age;
 
-    public Customer(String id, String username, String email, String adress, int phoneNumber, int age) {
-        this.customerId = id;
+    public Customer(Long customerId, String username, String email, String adress, String phoneNumber, int age) {
+        this.customerId = customerId;
         this.username = username;
         this.email = email;
         this.adress = adress;
@@ -17,12 +17,12 @@ public class Customer {
         this.age = age;
     }
 
-    public String getId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setId(String id) {
-        this.customerId = id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public String getUsername() {
@@ -49,11 +49,11 @@ public class Customer {
         this.adress = adress;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
