@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.tda367.placeholder.PlaceholderContent.PlaceholderItem;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private String[] carList;
