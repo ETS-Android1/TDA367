@@ -1,6 +1,6 @@
 package com.example.tda367;
 
-public class Customer {
+public class CustomerModel {
     private Long customerId;
     private String username;
     private String email;
@@ -8,7 +8,7 @@ public class Customer {
     private String phoneNumber;
     private int age;
 
-    public Customer(Long customerId, String username, String email, String adress, String phoneNumber, int age) {
+    public CustomerModel(Long customerId, String username, String email, String adress, String phoneNumber, int age) {
         this.customerId = customerId;
         this.username = username;
         this.email = email;
