@@ -8,23 +8,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 /**
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    private String[] carList;
+    private ArrayList<CarModel> carList;
 
-    public RecyclerViewAdapter(String[] carList){
+    public RecyclerViewAdapter(ArrayList<CarModel> carList){
         this.carList = carList;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView nameText;
+        private TextView areaText;
+        private TextView priceText;
 
         public MyViewHolder(final View view){
             super(view);
             nameText = view.findViewById(R.id.carName);
+            areaText = view.findViewById(R.id.carArea);
+            priceText = view.findViewById(R.id.carCost);
         }
+    }
+
+    private void fillList(){
+        carList.add(new CarModel("skoda", "gbg", 200));
+        carList.add(new CarModel("audi", "gbg", 300));
+        carList.add(new CarModel("merca", "gbg", 300));
     }
 
     @NonNull
@@ -36,12 +48,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
-        String name = carList[position];
-        holder.nameText.setText(name);
+        CarModel car = carList.get(position);
+        holder.nameText.setText(car.getCarName());
+        holder.areaText.setText(car.getCarArea());
+        String cost = Integer.toString(car.getCarCost());
+        holder.priceText.setText(cost);
     }
 
     @Override
     public int getItemCount() {
-        return carList.length;
+        return carList.size();
     }
 }
