@@ -33,12 +33,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    private void fillList(){
-        carList.add(new CarModel("skoda", "gbg", 200));
-        carList.add(new CarModel("audi", "gbg", 300));
-        carList.add(new CarModel("merca", "gbg", 300));
-    }
-
     @NonNull
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
