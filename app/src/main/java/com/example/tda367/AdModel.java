@@ -10,9 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class AdModel extends AppCompatActivity {
     int price;
+    String name;
+
+    EditText editName;
     EditText editPrice;
+
     Button saveButton;
 
     @Override
@@ -20,17 +26,19 @@ public class AdModel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editPrice = (EditText) findViewById(R.id.editPrice); // använd "editPrice" som id för xml textfieldet
-        saveButton = (Button) findViewById(R.id.saveButton); // samma här
+        editName = (EditText) findViewById(R.id.editName);
+        editPrice = (EditText) findViewById(R.id.editPrice);
+        saveButton = (Button) findViewById(R.id.saveButton);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                name = editName.getText().toString();
                 price = Integer.valueOf(editPrice.getText().toString());
-                showToast("Price is updated!");
 
+                showToast("Your details have been updated!");
             }
         });
-
     }
 
     private void showToast(String text) {
