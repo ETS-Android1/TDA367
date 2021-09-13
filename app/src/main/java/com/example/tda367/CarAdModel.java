@@ -1,11 +1,16 @@
 package com.example.tda367;
 
-public class CarModel {
+import android.media.Image;
+
+import androidx.annotation.DrawableRes;
+
+public class CarAdModel {
     private String carName;
     private String carArea;
     private int carCost;
 
-    public CarModel(String carName, String carArea, int carCost) {
+
+    public CarAdModel(String carName, String carArea, int carCost) {
         this.carName = carName;
         this.carArea = carArea;
         this.carCost = carCost;
@@ -34,6 +39,5 @@ public class CarModel {
     public void setCarCost(int carCost) {
         this.carCost = carCost;
     }
-
 
 }
