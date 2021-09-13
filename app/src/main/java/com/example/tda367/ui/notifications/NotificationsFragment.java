@@ -30,9 +30,12 @@ public class NotificationsFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_notifications, container, false);
-
         firebaseAuth = FirebaseAuth.getInstance();
+        int currentFragment = R.layout.fragment_notifications;
+
+        View view = LayoutInflater.from(getContext()).inflate(currentFragment, container, false);
+
+
         editEmailText = (EditText) view.findViewById(R.id.editEmailText);
         editPasswordText = (EditText) view.findViewById(R.id.editPasswordText);
         buttonLogIn = (Button) view.findViewById(R.id.buttonLogIn);
@@ -51,23 +54,31 @@ public class NotificationsFragment extends Fragment {
     }
 
     private void signIn(){
-        String email = String.valueOf(editEmailText.getText());
-        String password = String.valueOf(editPasswordText.getText());
-        System.out.println(email);
+
+
+        //string kan inte vara null eller inget för att köra
+        if (String.valueOf(editEmailText.getText()).isEmpty() || String.valueOf(editPasswordText.getText()).isEmpty()){
+            System.out.println("inget skrevs in");
+        }else{
+            String email = String.valueOf(editEmailText.getText());
+            String password = String.valueOf(editPasswordText.getText());
+            firebaseAuth.signInWithEmailAndPassword(email,password)
+                    .addOnCompleteListener((task -> {
+                        if(task.isSuccessful()) {
+                            System.out.println("du klarade det bre");
+                        }else{
+                            FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                            assert e != null;
+                            System.out.println(e.getMessage());
+                        }
+                    }));
+        }
+
 
         //Test epost: hannes@gmail.com pass: Stulb123
 
 
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener((task -> {
-                    if(task.isSuccessful()) {
-                        System.out.println("du klarade det bre");
-                    }else{
-                        FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                        assert e != null;
-                        System.out.println(e.getMessage());
-                    }
-                }));
+
     }
 
 }
