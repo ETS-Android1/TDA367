@@ -7,15 +7,16 @@
     tools:context=".ui.notifications.NotificationsFragment">
 
     <LinearLayout
-        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="#33B4ADFF"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/editEmailText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:layout_margin="15dp"
             android:hint="@string/enter_email"
             android:inputType="textEmailAddress" />
@@ -23,7 +24,7 @@
         <EditText
             android:id="@+id/editPasswordText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="15dp"
             android:hint="@string/enter_password"
             android:inputType="textPassword" />
@@ -33,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#BBF38E"
             android:text="@string/log_in" />
 
         <Button
