@@ -14,9 +14,9 @@ import java.util.ArrayList;
 /**
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    private ArrayList<CarModel> carList;
+    private ArrayList<CarAdModel> carList;
 
-    public RecyclerViewAdapter(ArrayList<CarModel> carList){
+    public RecyclerViewAdapter(ArrayList<CarAdModel> carList){
         this.carList = carList;
     }
 
@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
-        CarModel car = carList.get(position);
+        CarAdModel car = carList.get(position);
         holder.nameText.setText(car.getCarName());
         holder.areaText.setText(car.getCarArea());
         String cost = Integer.toString(car.getCarCost());
