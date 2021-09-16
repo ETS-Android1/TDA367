@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="162dp"
+        android:background="#33B4ADFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="266dp"
+            android:layout_margin="15dp"
+            android:text="Congratulations on joining “insert company name”  see below to get started with renting out your car or to find a car to rent! Best Regards, the team att “insert company name” “Making renting cars easy for both parts since 2021”            Best regards, Hannes Thörn CEO of Stulb"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:autoSizeMaxTextSize="@dimen/activity_horizontal_margin" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#BBF38E"
+            android:text="Click here to list your car" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="#BBF38E"
+            android:text="Click here to find a car to rent" />
+
+    </LinearLayout>
+</ScrollView>
