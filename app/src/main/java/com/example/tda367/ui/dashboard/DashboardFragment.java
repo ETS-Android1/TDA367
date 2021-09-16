@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tda367.CarModel;
+import com.example.tda367.CarAdModel;
 import com.example.tda367.RecyclerViewAdapter;
 import com.example.tda367.R;
 
@@ -20,7 +21,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerView recyclerView;
     private DashboardViewModel dashboardViewModel;
 
-    ArrayList<CarModel> carList = new ArrayList<>();
+    ArrayList<CarAdModel> carList = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
@@ -40,9 +41,10 @@ public class DashboardFragment extends Fragment {
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(carList);
     }
     private void fillList(){
-        carList.add(new CarModel("skoda", "gbg", 200));
-        carList.add(new CarModel("audi", "gbg", 300));
-        carList.add(new CarModel("merca", "gbg", 300));
+
+        carList.add(new CarAdModel("skoda", "gbg", 200));
+        carList.add(new CarAdModel("audi", "gbg", 300));
+        carList.add(new CarAdModel("merca", "gbg", 300));
     }
 
 }

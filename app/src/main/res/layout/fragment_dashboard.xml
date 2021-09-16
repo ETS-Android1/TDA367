@@ -22,9 +22,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="189dp"
+        android:layout_width="300dp"
         android:layout_height="729dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="111dp"
         tools:layout_editor_absoluteY="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
