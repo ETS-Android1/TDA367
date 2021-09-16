@@ -50,6 +50,13 @@ public class SignUpFragment extends Fragment {
         editTextTextEmailAddress = (EditText) view.findViewById(R.id.editTextTextEmailAddress);
         editTextTextPassword2 = (EditText) view.findViewById(R.id.editTextTextPassword2);
 
+
+        buttonContinuePayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerUser();
+            }
+        });
         return view;
     }
 
@@ -60,17 +67,16 @@ public class SignUpFragment extends Fragment {
             if(task.isSuccessful()){
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
-                FirebaseFirestore.getInstance().collection("users").document().set(generateHashMap(userID,email));
+                FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email));
             } else {
                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
                 assert e != null;
-                System.out.println(e.getMessage());
+                System.out.println( "felmeddelande: " + e.getMessage());
             }
         }));
     }
 
     public Map<String, Object> generateHashMap(String userID, String email) {
-        firebaseAuth = FirebaseAuth.getInstance();
         Map<String, Object> UsersID = new HashMap<String, Object>();
 
         //KEYS gives String to field inside document
