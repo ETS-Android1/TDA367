@@ -1,7 +1,5 @@
 package com.example.tda367;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +24,14 @@ public class SignUpFragment extends Fragment {
 
     private Button buttonContinuePayment;
     private Button buttonCancelRegistation;
-    private EditText editTextTextEmailAddress;
-    private EditText editTextTextPassword2;
+    private EditText emailInput;
+    private EditText passwordInput;
+    private EditText reEnterPasswordInput;
+    private EditText firstNameInput;
+    private EditText surnameInput;
+    private EditText addressInput;
+    private EditText cityInput;
+    private EditText phoneNumberInput;
     private FirebaseAuth firebaseAuth;
     private String userID;
 
@@ -47,8 +51,15 @@ public class SignUpFragment extends Fragment {
     //TODO lägga till mer inputs till
         buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
-        editTextTextEmailAddress = (EditText) view.findViewById(R.id.editTextTextEmailAddress);
-        editTextTextPassword2 = (EditText) view.findViewById(R.id.editTextTextPassword2);
+        emailInput = (EditText) view.findViewById(R.id.emailInput);
+        passwordInput = (EditText) view.findViewById(R.id.passwordInput);
+        reEnterPasswordInput = (EditText) view.findViewById(R.id.reEnterPasswordInput);
+        firstNameInput = (EditText) view.findViewById(R.id.firstNameInput);
+        surnameInput = (EditText) view.findViewById(R.id.surnameInput);
+        addressInput = (EditText) view.findViewById(R.id.addressInput);
+        cityInput = (EditText) view.findViewById(R.id.cityInput);
+        phoneNumberInput = (EditText) view.findViewById(R.id.phoneNumberInput);
+
 
 
         buttonContinuePayment.setOnClickListener(new View.OnClickListener() {
@@ -61,13 +72,19 @@ public class SignUpFragment extends Fragment {
     }
 
     private void registerUser(){
-        final String email = editTextTextEmailAddress.getText().toString();
-        String password = editTextTextPassword2.getText().toString();
+        final String email = emailInput.getText().toString();
+        String password = passwordInput.getText().toString();
+        String firstName = firstNameInput.getText().toString();
+        String surname = surnameInput.getText().toString();
+        String address = addressInput.getText().toString();
+        String city = cityInput.getText().toString();
+        String phoneNumber = phoneNumberInput.getText().toString();
+
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
             if(task.isSuccessful()){
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
-                FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email));
+                FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email, firstName, surname,address,city,phoneNumber));
             } else {
                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
                 assert e != null;
@@ -76,12 +93,18 @@ public class SignUpFragment extends Fragment {
         }));
     }
 
-    public Map<String, Object> generateHashMap(String userID, String email) {
+    public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {
         Map<String, Object> UsersID = new HashMap<String, Object>();
 
         //KEYS gives String to field inside document
         UsersID.put("UserID", userID);
-        UsersID.put("User Email", email);
+        UsersID.put("UserEmail", email);
+        UsersID.put("UserFirstName", firstName);
+        UsersID.put("UserSurname", surname);
+        UsersID.put("UserAddress", address);
+        UsersID.put("UserCity", city);
+        UsersID.put("UserPhoneNumber", phoneNumber);
+
         return UsersID;
     }
 
