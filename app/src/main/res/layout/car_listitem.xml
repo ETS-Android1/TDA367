@@ -17,8 +17,7 @@
         <ImageView
             android:id="@+id/carImage"
             android:layout_width="96dp"
-            android:layout_height="60dp"
-            app:srcCompat="@drawable/engobil" />
+            android:layout_height="60dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
