@@ -109,6 +109,24 @@
             android:background="#FB8B8B"
             android:text="Cancel" />
 
+        <EditText
+            android:id="@+id/editTextNumberDecimal3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="ScrollAble1"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/editTextNumberDecimal4"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="15dp"
+            android:ems="10"
+            android:hint="ScrollAble2"
+            android:inputType="numberDecimal" />
+
     </LinearLayout>
 
 </ScrollView>

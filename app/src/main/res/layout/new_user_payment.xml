@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextNumberDecimal"
+            android:id="@+id/cardnumberInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"
@@ -25,7 +25,7 @@
             android:inputType="numberDecimal" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/cardholderNameInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"
@@ -35,7 +35,7 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/dateInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"
@@ -44,7 +44,7 @@
             android:inputType="date" />
 
         <EditText
-            android:id="@+id/editTextNumberDecimal2"
+            android:id="@+id/cvvInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"

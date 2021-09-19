@@ -18,8 +18,9 @@
     <Button
         android:id="@+id/historyButton"
         android:layout_width="151dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#BBF38E"
         android:text="History"
@@ -29,9 +30,10 @@
     <Button
         android:id="@+id/editProfileButton"
         android:layout_width="151dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:backgroundTint="#BBF38E"
         android:text="Edit profile"
         app:layout_constraintEnd_toEndOf="parent"
