@@ -18,6 +18,7 @@ import com.example.tda367.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -29,49 +30,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
-    private RecyclerView recyclerView;
+
+    private RecyclerViewAdapter recyclerViewAdapter;
     private DashboardViewModel dashboardViewModel;
+
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> carList = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dashboard, container, false);
-        setUpRecyclerView();
-
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-        recyclerView.setAdapter(new RecyclerViewAdapter(carList));
+        setUpRecyclerView(view);
 
         return view;
     }
-    private void setAdapter(){
-        //fillList();
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(carList);
+    private void setAdapter(View view){
+        recyclerViewAdapter = new RecyclerViewAdapter(carList);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
-    private void fillList(){
-
-        carList.add(new CarAdModel("skoda", "gbg", 200));
-        carList.add(new CarAdModel("audi", "gbg", 300));
-        carList.add(new CarAdModel("merca", "gbg", 300));
-    }
-    private void setUpRecyclerView(){
+    private void setUpRecyclerView(View view){
         firestore.collection("cars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    List<String> list = new ArrayList<>();
+                if (task.isSuccessful()) {
+
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        list.add(documentSnapshot.getId());
+                        //TODO ändra till int, documentSnapshot.getString("price")
+                        carList.add(new CarAdModel(documentSnapshot.getString("name"), documentSnapshot.getString("area"), 200));
+
                     }
-                    System.out.println(list.toString());
+                    setAdapter(view);
                 } else {
                     System.out.println("Error: " + task.getException());
                 }
-
             }
         });
     }
-
 }
