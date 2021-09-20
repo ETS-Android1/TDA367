@@ -1,5 +1,6 @@
 package com.example.tda367;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.tda367.ui.notifications.NotificationsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpPaymentFragment extends Fragment {
@@ -22,6 +24,7 @@ public class SignUpPaymentFragment extends Fragment {
     private Button buttonContinueConfirmation;
     private Button buttonCancelNewUserSignup;
     private FirebaseAuth firebaseAuth;
+    Intent intent;
 
 
     public static SignUpPaymentFragment newInstance() {
@@ -52,16 +55,15 @@ public class SignUpPaymentFragment extends Fragment {
                 registerCardholder();
             }
         });
-//TODO Fixa onClickListener för andra knappen (Cancel)
-/*
-        buttonCancelNewUserSignup.setOnClickListener(new View.OnClickListener();{
+
+        intent = new Intent(getActivity(), NotificationsFragment.class);
+        buttonCancelNewUserSignup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                registerCardholder();
+            public void onClick (View v){
+                startActivity(intent);
             }
         });
 
- */
         return view;
     }
 
@@ -70,7 +72,6 @@ public class SignUpPaymentFragment extends Fragment {
         String cardholderName = cardholderNameInput.getText().toString();
         String date = dateInput.getText().toString();
         String cvv = cvvInput.getText().toString();
-
     }
 
 
