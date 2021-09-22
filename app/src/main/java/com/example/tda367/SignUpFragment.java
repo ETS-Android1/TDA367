@@ -15,7 +15,6 @@ import android.widget.EditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +47,7 @@ public class SignUpFragment extends Fragment {
         if (firebaseAuth.getCurrentUser() != null){
             //ändra fragment till profil
         }
+
     //TODO lägga till mer inputs till
         buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
@@ -81,7 +81,15 @@ public class SignUpFragment extends Fragment {
         String phoneNumber = phoneNumberInput.getText().toString();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
-            if(task.isSuccessful()){
+            if(String.valueOf(emailInput.getText()).isEmpty() ||
+                    String.valueOf(passwordInput.getText()).isEmpty() ||
+                    String.valueOf(reEnterPasswordInput.getText()).isEmpty() ||
+                    String.valueOf(firstNameInput.getText()).isEmpty() ||
+                    String.valueOf(surnameInput.getText()).isEmpty() ||
+                    String.valueOf(addressInput.getText()).isEmpty() ||
+                    String.valueOf(cityInput.getText()).isEmpty() ||
+                    String.valueOf(phoneNumberInput.getText()).isEmpty())
+            {
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
                 FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email, firstName, surname,address,city,phoneNumber));
