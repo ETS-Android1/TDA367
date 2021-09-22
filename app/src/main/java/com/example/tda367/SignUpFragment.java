@@ -81,19 +81,36 @@ public class SignUpFragment extends Fragment {
         String city = cityInput.getText().toString();
         String phoneNumber = phoneNumberInput.getText().toString();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
-            if(task.isSuccessful()){
-                userID = firebaseAuth.getUid();
-                System.out.println(userID);
-                FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email, firstName, surname,address,city,phoneNumber));
-                loadSignUpPaymentFragment();
-            } else {
-                FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                assert e != null;
-                System.out.println( "felmeddelande: " + e.getMessage());
-            }
-        }));
+        if (!isFieldsEmpty()) {
+            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
+                if (task.isSuccessful()) {
+                    userID = firebaseAuth.getUid();
+                    System.out.println(userID);
+                    FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID, email, firstName, surname, address, city, phoneNumber));
+                    loadSignUpPaymentFragment();
+                } else {
+                    FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                    assert e != null;
+                    System.out.println("felmeddelande: " + e.getMessage());
+                }
+            }));
+        }
+        else {
+            System.out.println("Alla fields är inte fyllda");
+        }
     }
+
+    private boolean isFieldsEmpty() {
+        return String.valueOf(emailInput.getText()).isEmpty() ||
+                String.valueOf(passwordInput.getText()).isEmpty() ||
+                String.valueOf(reEnterPasswordInput.getText()).isEmpty() ||
+                String.valueOf(firstNameInput.getText()).isEmpty() ||
+                String.valueOf(surnameInput.getText()).isEmpty() ||
+                String.valueOf(addressInput.getText()).isEmpty() ||
+                String.valueOf(cityInput.getText()).isEmpty() ||
+                String.valueOf(phoneNumberInput.getText()).isEmpty();
+    }
+
     private void loadSignUpPaymentFragment(){
         Fragment signUpPaymentFragment = new SignUpPaymentFragment();
         FragmentManager fragmentManager = getFragmentManager();
