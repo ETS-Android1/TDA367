@@ -14,6 +14,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpPaymentFragment extends Fragment {
     private EditText cardnumberInput;
@@ -57,11 +62,9 @@ public class SignUpPaymentFragment extends Fragment {
         buttonCancelNewUserSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                loadSignUpFragment();
             }
         });
-
-
         return view;
     }
 
@@ -70,25 +73,42 @@ public class SignUpPaymentFragment extends Fragment {
         String cardholderName = cardholderNameInput.getText().toString();
         String date = dateInput.getText().toString();
         String cvv = cvvInput.getText().toString();
+        
+        String userID = firebaseAuth.getUid();
+        // skapar ny collection med document card som håller cardInfo inom userInfo
+        FirebaseFirestore.getInstance().collection("users").document(userID).collection("CardInfo").document("Card")
+                .set(generateCardHashMap(cardnumber,cardholderName,date,cvv))
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        System.out.println("la till cardinfo");
+                    }else {
+                        FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                        assert e != null;
+                        System.out.println( "felmeddelande: " + e.getMessage());
+                    }
+                });
     }
 
-
-}
-
-//TODO Strukturera hashmap
-
-/* Oklart om hashmap osv
-        public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {
-        Map<String, Object> CardholderID = new HashMap<String, Object>();
+    private void loadSignUpFragment(){
+        Fragment signUpFragment = new SignUpFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpFragment).commit();
+    }
+    public Map<String, Object> generateCardHashMap(String cardnumber, String cardholderID, String date, String cvv) {
+        Map<String, Object> CardInfo = new HashMap<String, Object>();
 
         //KEYS gives String to field inside document
-        UsersID.put("CardholderNumber", cardnumber);
-        UsersID.put("CardholderName", name);
-        UsersID.put("CardholderDate", date);
-        UsersID.put("CardholderCVVNumber", CVV);
+        CardInfo.put("CardholderNumber", cardnumber);
+        CardInfo.put("CardholderName", cardholderID);
+        CardInfo.put("CardholderDate", date);
+        CardInfo.put("CardholderCVVNumber", cvv);
 
-        return CardholderID;
+        return CardInfo;
     }
+}
 
 
- */
+
+
+
+
