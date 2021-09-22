@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,12 +86,18 @@ public class SignUpFragment extends Fragment {
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
                 FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email, firstName, surname,address,city,phoneNumber));
+                loadSignUpPaymentFragment();
             } else {
                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
                 assert e != null;
                 System.out.println( "felmeddelande: " + e.getMessage());
             }
         }));
+    }
+    private void loadSignUpPaymentFragment(){
+        Fragment signUpPaymentFragment = new SignUpPaymentFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpPaymentFragment).commit();
     }
 
     public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {
