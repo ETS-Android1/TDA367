@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,11 +42,13 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser() != null){
             //ändra fragment till profil
         }
+    //TODO lägga till mer inputs till
         buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
         emailInput = (EditText) view.findViewById(R.id.emailInput);
@@ -71,8 +72,6 @@ public class SignUpFragment extends Fragment {
     }
 
     private void registerUser(){
-        //TODO lägga till så alla fields måste ha input och dubbelkolla att reEnterPassword == password
-        //TODO göra så man inte kan gå vidare utan att fylla i alla fält
         final String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
         String firstName = firstNameInput.getText().toString();
@@ -86,7 +85,6 @@ public class SignUpFragment extends Fragment {
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
                 FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID,email, firstName, surname,address,city,phoneNumber));
-                loadSignUpPaymentFragment();
             } else {
                 FirebaseAuthException e = (FirebaseAuthException)task.getException();
                 assert e != null;
@@ -108,11 +106,6 @@ public class SignUpFragment extends Fragment {
         UsersID.put("UserPhoneNumber", phoneNumber);
 
         return UsersID;
-    }
-    private void loadSignUpPaymentFragment(){
-        Fragment signUpPaymentFragment = new SignUpPaymentFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpPaymentFragment).commit();
     }
 
 
