@@ -10,6 +10,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -22,7 +24,6 @@ public class SignUpPaymentFragment extends Fragment {
     private Button buttonContinueConfirmation;
     private Button buttonCancelNewUserSignup;
     private FirebaseAuth firebaseAuth;
-
 
     public static SignUpPaymentFragment newInstance() {
         return new SignUpPaymentFragment();
@@ -52,16 +53,15 @@ public class SignUpPaymentFragment extends Fragment {
                 registerCardholder();
             }
         });
-//TODO Fixa onClickListener för andra knappen (Cancel)
-/*
-        buttonCancelNewUserSignup.setOnClickListener(new View.OnClickListener();{
+
+        buttonCancelNewUserSignup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                registerCardholder();
+            public void onClick(View view) {
+
             }
         });
 
- */
+
         return view;
     }
 
@@ -70,7 +70,6 @@ public class SignUpPaymentFragment extends Fragment {
         String cardholderName = cardholderNameInput.getText().toString();
         String date = dateInput.getText().toString();
         String cvv = cvvInput.getText().toString();
-
     }
 
 
