@@ -81,14 +81,7 @@ public class SignUpFragment extends Fragment {
         String phoneNumber = phoneNumberInput.getText().toString();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
-            if(String.valueOf(emailInput.getText()).isEmpty() ||
-                    String.valueOf(passwordInput.getText()).isEmpty() ||
-                    String.valueOf(reEnterPasswordInput.getText()).isEmpty() ||
-                    String.valueOf(firstNameInput.getText()).isEmpty() ||
-                    String.valueOf(surnameInput.getText()).isEmpty() ||
-                    String.valueOf(addressInput.getText()).isEmpty() ||
-                    String.valueOf(cityInput.getText()).isEmpty() ||
-                    String.valueOf(phoneNumberInput.getText()).isEmpty())
+            if(isAllFilled())
             {
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
@@ -99,6 +92,17 @@ public class SignUpFragment extends Fragment {
                 System.out.println( "felmeddelande: " + e.getMessage());
             }
         }));
+    }
+
+    private boolean isAllFilled() {
+        return String.valueOf(emailInput.getText()).isEmpty() ||
+                String.valueOf(passwordInput.getText()).isEmpty() ||
+                String.valueOf(reEnterPasswordInput.getText()).isEmpty() ||
+                String.valueOf(firstNameInput.getText()).isEmpty() ||
+                String.valueOf(surnameInput.getText()).isEmpty() ||
+                String.valueOf(addressInput.getText()).isEmpty() ||
+                String.valueOf(cityInput.getText()).isEmpty() ||
+                String.valueOf(phoneNumberInput.getText()).isEmpty();
     }
 
     public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {
