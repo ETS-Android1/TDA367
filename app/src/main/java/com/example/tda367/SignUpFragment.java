@@ -80,8 +80,8 @@ public class SignUpFragment extends Fragment {
         String city = cityInput.getText().toString();
         String phoneNumber = phoneNumberInput.getText().toString();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener((task -> {
-            if(isAllFilled())
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if(!isFieldEmpty())
             {
                 userID = firebaseAuth.getUid();
                 System.out.println(userID);
@@ -91,10 +91,10 @@ public class SignUpFragment extends Fragment {
                 assert e != null;
                 System.out.println( "felmeddelande: " + e.getMessage());
             }
-        }));
+        });
     }
 
-    private boolean isAllFilled() {
+    private boolean isFieldEmpty() {
         return String.valueOf(emailInput.getText()).isEmpty() ||
                 String.valueOf(passwordInput.getText()).isEmpty() ||
                 String.valueOf(reEnterPasswordInput.getText()).isEmpty() ||
