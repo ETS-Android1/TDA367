@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.tda367.ui.notifications.NotificationsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -66,7 +67,14 @@ public class SignUpFragment extends Fragment {
                 registerUser();
             }
         });
+        buttonCancelRegistation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadSignInFragment();
+            }
+        });
         return view;
+
     }
 
     private void registerUser(){
@@ -118,6 +126,11 @@ public class SignUpFragment extends Fragment {
         Fragment profileFragment = new ProfileFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
+    }
+    private void loadSignInFragment(){
+        Fragment signInFragment = new NotificationsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }
 
     public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {
