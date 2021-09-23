@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tda367.MainActivity;
+import com.example.tda367.ProfileFragment;
 import com.example.tda367.R;
 import com.example.tda367.SignUpFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,11 @@ public class NotificationsFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //Kollar om användare är inloggad innan den skickar en view
         firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() == null){
+            loadProfileFragment();
+        }
         int currentFragment = R.layout.fragment_notifications;
 
 
@@ -96,8 +101,10 @@ public class NotificationsFragment extends Fragment {
 
 
     }
-    private void loadSignUpFragment(){
-
+    private void loadProfileFragment(){
+        Fragment profileFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 
 }

@@ -43,11 +43,7 @@ public class DashboardFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
-        //Kollar om användare är inloggad innan den skickar en view
-        firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() == null){
-            loadProfileFragment();
-        }
+
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dashboard, container, false);
         setUpRecyclerView(view);
 
@@ -76,10 +72,5 @@ public class DashboardFragment extends Fragment {
                 }
             }
         });
-    }
-    private void loadProfileFragment(){
-        Fragment profileFragment = new ProfileFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 }
