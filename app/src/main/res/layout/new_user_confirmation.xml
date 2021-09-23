@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="266dp"
             android:layout_margin="15dp"
-            android:text="Congratulations on joining “insert company name”  see below to get started with renting out your car or to find a car to rent! Best Regards, the team att “insert company name” “Making renting cars easy for both parts since 2021”            Best regards, Hannes Thörn CEO of Stulb"
+            android:text="@string/congratulations_on_joining_insert_company_name_see_below_to_get_started_with_renting_out_your_car_or_to_find_a_car_to_rent_best_regards_the_team_att_insert_company_name_making_renting_cars_easy_for_both_parts_since_2021_best_regards_hannes_th_rn_ceo_of_stulb"
             android:textColor="#000000"
             android:textSize="24sp"
             app:autoSizeMaxTextSize="@dimen/activity_horizontal_margin" />
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="#BBF38E"
-            android:text="Click here to list your car" />
+            android:text="@string/click_here_to_list_your_car" />
 
         <Button
             android:id="@+id/button3"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="#BBF38E"
-            android:text="Click here to find a car to rent" />
+            android:text="@string/click_here_to_find_a_car_to_rent" />
 
     </LinearLayout>
 </ScrollView>

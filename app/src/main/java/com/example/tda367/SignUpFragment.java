@@ -42,13 +42,12 @@ public class SignUpFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
-
+        //Kollar om användare är inloggad innan den skickar en view
         firebaseAuth = FirebaseAuth.getInstance();
-
-        if (firebaseAuth.getCurrentUser() != null){
-            //ändra fragment till profil
+        if (firebaseAuth.getCurrentUser() == null){
+            loadProfileFragment();
         }
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
     //TODO lägga till mer inputs till
         buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
@@ -60,8 +59,6 @@ public class SignUpFragment extends Fragment {
         addressInput = (EditText) view.findViewById(R.id.addressInput);
         cityInput = (EditText) view.findViewById(R.id.cityInput);
         phoneNumberInput = (EditText) view.findViewById(R.id.phoneNumberInput);
-
-
 
         buttonContinuePayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +83,8 @@ public class SignUpFragment extends Fragment {
                 if (task.isSuccessful()) {
                     userID = firebaseAuth.getUid();
                     System.out.println(userID);
-                    FirebaseFirestore.getInstance().collection("users").document(userID).set(generateHashMap(userID, email, firstName, surname, address, city, phoneNumber));
+                    FirebaseFirestore.getInstance().collection("users").document(userID)
+                            .set(generateHashMap(userID, email, firstName, surname, address, city, phoneNumber));
                     loadSignUpPaymentFragment();
                 } else {
                     FirebaseAuthException e = (FirebaseAuthException) task.getException();
@@ -115,6 +113,11 @@ public class SignUpFragment extends Fragment {
         Fragment signUpPaymentFragment = new SignUpPaymentFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpPaymentFragment).commit();
+    }
+    private void loadProfileFragment(){
+        Fragment profileFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 
     public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {

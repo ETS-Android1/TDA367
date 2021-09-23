@@ -9,14 +9,17 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tda367.CarAdModel;
+import com.example.tda367.ProfileFragment;
 import com.example.tda367.RecyclerViewAdapter;
 import com.example.tda367.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,12 +36,18 @@ public class DashboardFragment extends Fragment {
 
     private RecyclerViewAdapter recyclerViewAdapter;
     private DashboardViewModel dashboardViewModel;
+    private FirebaseAuth firebaseAuth;
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> carList = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
+        //Kollar om användare är inloggad innan den skickar en view
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() == null){
+            loadProfileFragment();
+        }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dashboard, container, false);
         setUpRecyclerView(view);
 
@@ -67,5 +76,10 @@ public class DashboardFragment extends Fragment {
                 }
             }
         });
+    }
+    private void loadProfileFragment(){
+        Fragment profileFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 }
