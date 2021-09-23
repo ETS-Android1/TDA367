@@ -11,16 +11,17 @@ import com.google.firebase.storage.StorageReference;
 public class ImageHandler {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference(); //root reference
-    StorageReference imagesRef = storageRef.child("images"); //image reference /images
-    StorageReference userRef = imagesRef.child(getCurrentUid()); //user reference in /images/user
+    StorageReference imagesRef = storageRef.child("images"); //image reference -> /images
+    //StorageReference carRef = imagesRef.child(); //carID reference -> /images/carID
+
+
+
+
 
     private String getCurrentUid(){
         return FirebaseAuth.getInstance().getUid();
     }
 
-    private String generatePath(String userid){
-        return "TestString";
-    }
 
     private void generateFolder(){
 

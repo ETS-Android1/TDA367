@@ -45,10 +45,13 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-firestore:23.0.3'
     implementation 'com.firebaseui:firebase-ui-firestore:4.3.2'
+    implementation 'com.google.firebase:firebase-storage'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.recyclerview:recyclerview-selection:1.2.0-alpha01'
+    implementation 'org.jetbrains:annotations:16.0.2'
+
 
 }
