@@ -1,0 +1,48 @@
+# Meeting Agenda
+
+Group:Stulb
+Date:2021-09-23
+Chair: Josef
+Participants:Johan,Josef,Hannes,Jamal,Albert
+
+
+## Objectives (5 min) 
+
+Discuss a solution for calendar function in our application.
+Create UML for the remaining classes in model.
+Get started with tests for application model.
+
+
+
+## Reports (15 min) from previous meeting
+
+- Each group member reports outcome of assigned issues, see also 'outcomes and
+  assignments'.
+Johan: Resolved navigationbuttons, forward/back button flow and payment signup. Continue with user login check.
+
+Josef: Found solution for images in firebase. Continue with a class that handles these images.
+
+Hannes: Done with design standardization.
+
+Jamal: Started with RAD and SDD and some design on filter/search. Continue with RAD, SDD, design.
+
+Albert: Solved password for signup, continue with profilefragment class.
+
+## Discussion items (35 min)
+
+- Discuss the identified issues, and possibly new or more general issues (very
+  short notes and/or keywords).
+
+
+
+## Outcomes and assignments (5 min)
+
+- Outcomes from discussion items. Write down what's decided and why it was 
+  decided. Sync with other documentation (add terms to wordbook).
+- (re)Assign to each group member which issues to solve.
+
+
+## Wrap up
+
+- Write down any unresolved issues for next meeting. 
+- Decide a time and location for next meeting.
