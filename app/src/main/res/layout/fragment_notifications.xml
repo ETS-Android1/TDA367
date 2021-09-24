@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4DADA6FF"
     android:orientation="vertical"
     tools:context=".ui.notifications.NotificationsFragment">
 
@@ -34,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:background="#BBF38E"
+            android:background="@drawable/rounded_button"
+            android:padding="10dp"
             android:text="@string/log_in" />
 
         <Button
@@ -42,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="@drawable/rounded_button_grey"
             android:text="@string/don_t_have_an_account_sign_up" />
 
     </LinearLayout>
