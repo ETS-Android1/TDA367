@@ -2,22 +2,24 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_new_user_confirmation">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="162dp"
-        android:background="#33B4ADFF"
+        android:background="#00B4ADFF"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/confirmationsText"
             android:layout_width="wrap_content"
-            android:layout_height="266dp"
+            android:layout_height="310dp"
             android:layout_margin="15dp"
-            android:text="@string/congratulations_on_joining_insert_company_name_see_below_to_get_started_with_renting_out_your_car_or_to_find_a_car_to_rent_best_regards_the_team_att_insert_company_name_making_renting_cars_easy_for_both_parts_since_2021_best_regards_hannes_th_rn_ceo_of_stulb"
+            android:background="#66FFFFFF"
+            android:text="Hi there,                                 Congratulations on joining Stulb.   Click on the Buttons below tog get started with making your own ad for renting out your car or the button below that to find a car to rent. Here’s to the start of a healthy digital relationship.                      Cheers,  Stulb                                          Renting cars made easy for all parts  since 2021"
             android:textColor="#000000"
             android:textSize="24sp"
             app:autoSizeMaxTextSize="@dimen/activity_horizontal_margin" />
@@ -27,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="#BBF38E"
+            android:background="@drawable/rounded_button_grey"
             android:text="@string/click_here_to_list_your_car" />
 
         <Button
@@ -35,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="#BBF38E"
+            android:background="@drawable/rounded_button_grey"
             android:text="@string/click_here_to_find_a_car_to_rent" />
 
     </LinearLayout>
