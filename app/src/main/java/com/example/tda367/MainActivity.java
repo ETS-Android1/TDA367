@@ -1,6 +1,8 @@
 package com.example.tda367;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
