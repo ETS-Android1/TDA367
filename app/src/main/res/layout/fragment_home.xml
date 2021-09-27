@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="#33B4ADFF"
+    >
 
     <TextView
         android:id="@+id/featuredTextView"
@@ -15,7 +17,8 @@
         android:text="Featured"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="16dp" />
 
     <TextView
         android:id="@+id/rentTextView"
@@ -26,7 +29,8 @@
         android:text="Another slide"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/featuredTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/featuredTextView"
+        android:layout_marginLeft="16dp" />
 
     <LinearLayout
         android:id="@+id/imageSlider"
@@ -47,7 +51,8 @@
             android:layout_gravity="center"
             android:foregroundGravity=""
             android:scaleType="fitXY"
-            android:src="@drawable/outline_arrow_back_ios_black_48dp" />
+            android:src="@drawable/outline_arrow_back_ios_black_48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
         <ImageView
@@ -64,7 +69,8 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:scaleType="fitXY"
-            android:src="@drawable/outline_arrow_forward_ios_black_48dp" />
+            android:src="@drawable/outline_arrow_forward_ios_black_48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </LinearLayout>

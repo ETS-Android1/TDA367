@@ -1,6 +1,8 @@
 package com.example.tda367.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

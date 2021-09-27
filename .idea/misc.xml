@@ -8,10 +8,14 @@
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/drawable/ic_search_gray_24dp.xml" value="0.10185185185185185" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/drawable/ic_star_yellow_24dp.xml" value="0.1" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/drawable/light_orange_rounded_shape.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/drawable/round_button.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/drawable/rounded_button.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/font/roboto.xml" value="0.1" />
+        <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/font/roboto_bold.xml" value="0.1" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/car_listitem.xml" value="0.12" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/create_ad.xml" value="0.22" />
-        <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/fragment_dashboard.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/fragment_notifications.xml" value="0.20018115942028986" />
         <entry key="..\:/Users/Dell/Desktop/TDA367_OOPproject/app/src/main/res/layout/new_user_confirmation.xml" value="0.2" />
