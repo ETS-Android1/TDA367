@@ -72,13 +72,29 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="287dp"
-            android:layout_height="644dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="86dp" />
+            />
+
+        <TextView
+            android:id="@+id/choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Choose"
+            android:textColor="@color/colorSecondary"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="@+id/nav_bar"
+            app:layout_constraintTop_toBottomOf="@+id/nav_bar"
+            android:layout_marginLeft="16dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
