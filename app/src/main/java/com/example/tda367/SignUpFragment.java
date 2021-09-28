@@ -49,7 +49,6 @@ public class SignUpFragment extends Fragment {
             loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
-    //TODO lägga till mer inputs till
         buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
         emailInput = (EditText) view.findViewById(R.id.emailInput);
