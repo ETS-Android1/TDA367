@@ -81,6 +81,7 @@ public class SignUpPaymentFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()){
                         System.out.println("la till cardinfo");
+                        loadConfirmationFragment();
                     }else {
                         FirebaseAuthException e = (FirebaseAuthException)task.getException();
                         assert e != null;
@@ -94,6 +95,12 @@ public class SignUpPaymentFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpFragment).commit();
     }
+    private void loadConfirmationFragment(){
+        Fragment signUpConfirmationFragment = new SignUpConfirmationFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpConfirmationFragment).commit();
+    }
+
     public Map<String, Object> generateCardHashMap(String cardnumber, String cardholderID, String date, String cvv) {
         Map<String, Object> CardInfo = new HashMap<String, Object>();
 

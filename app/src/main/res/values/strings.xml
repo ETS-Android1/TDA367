@@ -7,4 +7,9 @@
     <string name="enter_password">Enter password</string>
     <string name="log_in">Log in</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? sign up</string>
+    <string name="congratulations_on_joining_insert_company_name_see_below_to_get_started_with_renting_out_your_car_or_to_find_a_car_to_rent_best_regards_the_team_att_insert_company_name_making_renting_cars_easy_for_both_parts_since_2021_best_regards_hannes_th_rn_ceo_of_stulb">Congratulations on joining “insert company name” see below to get started with renting out your car or to find a car to rent! Best Regards, the team att “insert company name” “Making renting cars easy for both parts since 2021” Best regards, Hannes Thörn CEO of Stulb</string>
+    <string name="click_here_to_list_your_car">Click here to list your car</string>
+    <string name="click_here_to_find_a_car_to_rent">Click here to find a car to rent</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
