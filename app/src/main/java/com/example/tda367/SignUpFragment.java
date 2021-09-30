@@ -45,7 +45,7 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //Kollar om användare är inloggad innan den skickar en view
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() != null){
             loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
