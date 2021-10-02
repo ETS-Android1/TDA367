@@ -3,9 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#33B4ADFF"
     android:orientation="vertical"
     tools:context=".ui.notifications.NotificationsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="258dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:orientation="vertical"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/ic_mobil_home" />
+
+        <TextView
+            android:id="@+id/rent_A_Car"
+            android:layout_width="239dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/nunito_black"
+            android:text="Rent-A-Car"
+            android:textColor="@color/colorSecondary"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="8dp" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +49,7 @@
         android:layout_centerVertical="true"
         android:background="#33B4ADFF"
         android:orientation="vertical">
+
 
         <EditText
             android:id="@+id/editEmailText"
