@@ -8,71 +8,108 @@
     android:background="#33B4ADFF"
     >
 
-    <TextView
-        android:id="@+id/featuredTextView"
-        android:layout_width="135dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:text="Featured"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="16dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/rentTextView"
-        android:layout_width="331dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="232dp"
-        android:text="Another slide"
-        android:textSize="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/featuredTextView"
-        android:layout_marginLeft="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/imageSlider"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/featuredTextView">
+            <TextView
+                android:id="@+id/featuredTextView"
+                android:layout_width="135dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:text="Featured"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:foregroundGravity=""
-            android:scaleType="fitXY"
-            android:src="@drawable/outline_arrow_back_ios_black_48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            <LinearLayout
+                android:id="@+id/imageSlider"
+                android:layout_width="388dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="1dp"
+                    android:foregroundGravity=""
+                    android:scaleType="fitXY"
+                    android:src="@drawable/outline_arrow_back_ios_black_48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
 
-        <ImageView
-            android:id="@+id/myImageView"
-            android:layout_width="285dp"
-            android:layout_height="187dp"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            tools:src="@tools:sample/backgrounds/scenic" />
+                <ImageView
+                    android:id="@+id/myImageView"
+                    android:layout_width="285dp"
+                    android:layout_height="187dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="fitXY"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-        <ImageButton
-            android:id="@+id/nextButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            android:src="@drawable/outline_arrow_forward_ios_black_48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
+                <ImageButton
+                    android:id="@+id/nextButton"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/outline_arrow_forward_ios_black_48dp"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
 
-    </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/rentTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="Do you want to add your own car ad?"
+                android:textSize="22dp" />
+
+            <Button
+                android:id="@+id/findCarButton"
+                android:layout_width="350dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/rounded_button"
+                android:text="Find a car to rent!"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/addCarButton"
+                android:layout_width="350dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_button"
+                android:text="Add your own car ad!"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/howDoButton"
+                android:layout_width="350dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded_button_grey"
+                android:text="How do i do?"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
