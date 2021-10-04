@@ -45,7 +45,6 @@ public class AddCarAdFragment extends Fragment {
         yearEditText = (EditText) view.findViewById(R.id.yearEditText);
         priceEditText = (EditText) view.findViewById(R.id.priceEditText);
         locationEditText = (EditText) view.findViewById(R.id.locationEditText);
-        System.out.println(FirebaseAuth.getInstance().getUid());
         indexOfCar();
         saveAdButton = (Button) view.findViewById(R.id.saveAdButton);
 
@@ -65,10 +64,9 @@ public class AddCarAdFragment extends Fragment {
             String carModel = String.valueOf(modelEditText.getText());
             String carYear = String.valueOf(yearEditText.getText());
             Long carPrice = Long.valueOf(String.valueOf(priceEditText.getText()));
-            String carLocation = String.valueOf(locationEditText);
+            String carLocation = String.valueOf(locationEditText.getText());
             String carIdString = Long.toString(carID);
             //TODO lägga till den i användarens egna collection, inte bara den offentliga
-            String userID = firebaseAuth.getUid();
 
 
             //Creates a new Collection in Firebase with data from generateCarHashMap
