@@ -8,81 +8,92 @@
     android:orientation="vertical"
     tools:context=".ui.notifications.NotificationsFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="130dp"
-            android:layout_height="102dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="56dp"
-            android:src="@drawable/ic_mobil_home" />
-
-        <TextView
-            android:id="@+id/rent_A_Car"
-            android:layout_width="132dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="127dp"
-            android:layout_marginLeft="78dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:fontFamily="@font/nunito_black"
-            android:text="Rent-A-Car"
-            android:textColor="@color/colorSecondary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="299dp"
-        android:layout_centerVertical="true"
-        android:background="#33B4ADFF"
-        android:orientation="vertical">
-
-
-        <EditText
-            android:id="@+id/editEmailText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_margin="15dp"
-            android:hint="@string/enter_email"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/editPasswordText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_margin="15dp"
-            android:hint="@string/enter_password"
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/buttonLogIn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_button"
-            android:padding="10dp"
-            android:text="@string/log_in" />
+            android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/buttonSignup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_button_grey"
-            android:text="@string/don_t_have_an_account_sign_up" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="130dp"
+                    android:layout_height="102dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="56dp"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/ic_mobil_home" />
+
+                <TextView
+                    android:id="@+id/rent_A_Car"
+                    android:layout_width="146dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="127dp"
+                    android:layout_marginLeft="78dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/nunito_black"
+                    android:gravity="center"
+                    android:text="Rent-A-Car"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="299dp"
+                android:background="#33B4ADFF"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/editEmailText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:hint="@string/enter_email"
+                    android:inputType="textEmailAddress" />
+
+                <EditText
+                    android:id="@+id/editPasswordText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="15dp"
+                    android:hint="@string/enter_password"
+                    android:inputType="textPassword" />
+
+                <Button
+                    android:id="@+id/buttonLogIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_button"
+                    android:padding="10dp"
+                    android:text="@string/log_in" />
+
+                <Button
+                    android:id="@+id/buttonSignup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/rounded_button_grey"
+                    android:text="@string/don_t_have_an_account_sign_up" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
