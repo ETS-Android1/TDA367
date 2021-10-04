@@ -95,7 +95,9 @@
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="72dp" />
+            tools:layout_editor_absoluteY="72dp"
+            tools:ignore="MissingConstraints,NotSibling"
+            android:layout_below="@+id/searchBar"/>
 
         <Button
             android:id="@+id/filter"

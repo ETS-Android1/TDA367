@@ -21,15 +21,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        private TextView nameText;
-        private TextView areaText;
-        private TextView priceText;
+        private TextView carBrand;
+        private TextView carModel;
+        private TextView carYear;
+        private TextView carTitle;
+        private TextView carLocation;
+        private TextView carPrice;
+        private TextView carID;
 
         public MyViewHolder(final View view){
             super(view);
-            nameText = view.findViewById(R.id.carName);
-            areaText = view.findViewById(R.id.carArea);
-            priceText = view.findViewById(R.id.carCost);
+            carBrand = view.findViewById(R.id.carBrand);
+            carModel = view.findViewById(R.id.carModel);
+            carYear = view.findViewById(R.id.carYear);
+            carTitle = view.findViewById(R.id.carTitle);
+            carLocation = view.findViewById(R.id.carLocation);
+            carPrice = view.findViewById(R.id.carPrice);
         }
     }
 
@@ -43,10 +50,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         CarAdModel car = carList.get(position);
-        holder.nameText.setText(car.getCarName());
-        holder.areaText.setText(car.getCarArea());
-        String cost = Integer.toString(car.getCarCost());
-        holder.priceText.setText(cost);
+        holder.carBrand.setText(car.getCarBrand());
+        holder.carModel.setText(car.getCarModel());
+        holder.carYear.setText(car.getCarYear());
+        holder.carTitle.setText(car.getCarTitle());
+        holder.carLocation.setText(car.getCarLocation());
+        holder.carPrice.setText(String.valueOf(car.getCarPrice()));
+
     }
 
     @Override

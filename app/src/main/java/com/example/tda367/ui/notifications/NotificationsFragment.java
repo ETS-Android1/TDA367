@@ -38,13 +38,10 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Kollar om användare är inloggad innan den skickar en view
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() == null){
+        if (firebaseAuth.getCurrentUser() != null){
             loadProfileFragment();
         }
         int currentFragment = R.layout.fragment_notifications;
-
-
-
         View view = LayoutInflater.from(getContext()).inflate(currentFragment, container, false);
 
 
@@ -94,12 +91,7 @@ public class NotificationsFragment extends Fragment {
                         }
                     }));
         }
-
-
         //Test epost: hannes@gmail.com pass: Stulb123
-
-
-
     }
     private void loadProfileFragment(){
         Fragment profileFragment = new ProfileFragment();
