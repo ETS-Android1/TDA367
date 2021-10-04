@@ -84,6 +84,7 @@ public class NotificationsFragment extends Fragment {
                     .addOnCompleteListener((task -> {
                         if(task.isSuccessful()) {
                             System.out.println("du klarade det bre");
+                            loadProfileFragment();
                         }else{
                             FirebaseAuthException e = (FirebaseAuthException)task.getException();
                             assert e != null;
