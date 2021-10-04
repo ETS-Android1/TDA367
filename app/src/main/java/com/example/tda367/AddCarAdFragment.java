@@ -38,14 +38,15 @@ public class AddCarAdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.create_ad, container, false);
-        indexOfCar();
+
         titleEditText = (EditText) view.findViewById(R.id.titleEditText);
         brandEditText = (EditText) view.findViewById(R.id.brandEditText);
         modelEditText = (EditText) view.findViewById(R.id.modelEditText);
         yearEditText = (EditText) view.findViewById(R.id.yearEditText);
         priceEditText = (EditText) view.findViewById(R.id.priceEditText);
         locationEditText = (EditText) view.findViewById(R.id.locationEditText);
-
+        System.out.println(FirebaseAuth.getInstance().getUid());
+        indexOfCar();
         saveAdButton = (Button) view.findViewById(R.id.saveAdButton);
 
         saveAdButton.setOnClickListener(new View.OnClickListener() {
@@ -111,20 +112,24 @@ public class AddCarAdFragment extends Fragment {
     //Checks CarID of last object in firebase and gives carId that value +1 as the new CarID for new object
     private void indexOfCar() {
         final Long[] numIndex = new Long[1];
-        firestore.collection("cars").orderBy("CarId", Query.Direction.DESCENDING).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        FirebaseFirestore.getInstance().collection("cars").orderBy("CarLocation", Query.Direction.DESCENDING).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             //Hinner inte få numindex från firebase innan return
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                         numIndex[0] = documentSnapshot.getLong("CarId");
+
                     }
                 } else {
                     System.out.println("Error: " + task.getException());
                 }
+                assert numIndex[0] != null;
                 carID = numIndex[0].intValue()+1;
+                System.out.println(carID);
             }
         });
-        System.out.println(numIndex[0].intValue()+1);
+
     }
 }
