@@ -49,6 +49,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editProfileButton" />
 
+    <Button
+        android:id="@+id/logOutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="logOutButton"
+        tools:layout_editor_absoluteY="185dp" />
+
     <ScrollView
         android:id="@+id/scrollViewProfile"
         android:layout_width="match_parent"
@@ -67,7 +74,9 @@
                 android:id="@+id/recyclerViewProfile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="30dp" >
+
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 

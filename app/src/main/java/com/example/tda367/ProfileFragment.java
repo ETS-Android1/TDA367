@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.tda367.ui.notifications.NotificationsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -22,6 +23,7 @@ public class ProfileFragment extends Fragment {
     private ProfileFragment profileFragment;
     private FirebaseAuth firebaseAuth;
     private Button addCarAdButton;
+    private Button logOutButton;
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> adList = new ArrayList<>();
@@ -38,6 +40,13 @@ public class ProfileFragment extends Fragment {
                 loadAddCarAdFragment();
             }
         });
+        logOutButton = (Button) view.findViewById(R.id.logOutButton);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
         return view;
     }
 
@@ -52,6 +61,15 @@ public class ProfileFragment extends Fragment {
         Fragment addCarAdFragment = new AddCarAdFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
+    }
+    private void loadSignInFragment(){
+        Fragment signInFragment = new NotificationsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
+    }
+    private void signOut(){
+        FirebaseAuth.getInstance().signOut();
+        loadSignInFragment();
     }
 
 
