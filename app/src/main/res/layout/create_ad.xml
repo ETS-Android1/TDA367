@@ -102,6 +102,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginBottom="32dp"
+                    android:background="@drawable/rounded_button_cancel"
                     android:backgroundTint="#FB8B8B"
                     android:text="cancel" />
 
@@ -112,6 +113,7 @@
                     android:layout_marginEnd="32dp"
                     android:layout_marginRight="32dp"
                     android:layout_marginBottom="32dp"
+                    android:background="@drawable/rounded_button"
                     android:backgroundTint="#BBF38E"
                     android:text="Save" />
 
