@@ -50,17 +50,21 @@ public class NotificationsFragment extends Fragment {
         editEmailText = (EditText) view.findViewById(R.id.editEmailText);
         editPasswordText = (EditText) view.findViewById(R.id.editPasswordText);
         buttonLogIn = (Button) view.findViewById(R.id.buttonLogIn);
-        buttonLogIn.setOnClickListener(new View.OnClickListener(){
 
+        buttonLogIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 System.out.println("adde");
-                makeToast("You need to fill in all the fields!");
-
-                signIn();
+                if (isFieldsEmpty()) {
+                    makeToast("You need to fill in all the fields!");
+                }
+                else {
+                    signIn();
+                    makeToast("You are now logged in!");
+                }
             }
         });
+
         buttonSignup = (Button) view.findViewById(R.id.buttonSignup);
         buttonSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +82,7 @@ public class NotificationsFragment extends Fragment {
     private void signIn(){
 
         //string kan inte vara null eller inget för att köra
-        if (String.valueOf(editEmailText.getText()).isEmpty() || String.valueOf(editPasswordText.getText()).isEmpty()){
+        if (isFieldsEmpty()){
             System.out.println("inget skrevs in");
         }else{
             String email = String.valueOf(editEmailText.getText());
@@ -97,6 +101,11 @@ public class NotificationsFragment extends Fragment {
         }
         //Test epost: hannes@gmail.com pass: Stulb123
     }
+
+    private boolean isFieldsEmpty() {
+        return String.valueOf(editEmailText.getText()).isEmpty() || String.valueOf(editPasswordText.getText()).isEmpty();
+    }
+
     private void loadProfileFragment(){
         Fragment profileFragment = new ProfileFragment();
         FragmentManager fragmentManager = getFragmentManager();
@@ -109,5 +118,6 @@ public class NotificationsFragment extends Fragment {
         View view = toast.getView();
         toast.show();
     }
+
 
 }
