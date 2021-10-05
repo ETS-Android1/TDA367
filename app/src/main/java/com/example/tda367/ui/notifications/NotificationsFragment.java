@@ -1,6 +1,7 @@
 package com.example.tda367.ui.notifications;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.example.tda367.SignUpFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class NotificationsFragment extends Fragment {
 
@@ -54,6 +56,7 @@ public class NotificationsFragment extends Fragment {
             public void onClick(View v) {
 
                 System.out.println("adde");
+                makeToast("You need to fill in all the fields!");
 
                 signIn();
             }
@@ -98,6 +101,13 @@ public class NotificationsFragment extends Fragment {
         Fragment profileFragment = new ProfileFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
+    }
+
+    private void makeToast(CharSequence message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getContext(), message, duration);
+        View view = toast.getView();
+        toast.show();
     }
 
 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.tda367.ui.notifications.NotificationsFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -102,6 +103,7 @@ public class SignUpFragment extends Fragment {
         }
         else {
             System.out.println("Alla fields är inte fyllda");
+            makeToast("You need to fill in all the fields!");
         }
     }
 
@@ -114,6 +116,12 @@ public class SignUpFragment extends Fragment {
                 String.valueOf(addressInput.getText()).isEmpty() ||
                 String.valueOf(cityInput.getText()).isEmpty() ||
                 String.valueOf(phoneNumberInput.getText()).isEmpty();
+    }
+
+    private void makeToast(CharSequence message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getContext(), message, duration);
+        toast.show();
     }
 
     private void loadSignUpPaymentFragment(){

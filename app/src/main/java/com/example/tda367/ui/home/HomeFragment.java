@@ -1,5 +1,6 @@
 package com.example.tda367.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +9,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tda367.AddCarAdFragment;
+import com.example.tda367.MainActivity;
 import com.example.tda367.ProfileFragment;
 import com.example.tda367.R;
 import com.example.tda367.SignUpPaymentFragment;
@@ -74,11 +78,11 @@ public class HomeFragment extends Fragment {
         addCarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (firebaseAuth.getCurrentUser() != null){
+                if (firebaseAuth.getCurrentUser() != null) {
                     loadAddCarFragment();
-                }
-                else {
+                } else {
                     loadSignInFragment();
+                    makeToast("You need to log in first!");
                 }
             }
         });
@@ -88,6 +92,15 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+    private void makeToast(CharSequence message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getContext(), message, duration);
+        toast.show();
+    }
+
+
+
 
     private void loadAddCarFragment(){
         Fragment addCarFragment = new AddCarAdFragment();
