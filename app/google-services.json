@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "888089943062",
-    "project_id": "tda367-47a55",
-    "storage_bucket": "tda367-47a55.appspot.com"
+    "project_number": "824405025116",
+    "project_id": "tda367oop",
+    "storage_bucket": "tda367oop.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:888089943062:android:5431d5f23e54f84a93a937",
+        "mobilesdk_app_id": "1:824405025116:android:3de427277ff792322aa199",
         "android_client_info": {
           "package_name": "com.example.tda367"
         }
       },
       "oauth_client": [
         {
-          "client_id": "888089943062-h4sttagmdakeqarb8qh2m11b6sshb6di.apps.googleusercontent.com",
+          "client_id": "824405025116-q9semansvt61qhs5c8istbarrdc7jbse.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tda367",
+            "certificate_hash": "fcd8393eb050e8f4abc9386b12734870b08141e2"
+          }
+        },
+        {
+          "client_id": "824405025116-h2jb80t2611abvi9t506ukk225fcncfj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCcjvkx9sjEBPsgLQT8B0WbEw2Vnk9UToc"
+          "current_key": "AIzaSyAkgPALyCL1h2OI84BU_FizH4Y1d1l_1sY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "888089943062-h4sttagmdakeqarb8qh2m11b6sshb6di.apps.googleusercontent.com",
+              "client_id": "824405025116-h2jb80t2611abvi9t506ukk225fcncfj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
