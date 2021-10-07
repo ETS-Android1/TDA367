@@ -51,19 +51,16 @@ public class NotificationsFragment extends Fragment {
         editPasswordText = (EditText) view.findViewById(R.id.editPasswordText);
         buttonLogIn = (Button) view.findViewById(R.id.buttonLogIn);
 
-        buttonLogIn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                System.out.println("adde");
-                if (isFieldsEmpty()) {
-                    makeToast("You need to fill in all the fields!");
-                }
-                else {
-                    signIn();
-                    makeToast("You are now logged in!");
-                }
-            }
-        });
+        buttonLogIn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (isFieldsEmpty()) {
+                   makeToast("You need to fill in all the fields!");
+               } else {
+                   signIn();
+               }
+           }
+       });
 
         buttonSignup = (Button) view.findViewById(R.id.buttonSignup);
         buttonSignup.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +89,11 @@ public class NotificationsFragment extends Fragment {
                         if(task.isSuccessful()) {
                             System.out.println("du klarade det bre");
                             loadProfileFragment();
+                            makeToast("You are now logged in!");
                         }else{
                             FirebaseAuthException e = (FirebaseAuthException)task.getException();
                             assert e != null;
-                            System.out.println(e.getMessage());
+                            makeToast(e.getMessage());
                         }
                     }));
         }
