@@ -86,14 +86,16 @@
                     android:inputType="textPersonName"
                     android:minHeight="48dp" />
 
-                <EditText
-                    android:id="@+id/editTextTextPersonName24"
+                <Button
+                    android:id="@+id/uploadImageButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    android:text="Add image URL path:" />
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/rounded_button"
+                    android:backgroundTint="#BBF38E"
+                    android:text="UPLOAD IMAGE" />
 
                 <Button
                     android:id="@+id/cancelAdButton"

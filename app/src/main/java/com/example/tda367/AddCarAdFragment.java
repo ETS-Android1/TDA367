@@ -22,6 +22,7 @@ import java.util.Map;
 public class AddCarAdFragment extends Fragment {
 
     private Button saveAdButton;
+    private Button uploadImageButton;
     private EditText titleEditText;
     private EditText brandEditText;
     private EditText modelEditText;
@@ -31,6 +32,7 @@ public class AddCarAdFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
     private int carID;
+    private ImageHandler imageHandler;
 
 
 
@@ -47,6 +49,7 @@ public class AddCarAdFragment extends Fragment {
         locationEditText = (EditText) view.findViewById(R.id.locationEditText);
         indexOfCar();
         saveAdButton = (Button) view.findViewById(R.id.saveAdButton);
+        uploadImageButton = (Button) view.findViewById(R.id.uploadImageButton);
 
         saveAdButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +57,15 @@ public class AddCarAdFragment extends Fragment {
                 addAdToFirebase();
             }
         });
+
+
+
+
         return view;
+    }
+
+    public void onClick(View v){
+        addAdToFirebase();
     }
 
     private void addAdToFirebase() {
