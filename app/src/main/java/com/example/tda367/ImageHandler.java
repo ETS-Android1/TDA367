@@ -29,15 +29,9 @@ public class ImageHandler {
         return carRef.getPath();
     }
 
-    private String getLocalPath(){
-        // Write a function that gets a local path from an android phone.
-        return "path";
-    }
-
-
-    private void uploadPicture(){
-        Uri file = Uri.fromFile(new File(getLocalPath()));
-        StorageReference imageRef = imagesRef.child(file.getLastPathSegment());//Gets last part of the path (file name)
+    public void uploadPicture(Uri uri, String uid){
+        Uri file = Uri.fromFile(new File(uri.getPath()));
+        StorageReference imageRef = imagesRef.child(uid + file.getLastPathSegment());//Gets last part of the path (file name)
         UploadTask uploadTask = imageRef.putFile(file);
 
 

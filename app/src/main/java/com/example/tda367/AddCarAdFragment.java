@@ -1,6 +1,7 @@
 package com.example.tda367;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,12 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +42,8 @@ public class AddCarAdFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore;
     private int carID;
-    private ImageHandler imageHandler;
-
+    private ImageHandler imageHandler = new ImageHandler();
+    private ImageView carPreview;
 
 
     @Override
@@ -71,6 +75,8 @@ public class AddCarAdFragment extends Fragment {
             }
         });
 
+       carPreview = (ImageView) view.findViewById(R.id.carPreview);
+       carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
 
 
         return view;
@@ -86,8 +92,11 @@ public class AddCarAdFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && data != null){
             Uri selectedImage = data.getData();
+            carPreview.setImageURI(selectedImage);
+            carPreview.setVisibility(View.VISIBLE);//Makes preview visible
             //Display image in an imageview
-            //Upload image to firebase storage
+            //UPLOAD IMAGE AFTER PRESSING SAVE BUTTON
+            //imageHandler.uploadPicture(selectedImage, "2");
         }
     }
 

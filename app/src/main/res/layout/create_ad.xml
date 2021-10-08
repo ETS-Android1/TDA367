@@ -97,6 +97,13 @@
                     android:backgroundTint="#BBF38E"
                     android:text="UPLOAD IMAGE" />
 
+                <ImageView
+                    android:id="@+id/carPreview"
+                    android:layout_width="359dp"
+                    android:layout_height="250dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/bmw_car_img" />
+
                 <Button
                     android:id="@+id/cancelAdButton"
                     android:layout_width="160dp"
