@@ -44,6 +44,7 @@ public class AddCarAdFragment extends Fragment {
     private int carID;
     private ImageHandler imageHandler = new ImageHandler();
     private ImageView carPreview;
+    private Uri selectedImage;
 
 
     @Override
@@ -91,12 +92,9 @@ public class AddCarAdFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && data != null){
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
             carPreview.setImageURI(selectedImage);
             carPreview.setVisibility(View.VISIBLE);//Makes preview visible
-            //Display image in an imageview
-            //UPLOAD IMAGE AFTER PRESSING SAVE BUTTON
-            imageHandler.uploadPicture(selectedImage, "2");
         }
     }
 
@@ -124,6 +122,9 @@ public class AddCarAdFragment extends Fragment {
                             System.out.println("felmeddelande: " + e.getMessage());
                         }
                     });
+        }
+        if (selectedImage != null){
+            imageHandler.uploadPicture(selectedImage, String.valueOf(carID));
         }
     }
     //Checks if inputFields are empty
