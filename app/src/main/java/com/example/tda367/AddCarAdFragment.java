@@ -96,7 +96,7 @@ public class AddCarAdFragment extends Fragment {
             carPreview.setVisibility(View.VISIBLE);//Makes preview visible
             //Display image in an imageview
             //UPLOAD IMAGE AFTER PRESSING SAVE BUTTON
-            //imageHandler.uploadPicture(selectedImage, "2");
+            imageHandler.uploadPicture(selectedImage, "2");
         }
     }
 

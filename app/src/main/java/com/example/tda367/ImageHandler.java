@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,16 +31,15 @@ public class ImageHandler {
     }
 
     public void uploadPicture(Uri uri, String uid){
-        Uri file = Uri.fromFile(new File(uri.getPath()));
-        StorageReference imageRef = imagesRef.child(uid + file.getLastPathSegment());//Gets last part of the path (file name)
-        UploadTask uploadTask = imageRef.putFile(file);
+        StorageReference imageRef = imagesRef.child(uid + "/car");//Gets last part of the path (file name)
+        UploadTask uploadTask = imageRef.putFile(uri);
 
 
         //Observer for done/fail status.
         uploadTask.addOnFailureListener(exception -> {
-            
+            System.out.println("Failed to upload");
         }).addOnSuccessListener(taskSnapshot -> {
-
+            System.out.println("Upload succeeded");
         });
 
 
