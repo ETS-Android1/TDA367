@@ -7,9 +7,9 @@ public class CarAdModel {
     private String carYear;
     private String carLocation;
     private int carPrice;
-    private int carID;
+    private String carID;// Hash created by firebase.
 
-    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, int carID) {
+    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, String carID) {
         this.carBrand = carBrand;
         this.carModel = carModel;
         this.carTitle = carTitle;
@@ -59,11 +59,11 @@ public class CarAdModel {
         this.carPrice = carPrice;
     }
 
-    public int getCarID() {
+    public String getCarID() {
         return carID;
     }
 
-    public void setCarID(int carID) {
+    public void setCarID(String carID) {
         this.carID = carID;
     }
 
