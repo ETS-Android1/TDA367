@@ -119,27 +119,33 @@
                     android:visibility="gone"
                     app:srcCompat="@drawable/bmw_car_img" />
 
-                <Button
-                    android:id="@+id/cancelAdButton"
-                    android:layout_width="160dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/rounded_button_cancel"
-                    android:backgroundTint="#FB8B8B"
-                    android:text="cancel" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+                    <Button
+                        android:id="@+id/saveAdButton"
+                        android:layout_width="match_parent"
+                        android:layout_weight=".5"
+                        android:layout_height="50dp"
+                        android:backgroundTint="#BBF38E"
+                        android:text="Save"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        />
 
-                <Button
-                    android:id="@+id/saveAdButton"
-                    android:layout_width="160dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginBottom="32dp"
-                    android:background="@drawable/rounded_button"
-                    android:backgroundTint="#BBF38E"
-                    android:text="Save" />
+                    <Button
+                        android:id="@+id/cancelAdButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight=".5"
+                        android:backgroundTint="#FB8B8B"
+                        android:text="cancel"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>
