@@ -2,6 +2,8 @@ package com.example.tda367.ui.dashboard;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +68,26 @@ public class DashboardFragment extends Fragment {
 
         carList = new ArrayList<>();
         recyclerViewAdapter = new RecyclerViewAdapter(carList, getContext());
+
+        inputSearch = view.findViewById(R.id.searchBar);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    recyclerViewAdapter.getFilter().filter(s.toString());
+                }
+            }
+        });
 
 
         setUpRecyclerView();

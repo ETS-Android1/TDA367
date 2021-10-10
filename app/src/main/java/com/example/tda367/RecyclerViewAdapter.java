@@ -36,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public Filter getFilter() {
-        return null;
+        return FilterResult;
     }
 
     Filter FilterResult = new Filter() {
