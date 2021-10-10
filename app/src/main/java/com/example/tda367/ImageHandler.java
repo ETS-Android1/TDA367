@@ -3,16 +3,18 @@ package com.example.tda367;
 
 import android.net.Uri;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class ImageHandler {
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageRef = storage.getReference(); //root reference
-    private StorageReference imagesRef = storageRef.child("images"); //image reference -> /images
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference(); //root reference
+    StorageReference imagesRef = storageRef.child("images"); //image reference -> /images
 
 
+    /*
     public void uploadPicture(Uri uri, String uid){
         StorageReference imageRef = imagesRef.child(uid + "/car");//Gets last part of the path (file name)
         UploadTask uploadTask = imageRef.putFile(uri);
@@ -25,6 +27,14 @@ public class ImageHandler {
             System.out.println("Upload succeeded");
         });
 
+     */
+
+    private String getCurrentUid(){
+        return FirebaseAuth.getInstance().getUid();
+    }
+
+
+    private void generateFolder(){
 
 
     }
