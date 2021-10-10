@@ -73,13 +73,15 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        setUpRecyclerView();
         return view;
     }
 
 
-    private void setAdapter(View view) {
+    private void setAdapter() {
+        progressDialog.dismiss();
         recyclerViewAdapter = new RecyclerViewAdapter(carList,getContext());
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewProfile);
+        //RecyclerView recyclerView = view.findViewById(R.id.recyclerViewProfile);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
@@ -100,8 +102,34 @@ public class ProfileFragment extends Fragment {
         loadSignInFragment();
     }
 
+    //Kanske ska köra Long istället för int
+    private void setUpRecyclerView() {
+        db.collection("Cars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    carList = new ArrayList<>();
+                    List<DocumentSnapshot> documents = task.getResult().getDocuments();
+                    for (DocumentSnapshot documentSnapshot : documents) {
 
 
+                        carList.add(new CarAdModel(documentSnapshot.getId().toString(), documentSnapshot.getString("title"), documentSnapshot.getString("brand"), documentSnapshot.getString("model")
+                                , documentSnapshot.getString("year"), documentSnapshot.getString("price"),
+                                documentSnapshot.getString("location"), documentSnapshot.getString("imageUrl")));//Kanske är CarID
+                    }
+                    setAdapter();
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(), "" + task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRecyclerView();
+    }
 
 }
