@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ import java.util.List;
 
 /**
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
     List<CarAdModel> list;
     List<CarAdModel> listFull;
     Context context;
@@ -31,6 +33,43 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.context = context;
         listFull=new ArrayList<>(list);
     }
+
+    @Override
+    public Filter getFilter() {
+        return null;
+    }
+
+    Filter FilterResult = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String searchedText=constraint.toString().toLowerCase().trim();
+            List<CarAdModel>listTemp=new ArrayList<>();
+            if (searchedText.isEmpty() || searchedText.length()==0)
+            {
+                listTemp.addAll(listFull);
+            }else {
+                for ( CarAdModel car:listFull)
+                {
+                    if (car.getCarTitle().toString().toLowerCase().contains(searchedText))
+                    {
+                        listTemp.add(car);
+                    }
+                }
+
+            }
+            FilterResults filterResults=new FilterResults();
+            filterResults.values=listTemp;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((Collection<? extends CarAdModel>) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView carBrand;
