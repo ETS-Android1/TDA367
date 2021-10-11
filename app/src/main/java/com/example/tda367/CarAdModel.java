@@ -1,22 +1,34 @@
 package com.example.tda367;
 
-public class CarAdModel {
+import java.io.Serializable;
+
+public class CarAdModel implements Serializable {
+
+
     private String carBrand;
     private String carModel;
     private String carTitle;
     private String carYear;
     private String carLocation;
-    private int carPrice;
-    private int carID;
+    private String carPrice;
+    private String carID;// Hash created by firebase.
+    private String imageUrl;
 
-    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, int carID) {
+
+    public CarAdModel(String carID, String carTitle, String carBrand, String carModel, String carYear, String carPrice, String carLocation, String imageUrl) {
+
+        this.carID = carID;
+        this.carTitle = carTitle;
         this.carBrand = carBrand;
         this.carModel = carModel;
-        this.carTitle = carTitle;
         this.carYear = carYear;
-        this.carLocation = carLocation;
         this.carPrice = carPrice;
-        this.carID = carID;
+        this.carLocation = carLocation;
+        this.imageUrl = imageUrl;
+
+    }
+
+    public CarAdModel() {
     }
 
     public String getCarBrand() {
@@ -51,19 +63,19 @@ public class CarAdModel {
         this.carYear = carYear;
     }
 
-    public int getCarPrice() {
+    public String getCarPrice() {
         return carPrice;
     }
 
-    public void setCarPrice(int carPrice) {
+    public void setCarPrice(String carPrice) {
         this.carPrice = carPrice;
     }
 
-    public int getCarID() {
+    public String getCarID() {
         return carID;
     }
 
-    public void setCarID(int carID) {
+    public void setCarID(String carID) {
         this.carID = carID;
     }
 
@@ -75,5 +87,13 @@ public class CarAdModel {
         this.carLocation = carLocation;
     }
 
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
 }

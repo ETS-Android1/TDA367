@@ -1,15 +1,9 @@
 package com.example.tda367;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,33 +11,54 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import java.util.HashMap;
 import java.util.Map;
+
 public class AddCarAdFragment extends Fragment {
 
-    private static final int RESULT_LOAD_IMAGE = 1;
+    //private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveAdButton;
-    private Button uploadImageButton;
     private EditText titleEditText;
     private EditText brandEditText;
     private EditText modelEditText;
     private EditText yearEditText;
     private EditText priceEditText;
     private EditText locationEditText;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore firestore;
+    private ImageView selectImage;
+    private FirebaseAuth mAuth;
+
+    TextView selectImageTextView;
+    FirebaseUser mUser;
+    FirebaseFirestore db;
     private int carID;
-    private ImageHandler imageHandler = new ImageHandler();
+    public static final int PICK_IMAGE = 1101;
+    Uri imageUri;
+    StorageReference mStorage;
+    ProgressDialog progressDialog;
+
+    /*
+    private final ImageHandler imageHandler = new ImageHandler();
     private ImageView carPreview;
+    private Uri selectedImage;
+    */
 
 
     @Override
@@ -57,49 +72,149 @@ public class AddCarAdFragment extends Fragment {
         yearEditText = (EditText) view.findViewById(R.id.yearEditText);
         priceEditText = (EditText) view.findViewById(R.id.priceEditText);
         locationEditText = (EditText) view.findViewById(R.id.locationEditText);
-        indexOfCar();
-        saveAdButton = (Button) view.findViewById(R.id.saveAdButton);
-        uploadImageButton = (Button) view.findViewById(R.id.uploadImageButton);
+        selectImage = (ImageView) view.findViewById(R.id.imageview);
+        selectImageTextView = (TextView) view.findViewById(R.id.selectImageTextView);
 
+
+        saveAdButton = view.findViewById(R.id.saveAdButton);
+
+        progressDialog = new ProgressDialog(getContext());
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        mStorage = FirebaseStorage.getInstance().getReference().child("CarImages");
         saveAdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 addAdToFirebase();
             }
         });
 
-        uploadImageButton.setOnClickListener(new View.OnClickListener() {
+        //select image click listner
+        selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadGallery();
+                SelectImage();
             }
         });
 
-       carPreview = (ImageView) view.findViewById(R.id.carPreview);
+        selectImageTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectImage();
+            }
+        });
+
+        /*
+        uploadImageButton = view.findViewById(R.id.uploadImageButton);
+
+        saveAdButton.setOnClickListener(v -> addAdToFirebase());
+
+        uploadImageButton.setOnClickListener(v -> loadGallery());
+
+       carPreview = view.findViewById(R.id.carPreview);
        carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
+       */
 
 
         return view;
     }
 
+    private void SelectImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
+    /*
     public void loadGallery(){
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
     }
+    */
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && data != null){
-            Uri selectedImage = data.getData();
-            carPreview.setImageURI(selectedImage);
-            carPreview.setVisibility(View.VISIBLE);//Makes preview visible
-            //Display image in an imageview
-            //UPLOAD IMAGE AFTER PRESSING SAVE BUTTON
-            imageHandler.uploadPicture(selectedImage, "2");
+    private void addAdToFirebase() {
+
+        String carTitle = titleEditText.getText().toString();
+        String carBrand = brandEditText.getText().toString();
+        String carModel = modelEditText.getText().toString();
+        String carYear = yearEditText.getText().toString();
+        String carPrice = priceEditText.getText().toString();
+        String carLocation = locationEditText.getText().toString();
+
+        //TODO lägga till den i användarens egna collection, inte bara den offentliga
+
+        //check if any field is empty and user didnot added anything in edittext
+
+        if (carTitle.isEmpty()) {
+            titleEditText.setError("Type Title of Car");
+            titleEditText.requestFocus();
+        } else if (carBrand.isEmpty()) {
+            brandEditText.setError("Type Brand of Car");
+            brandEditText.requestFocus();
+        } else if (carModel.isEmpty()) {
+            modelEditText.setError("Type Model of Car");
+            modelEditText.requestFocus();
+        } else if (carYear.isEmpty()) {
+            yearEditText.setError("Type Year of Car");
+            yearEditText.requestFocus();
+        } else if (carPrice.isEmpty()) {
+            priceEditText.setError("Type Price of Car");
+            priceEditText.requestFocus();
+        } else if (carLocation.isEmpty()) {
+            locationEditText.setError("Type Location of Car");
+            locationEditText.requestFocus();
+        } else if (imageUri == null) {
+            Toast.makeText(getContext(), "Select Image For Car", Toast.LENGTH_SHORT).show();
+        } else {
+
+            progressDialog.setMessage("Adding Car in Database");
+            progressDialog.show();
+
+            long timeMillis = System.currentTimeMillis();
+            //first storeImage in database
+            mStorage.child(mUser.getUid()).child(timeMillis + "").putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        mStorage.child(mUser.getUid()).child(timeMillis + "").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+
+                                //save data in Firestore after uploading image
+
+                                HashMap hashMap = new HashMap();
+                                hashMap.put("title", carTitle);
+                                hashMap.put("brand", carBrand);
+                                hashMap.put("model", carModel);
+                                hashMap.put("year", carYear);
+                                hashMap.put("price", carPrice);
+                                hashMap.put("location", carLocation);
+                                hashMap.put("imageUrl", uri.toString());
+
+                                db.collection("Cars").add(hashMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                        if (task.isSuccessful()) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(getContext(), "Car Saved Successfully", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            progressDialog.dismiss();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+            });
         }
+
     }
 
+    /*
     private void addAdToFirebase() {
         if (!checkFields()) {
             String carTitle = String.valueOf(titleEditText.getText());
@@ -108,22 +223,17 @@ public class AddCarAdFragment extends Fragment {
             String carYear = String.valueOf(yearEditText.getText());
             Long carPrice = Long.valueOf(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(locationEditText.getText());
-            String carIdString = Long.toString(carID);
             //TODO lägga till den i användarens egna collection, inte bara den offentliga
 
 
-            //Creates a new Collection in Firebase with data from generateCarHashMap
-            FirebaseFirestore.getInstance().collection("cars").document(carIdString)
-                    .set(generateCarHashMap(carTitle, (long) carID, carBrand, carModel, carYear, carPrice, carLocation))
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            System.out.println("la till annonsen");
-                        } else {
-                            FirebaseAuthException e = (FirebaseAuthException) task.getException();
-                            assert e != null;
-                            System.out.println("felmeddelande: " + e.getMessage());
-                        }
-                    });
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference newCarRef = db.collection("cars").document();
+            Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation);
+            newCarRef.set(data);
+
+            if (selectedImage != null){
+                imageHandler.uploadPicture(selectedImage, newCarRef.getId());
+            }
         }
     }
     //Checks if inputFields are empty
@@ -135,6 +245,9 @@ public class AddCarAdFragment extends Fragment {
                 String.valueOf(priceEditText.getText()).isEmpty() ||
                 String.valueOf(locationEditText.getText()).isEmpty();
     }
+
+    */
+
     //Creates Map of Ad
     public Map<String, Object> generateCarHashMap(String carTitle, Long carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation) {
         Map<String, Object> CarId = new HashMap<String, Object>();
@@ -150,27 +263,21 @@ public class AddCarAdFragment extends Fragment {
 
         return CarId;
     }
-    //Checks CarID of last object in firebase and gives carId that value +1 as the new CarID for new object
-    private void indexOfCar() {
-        final Long[] numIndex = new Long[1];
 
-        FirebaseFirestore.getInstance().collection("cars").orderBy("CarLocation", Query.Direction.DESCENDING).limit(1).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            //Hinner inte få numindex från firebase innan return
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        numIndex[0] = documentSnapshot.getLong("CarId");
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-                    }
-                } else {
-                    System.out.println("Error: " + task.getException());
-                }
-                assert numIndex[0] != null;
-                carID = numIndex[0].intValue()+1;
-                System.out.println(carID);
-            }
-        });
-
+        if (requestCode == PICK_IMAGE) {
+            imageUri = data.getData();
+            selectImage.setImageURI(imageUri);
+        }
+        /*
+        if (requestCode == RESULT_LOAD_IMAGE && data != null){
+            selectedImage = data.getData();
+            carPreview.setImageURI(selectedImage);
+            carPreview.setVisibility(View.VISIBLE);//Makes preview visible
+        }
+        */
     }
 }

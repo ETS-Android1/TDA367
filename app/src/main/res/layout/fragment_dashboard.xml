@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.dashboard.DashboardFragment"
-    android:background="#33B4ADFF"
+    android:background="@color/statusBarColor"
     >
 
 
@@ -84,7 +84,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
             android:text="Choose a car"
-            android:textColor="#000000"
+            android:textColor="@color/colorSecondary"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nav_bar"
@@ -110,7 +110,7 @@
             android:layout_marginRight="16dp"
             android:fontFamily="sans-serif"
             android:text="Filter"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorSecondary"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
