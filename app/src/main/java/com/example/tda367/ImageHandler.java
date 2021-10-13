@@ -13,9 +13,17 @@ public class ImageHandler {
     StorageReference storageRef = storage.getReference(); //root reference
     StorageReference imagesRef = storageRef.child("images"); //image reference -> /images
 
+    private String getCurrentUid(){
+        return FirebaseAuth.getInstance().getUid();
+    }
 
-    /*
-    public void uploadPicture(Uri uri, String uid){
+
+    private void generateFolder(){
+
+
+    }
+
+    public void uploadPicture(Uri uri, String uid) {
         StorageReference imageRef = imagesRef.child(uid + "/car");//Gets last part of the path (file name)
         UploadTask uploadTask = imageRef.putFile(uri);
 
@@ -26,17 +34,6 @@ public class ImageHandler {
         }).addOnSuccessListener(taskSnapshot -> {
             System.out.println("Upload succeeded");
         });
-
-     */
-
-    private String getCurrentUid(){
-        return FirebaseAuth.getInstance().getUid();
-    }
-
-
-    private void generateFolder(){
-
-
     }
 
 
