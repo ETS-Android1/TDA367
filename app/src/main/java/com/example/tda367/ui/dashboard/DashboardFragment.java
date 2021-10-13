@@ -1,9 +1,12 @@
 package com.example.tda367.ui.dashboard;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -29,6 +32,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerViewAdapter recyclerViewAdapter;
     private DashboardViewModel dashboardViewModel;
     private FirebaseAuth firebaseAuth;
+    EditText inputSearch;
 
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> carList = new ArrayList<>();
@@ -37,10 +41,32 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dashboard, container, false);
-        setUpRecyclerView(view);
 
+        //Search function
+        inputSearch = view.findViewById(R.id.searchBar);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().isEmpty()) {
+                    recyclerViewAdapter.getFilter().filter(s.toString());
+                }
+            }
+        });
+
+        setUpRecyclerView(view);
         return view;
     }
+
     private void setAdapter(View view){
         recyclerViewAdapter = new RecyclerViewAdapter(carList);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
