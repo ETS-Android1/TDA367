@@ -9,4 +9,6 @@
     <color name="colorPrimary2">#008577</color>
     <color name="colorPrimaryDark2">#00574B</color>
     <color name="colorAccent2">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
 </resources>
