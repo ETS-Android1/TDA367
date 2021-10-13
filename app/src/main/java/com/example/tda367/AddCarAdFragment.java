@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -84,12 +85,12 @@ public class AddCarAdFragment extends Fragment {
             String carYear = String.valueOf(yearEditText.getText());
             Long carPrice = Long.valueOf(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(locationEditText.getText());
-            //TODO lägga till den i användarens egna collection, inte bara den offentliga
 
+            String carEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference newCarRef = db.collection("cars").document();
-            Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation);
+            Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, carEmail);
             newCarRef.set(data);
 
             if (selectedImage != null){
@@ -107,7 +108,7 @@ public class AddCarAdFragment extends Fragment {
                 String.valueOf(locationEditText.getText()).isEmpty();
     }
     //Creates Map of Ad
-    public Map<String, Object> generateCarHashMap(String carTitle, String carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation) {
+    public Map<String, Object> generateCarHashMap(String carTitle, String carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation, String carEmail) {
         Map<String, Object> CarId = new HashMap<String, Object>();
 
         //KEYS gives String to field inside document
@@ -118,7 +119,7 @@ public class AddCarAdFragment extends Fragment {
         CarId.put("CarYear", carYear);
         CarId.put("CarPrice", carPrice);
         CarId.put("CarLocation", carLocation);
-
+        CarId.put("CarEmail", carEmail);
         return CarId;
     }
 }

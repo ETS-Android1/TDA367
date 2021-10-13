@@ -55,7 +55,7 @@ public class DashboardFragment extends Fragment {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                         carList.add(new CarAdModel(documentSnapshot.getString("CarBrand"), documentSnapshot.getString("CarModel"), documentSnapshot.getString("CarTitle"), documentSnapshot.getString("CarYear"),
-                                documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId")));//Kanske är CarID
+                                documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId"), documentSnapshot.getString("CarEmail")));//Kanske är CarID
                     }
                     setAdapter(view);
                 } else {
