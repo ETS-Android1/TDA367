@@ -1,34 +1,22 @@
 package com.example.tda367;
 
-import java.io.Serializable;
-
-public class CarAdModel implements Serializable {
-
-
+public class CarAdModel {
     private String carBrand;
     private String carModel;
     private String carTitle;
     private String carYear;
     private String carLocation;
-    private String carPrice;
+    private int carPrice;
     private String carID;// Hash created by firebase.
-    private String imageUrl;
 
-
-    public CarAdModel(String carID, String carTitle, String carBrand, String carModel, String carYear, String carPrice, String carLocation, String imageUrl) {
-
-        this.carID = carID;
-        this.carTitle = carTitle;
+    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, String carID) {
         this.carBrand = carBrand;
         this.carModel = carModel;
+        this.carTitle = carTitle;
         this.carYear = carYear;
-        this.carPrice = carPrice;
         this.carLocation = carLocation;
-        this.imageUrl = imageUrl;
-
-    }
-
-    public CarAdModel() {
+        this.carPrice = carPrice;
+        this.carID = carID;
     }
 
     public String getCarBrand() {
@@ -63,11 +51,11 @@ public class CarAdModel implements Serializable {
         this.carYear = carYear;
     }
 
-    public String getCarPrice() {
+    public int getCarPrice() {
         return carPrice;
     }
 
-    public void setCarPrice(String carPrice) {
+    public void setCarPrice(int carPrice) {
         this.carPrice = carPrice;
     }
 
@@ -87,13 +75,5 @@ public class CarAdModel implements Serializable {
         this.carLocation = carLocation;
     }
 
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
 }
