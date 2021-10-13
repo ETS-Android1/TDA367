@@ -1,5 +1,6 @@
 package com.example.tda367;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,12 +11,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +45,12 @@ public class AddCarAdFragment extends Fragment {
     private final ImageHandler imageHandler = new ImageHandler();
     private ImageView carPreview;
     private Uri selectedImage;
+    ProgressDialog progressDialog;
+
+    FirebaseUser mUser;
+    private FirebaseAuth mAuth;
+    StorageReference mStorage;
+    FirebaseFirestore db;
 
 
     @Override
@@ -51,12 +68,17 @@ public class AddCarAdFragment extends Fragment {
         uploadImageButton = view.findViewById(R.id.uploadImageButton);
 
         saveAdButton.setOnClickListener(v -> addAdToFirebase());
-
         uploadImageButton.setOnClickListener(v -> loadGallery());
 
        carPreview = view.findViewById(R.id.carPreview);
        carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
 
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        mStorage = FirebaseStorage.getInstance().getReference().child("CarImages");
+
+        progressDialog = new ProgressDialog(getContext());
 
         return view;
     }
@@ -86,17 +108,43 @@ public class AddCarAdFragment extends Fragment {
             String carLocation = String.valueOf(locationEditText.getText());
             //TODO lägga till den i användarens egna collection, inte bara den offentliga
 
+            progressDialog.setMessage("Adding Car in Database");
+            progressDialog.show();
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference newCarRef = db.collection("cars").document();
-            Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation);
-            newCarRef.set(data);
+            long timeMillis = System.currentTimeMillis();
+            //first storeImage in database
+            mStorage.child(mUser.getUid()).child(timeMillis + "").putFile(selectedImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        mStorage.child(mUser.getUid()).child(timeMillis + "").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
 
-            if (selectedImage != null){
-                imageHandler.uploadPicture(selectedImage, newCarRef.getId());
-            }
+                                DocumentReference newCarRef = db.collection("cars").document();
+                                Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, uri);
+                                newCarRef.set(data);
+
+                                db.collection("cars").add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                        if (task.isSuccessful()) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(getContext(), "Car Saved Successfully", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            progressDialog.dismiss();
+                                        }
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                }
+            });
         }
     }
+
     //Checks if inputFields are empty
     private boolean checkFields() {
         return String.valueOf(titleEditText.getText()).isEmpty() ||
@@ -106,8 +154,9 @@ public class AddCarAdFragment extends Fragment {
                 String.valueOf(priceEditText.getText()).isEmpty() ||
                 String.valueOf(locationEditText.getText()).isEmpty();
     }
+
     //Creates Map of Ad
-    public Map<String, Object> generateCarHashMap(String carTitle, String carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation) {
+    public Map<String, Object> generateCarHashMap(String carTitle, String carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation, Uri uri) {
         Map<String, Object> CarId = new HashMap<String, Object>();
 
         //KEYS gives String to field inside document
@@ -118,6 +167,7 @@ public class AddCarAdFragment extends Fragment {
         CarId.put("CarYear", carYear);
         CarId.put("CarPrice", carPrice);
         CarId.put("CarLocation", carLocation);
+        CarId.put("CarImageUrl", uri.toString());
 
         return CarId;
     }

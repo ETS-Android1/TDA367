@@ -3,21 +3,30 @@ package com.example.tda367;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private ArrayList<CarAdModel> carList;
+    List<CarAdModel> listFull;
+    Context context;
 
-    public RecyclerViewAdapter(ArrayList<CarAdModel> carList){
+    public RecyclerViewAdapter(ArrayList<CarAdModel> carList, Context context){
         this.carList = carList;
+        this.context = context;
+        listFull=new ArrayList<>(carList);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -28,6 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView carLocation;
         private TextView carPrice;
         private TextView carID;
+        ImageView imageView;
 
         public MyViewHolder(final View view){
             super(view);
@@ -37,6 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             carTitle = view.findViewById(R.id.carTitle);
             carLocation = view.findViewById(R.id.carLocation);
             carPrice = view.findViewById(R.id.carPrice);
+            imageView = view.findViewById(R.id.carImage);
         }
     }
 
@@ -56,6 +67,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carTitle.setText(car.getCarTitle());
         holder.carLocation.setText(car.getCarLocation());
         holder.carPrice.setText(String.valueOf(car.getCarPrice()));
+
+        Picasso.get().load(carList.get(position).getCarImageUrl()).into(holder.imageView);
 
     }
 

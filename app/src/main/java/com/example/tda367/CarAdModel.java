@@ -1,6 +1,9 @@
 package com.example.tda367;
 
-public class CarAdModel {
+import java.io.Serializable;
+
+
+public class CarAdModel implements Serializable {
     private String carBrand;
     private String carModel;
     private String carTitle;
@@ -8,8 +11,9 @@ public class CarAdModel {
     private String carLocation;
     private int carPrice;
     private String carID;// Hash created by firebase.
+    private String carImageUrl;
 
-    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, String carID) {
+    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, String carID, String carImageUrl) {
         this.carBrand = carBrand;
         this.carModel = carModel;
         this.carTitle = carTitle;
@@ -17,6 +21,10 @@ public class CarAdModel {
         this.carLocation = carLocation;
         this.carPrice = carPrice;
         this.carID = carID;
+        this.carImageUrl = carImageUrl;
+    }
+
+    public CarAdModel() {
     }
 
     public String getCarBrand() {
@@ -73,6 +81,14 @@ public class CarAdModel {
 
     public void setCarLocation(String carLocation) {
         this.carLocation = carLocation;
+    }
+
+    public String getCarImageUrl() {
+        return carImageUrl;
+    }
+
+    public void setCarImageUrl(String imageUrl) {
+        this.carImageUrl = imageUrl;
     }
 
 
