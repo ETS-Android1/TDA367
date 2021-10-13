@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,8 @@ import com.example.tda367.ui.dashboard.DashboardFragment;
 import com.example.tda367.ui.notifications.NotificationsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
@@ -35,12 +38,13 @@ public class HomeFragment extends Fragment {
     private Button addCarButton;
     private Button howDoButton;
     private FirebaseAuth firebaseAuth;
+    private TextView numberOfTextView;
 
     int[] images = {
             R.drawable.ic_launcher_foreground,
             R.drawable.ic_launcher_background,
             R.drawable.ic_home_black_24dp,
-            R.drawable.ic_dashboard_black_24dp
+            R.drawable.ic_dashboard_black_24dp,
     };
 
     int currentImage = 0;
@@ -61,6 +65,7 @@ public class HomeFragment extends Fragment {
         addCarButton = (Button) view.findViewById(R.id.addCarButton);
         howDoButton = (Button) view.findViewById(R.id.howDoButton);
         firebaseAuth = FirebaseAuth.getInstance();
+        numberOfTextView = (TextView) view.findViewById(R.id.numberOfTextView);
 
 
         nextButton.setOnClickListener(changeNextImage);
@@ -89,6 +94,7 @@ public class HomeFragment extends Fragment {
 
 
         myImageView.setImageResource(images[currentImage]);
+        numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
 
         return view;
     }
@@ -98,9 +104,6 @@ public class HomeFragment extends Fragment {
         Toast toast = Toast.makeText(getContext(), message, duration);
         toast.show();
     }
-
-
-
 
     private void loadAddCarFragment(){
         Fragment addCarFragment = new AddCarAdFragment();
@@ -133,6 +136,7 @@ public class HomeFragment extends Fragment {
                 currentImage = currentImage % images.length;
         }
             myImageView.setImageResource(images[currentImage]);
+            numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
         }
     };
 
@@ -148,6 +152,7 @@ public class HomeFragment extends Fragment {
                 currentImage = currentImage % images.length;
             }
             myImageView.setImageResource(images[currentImage]);
+            numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
         }
     };
 
