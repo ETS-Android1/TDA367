@@ -19,7 +19,7 @@
             android:layout_height="310dp"
             android:layout_margin="15dp"
             android:text="Hi there,                                 Congratulations on joining Stulb.   Click on the Buttons below tog get started with making your own ad for renting out your car or the button below that to find a car to rent. Here’s to the start of a healthy digital relationship.                      Cheers,  Stulb                                          Renting cars made easy for all parts  since 2021"
-            android:textColor="#000000"
+            android:textColor="@color/browser_actions_title_color"
             android:textSize="24sp"
             app:autoSizeMaxTextSize="@dimen/activity_horizontal_margin" />
 
