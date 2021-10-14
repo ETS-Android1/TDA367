@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -53,6 +54,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 signOut();
+                makeToast("You have been logged out!");
             }
         });
         return view;
@@ -98,6 +100,12 @@ public class ProfileFragment extends Fragment {
     private void signOut(){
         FirebaseAuth.getInstance().signOut();
         loadSignInFragment();
+    }
+
+    private void makeToast(CharSequence message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getContext(), message, duration);
+        toast.show();
     }
 
 
