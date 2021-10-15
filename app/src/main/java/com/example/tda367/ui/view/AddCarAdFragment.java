@@ -80,28 +80,6 @@ public class AddCarAdFragment extends Fragment {
         }
     }
 
-    /*private void addAdToFirebase2() {
-        if (!checkFields()) {
-            String carTitle = String.valueOf(titleEditText.getText());
-            String carBrand = String.valueOf(brandEditText.getText());
-            String carModel = String.valueOf(modelEditText.getText());
-            String carYear = String.valueOf(yearEditText.getText());
-            Long carPrice = Long.valueOf(String.valueOf(priceEditText.getText()));
-            String carLocation = String.valueOf(locationEditText.getText());
-
-            String carEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference newCarRef = db.collection("cars").document();
-            Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, carEmail);
-            newCarRef.set(data);
-
-            if (selectedImage != null){
-                firebaseHandler.uploadPicture(selectedImage, newCarRef.getId());
-            }
-        }
-    }*/
-
     private void addAdToFirebase() {
         if (!areFieldsEmpty() && selectedImage != null) {
             String carTitle = String.valueOf(titleEditText.getText());
