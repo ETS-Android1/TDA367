@@ -19,6 +19,8 @@ import com.example.tda367.controller.ProfileViewModel;
 
 public class AddCarAdFragment extends Fragment {
 
+    private ProfileViewModel profileViewModel = new ProfileViewModel();
+
     private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveAdButton;
     private Button uploadImageButton;
@@ -30,7 +32,6 @@ public class AddCarAdFragment extends Fragment {
     private EditText locationEditText;
     private ImageView carPreview;
     private Uri selectedImage;
-    private ProfileViewModel profileViewModel = new ProfileViewModel();
 
 
     @Override
@@ -48,12 +49,10 @@ public class AddCarAdFragment extends Fragment {
         uploadImageButton = view.findViewById(R.id.uploadImageButton);
 
         saveAdButton.setOnClickListener(v -> addAdToFirebase());
-
         uploadImageButton.setOnClickListener(v -> loadGallery());
 
-       carPreview = view.findViewById(R.id.carPreview);
-       carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
-
+        carPreview = view.findViewById(R.id.carPreview);
+        carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
 
         return view;
     }
@@ -81,7 +80,7 @@ public class AddCarAdFragment extends Fragment {
             String carYear = String.valueOf(yearEditText.getText());
             Integer carPrice = Integer.valueOf(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(locationEditText.getText());
-            profileViewModel.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage); // addAd has to upload image
+            profileViewModel.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
         }
     }
     //Checks if inputFields are empty -> returns true if any field is empty.

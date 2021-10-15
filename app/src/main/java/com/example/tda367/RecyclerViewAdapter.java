@@ -24,7 +24,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     List<CarAdModel> listFull;
 
     public RecyclerViewAdapter(ArrayList<CarAdModel> carList){
-
         this.carList = carList;
         listFull=new ArrayList<>(carList);
     }

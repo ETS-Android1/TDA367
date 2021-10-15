@@ -4,6 +4,7 @@ package com.example.tda367.model;
 import android.net.Uri;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,6 +19,8 @@ public class FirebaseHandler {
     private StorageReference storageRef = storage.getReference(); //root reference
     private StorageReference imagesRef = storageRef.child("images"); //image reference -> /images
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
 
     public void addAd(String carTitle, String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage) {
         DocumentReference newCarRef = db.collection("cars").document();
@@ -28,6 +31,25 @@ public class FirebaseHandler {
         uploadImage(selectedImage, newCarRef.getId());
     }
 
+    public void signInWithEmailAndPassword(String email, String password){
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener((task -> {
+                    if(task.isSuccessful()) {
+                        System.out.println("login success");//in the future add listeners
+                    }else{
+                        System.out.println("login failed");
+                        FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                        assert e != null;
+                    }
+                }));
+    }
+
+    public boolean isUserLoggedIn(){
+        if (firebaseAuth.getInstance().getCurrentUser() != null){
+            return true;
+        }
+        return false;
+    }
 
     public FirebaseUser getCurrentUser(){
         return FirebaseAuth.getInstance().getCurrentUser();
