@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.ui.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.tda367.R;
+import com.example.tda367.ui.model.FirebaseHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,7 +34,7 @@ public class AddCarAdFragment extends Fragment {
     private EditText yearEditText;
     private EditText priceEditText;
     private EditText locationEditText;
-    private final ImageHandler imageHandler = new ImageHandler();
+    private final FirebaseHandler imageHandler = new FirebaseHandler();
     private ImageView carPreview;
     private Uri selectedImage;
 

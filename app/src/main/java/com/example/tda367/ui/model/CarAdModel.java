@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.ui.model;
 
 public class CarAdModel {
     private String carBrand;

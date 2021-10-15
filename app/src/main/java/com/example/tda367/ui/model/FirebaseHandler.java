@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.ui.model;
 
 
 import android.net.Uri;
@@ -8,7 +8,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class ImageHandler {
+public class FirebaseHandler {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference(); //root reference
     StorageReference imagesRef = storageRef.child("images"); //image reference -> /images

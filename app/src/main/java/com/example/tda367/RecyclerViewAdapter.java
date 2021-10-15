@@ -11,6 +11,8 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.example.tda367.ui.model.CarAdModel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

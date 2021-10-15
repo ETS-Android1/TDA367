@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.ui.view;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.tda367.R;
 
 public class SignUpConfirmationFragment extends Fragment {
 

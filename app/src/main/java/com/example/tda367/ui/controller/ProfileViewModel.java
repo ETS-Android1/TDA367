@@ -1,16 +1,16 @@
-package com.example.tda367.ui.home;
+package com.example.tda367.ui.controller;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ProfileViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ProfileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Startsida för med featured bilad och annan skit");
+        mText.setValue("This is notifications fragment");
     }
 
     public LiveData<String> getText() {
