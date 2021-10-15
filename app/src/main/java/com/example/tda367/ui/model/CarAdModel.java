@@ -1,5 +1,8 @@
 package com.example.tda367.ui.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CarAdModel {
     private String carBrand;
     private String carModel;
@@ -20,6 +23,21 @@ public class CarAdModel {
         this.carPrice = carPrice;
         this.carID = carID;
         this.carEmail = carEmail;
+    }
+
+    public Map<String, Object> generateCarHashMap() {
+        Map<String, Object> CarId = new HashMap<String, Object>();
+
+        //KEYS gives String to field inside document
+        CarId.put("CarTitle", carTitle);
+        CarId.put("CarId", carID);
+        CarId.put("CarBrand", carBrand);
+        CarId.put("CarModel", carModel);
+        CarId.put("CarYear", carYear);
+        CarId.put("CarPrice", carPrice);
+        CarId.put("CarLocation", carLocation);
+        CarId.put("CarEmail", carEmail);
+        return CarId;
     }
 
     public String getCarBrand() {

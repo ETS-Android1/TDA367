@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tda367.R;
+import com.example.tda367.ui.controller.ProfileViewModel;
 import com.example.tda367.ui.model.FirebaseHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,9 +35,9 @@ public class AddCarAdFragment extends Fragment {
     private EditText yearEditText;
     private EditText priceEditText;
     private EditText locationEditText;
-    private final FirebaseHandler imageHandler = new FirebaseHandler();
     private ImageView carPreview;
     private Uri selectedImage;
+    private ProfileViewModel profileViewModel = new ProfileViewModel();
 
 
     @Override
@@ -79,7 +80,7 @@ public class AddCarAdFragment extends Fragment {
         }
     }
 
-    private void addAdToFirebase() {
+    /*private void addAdToFirebase2() {
         if (!checkFields()) {
             String carTitle = String.valueOf(titleEditText.getText());
             String carBrand = String.valueOf(brandEditText.getText());
@@ -96,12 +97,24 @@ public class AddCarAdFragment extends Fragment {
             newCarRef.set(data);
 
             if (selectedImage != null){
-                imageHandler.uploadPicture(selectedImage, newCarRef.getId());
+                firebaseHandler.uploadPicture(selectedImage, newCarRef.getId());
             }
         }
+    }*/
+
+    private void addAdToFirebase() {
+        if (!areFieldsEmpty() && selectedImage != null) {
+            String carTitle = String.valueOf(titleEditText.getText());
+            String carBrand = String.valueOf(brandEditText.getText());
+            String carModel = String.valueOf(modelEditText.getText());
+            String carYear = String.valueOf(yearEditText.getText());
+            Integer carPrice = Integer.valueOf(String.valueOf(priceEditText.getText()));
+            String carLocation = String.valueOf(locationEditText.getText());
+            profileViewModel.firebaseHandler.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage); // addAd has to upload image
+        }
     }
-    //Checks if inputFields are empty
-    private boolean checkFields() {
+    //Checks if inputFields are empty -> returns true if any field is empty.
+    private boolean areFieldsEmpty() {
         return String.valueOf(titleEditText.getText()).isEmpty() ||
                 String.valueOf(brandEditText.getText()).isEmpty() ||
                 String.valueOf(modelEditText.getText()).isEmpty() ||
