@@ -1,4 +1,4 @@
-package com.example.tda367.ui.view;
+package com.example.tda367.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,14 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tda367.R;
-import com.example.tda367.ui.controller.ProfileViewModel;
-import com.example.tda367.ui.model.FirebaseHandler;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.tda367.controller.ProfileViewModel;
 
 public class AddCarAdFragment extends Fragment {
 
@@ -88,7 +81,7 @@ public class AddCarAdFragment extends Fragment {
             String carYear = String.valueOf(yearEditText.getText());
             Integer carPrice = Integer.valueOf(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(locationEditText.getText());
-            profileViewModel.firebaseHandler.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage); // addAd has to upload image
+            profileViewModel.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage); // addAd has to upload image
         }
     }
     //Checks if inputFields are empty -> returns true if any field is empty.
@@ -99,20 +92,5 @@ public class AddCarAdFragment extends Fragment {
                 String.valueOf(yearEditText.getText()).isEmpty() ||
                 String.valueOf(priceEditText.getText()).isEmpty() ||
                 String.valueOf(locationEditText.getText()).isEmpty();
-    }
-    //Creates Map of Ad
-    public Map<String, Object> generateCarHashMap(String carTitle, String carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation, String carEmail) {
-        Map<String, Object> CarId = new HashMap<String, Object>();
-
-        //KEYS gives String to field inside document
-        CarId.put("CarTitle", carTitle);
-        CarId.put("CarId", carID);
-        CarId.put("CarBrand", carBrand);
-        CarId.put("CarModel", carModel);
-        CarId.put("CarYear", carYear);
-        CarId.put("CarPrice", carPrice);
-        CarId.put("CarLocation", carLocation);
-        CarId.put("CarEmail", carEmail);
-        return CarId;
     }
 }

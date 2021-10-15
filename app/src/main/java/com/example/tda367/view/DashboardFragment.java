@@ -1,4 +1,4 @@
-package com.example.tda367.ui.view;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tda367.ui.controller.DashboardViewModel;
-import com.example.tda367.ui.model.CarAdModel;
+import com.example.tda367.controller.DashboardViewModel;
+import com.example.tda367.model.CarAdModel;
 import com.example.tda367.RecyclerViewAdapter;
 import com.example.tda367.R;
 import com.google.android.gms.tasks.OnCompleteListener;

@@ -1,4 +1,4 @@
-package com.example.tda367.ui.view;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,11 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.tda367.ui.controller.HomeViewModel;
+import com.example.tda367.controller.HomeViewModel;
 import com.example.tda367.R;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;

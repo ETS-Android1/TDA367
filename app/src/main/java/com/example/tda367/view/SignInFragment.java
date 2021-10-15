@@ -1,4 +1,4 @@
-package com.example.tda367.ui.view;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
-import com.example.tda367.ui.controller.ProfileViewModel;
+import com.example.tda367.controller.ProfileViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 

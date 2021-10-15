@@ -1,4 +1,4 @@
-package com.example.tda367.ui.model;
+package com.example.tda367.model;
 
 
 import android.net.Uri;

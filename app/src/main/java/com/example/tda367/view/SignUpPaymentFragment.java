@@ -1,4 +1,4 @@
-package com.example.tda367.ui.view;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

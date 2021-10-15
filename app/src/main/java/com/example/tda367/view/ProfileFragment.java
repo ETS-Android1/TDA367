@@ -1,4 +1,4 @@
-package com.example.tda367.ui.view;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tda367.ui.model.CarAdModel;
+import com.example.tda367.model.CarAdModel;
 import com.example.tda367.R;
 import com.example.tda367.RecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
