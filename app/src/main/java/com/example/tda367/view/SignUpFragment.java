@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 
@@ -14,11 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.tda367.ui.notifications.NotificationsFragment;
+import com.example.tda367.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -135,7 +134,7 @@ public class SignUpFragment extends Fragment {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
     private void loadSignInFragment(){
-        Fragment signInFragment = new NotificationsFragment();
+        Fragment signInFragment = new SignInFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }

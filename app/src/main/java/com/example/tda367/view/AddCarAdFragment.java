@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,14 +14,12 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.tda367.R;
+import com.example.tda367.controller.ProfileViewModel;
 
 public class AddCarAdFragment extends Fragment {
+
+    private ProfileViewModel profileViewModel = new ProfileViewModel();
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveAdButton;
@@ -32,7 +30,6 @@ public class AddCarAdFragment extends Fragment {
     private EditText yearEditText;
     private EditText priceEditText;
     private EditText locationEditText;
-    private final ImageHandler imageHandler = new ImageHandler();
     private ImageView carPreview;
     private Uri selectedImage;
 
@@ -52,12 +49,10 @@ public class AddCarAdFragment extends Fragment {
         uploadImageButton = view.findViewById(R.id.uploadImageButton);
 
         saveAdButton.setOnClickListener(v -> addAdToFirebase());
-
         uploadImageButton.setOnClickListener(v -> loadGallery());
 
-       carPreview = view.findViewById(R.id.carPreview);
-       carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
-
+        carPreview = view.findViewById(R.id.carPreview);
+        carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
 
         return view;
     }
@@ -78,48 +73,23 @@ public class AddCarAdFragment extends Fragment {
     }
 
     private void addAdToFirebase() {
-        if (!checkFields()) {
+        if (!areFieldsEmpty() && selectedImage != null) {
             String carTitle = String.valueOf(titleEditText.getText());
             String carBrand = String.valueOf(brandEditText.getText());
             String carModel = String.valueOf(modelEditText.getText());
             String carYear = String.valueOf(yearEditText.getText());
-            Long carPrice = Long.valueOf(String.valueOf(priceEditText.getText()));
+            Integer carPrice = Integer.valueOf(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(locationEditText.getText());
-
-            String carEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference newCarRef = db.collection("cars").document();
-            Map<String, Object> data = generateCarHashMap(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, carEmail);
-            newCarRef.set(data);
-
-            if (selectedImage != null){
-                imageHandler.uploadPicture(selectedImage, newCarRef.getId());
-            }
+            profileViewModel.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
         }
     }
-    //Checks if inputFields are empty
-    private boolean checkFields() {
+    //Checks if inputFields are empty -> returns true if any field is empty.
+    private boolean areFieldsEmpty() {
         return String.valueOf(titleEditText.getText()).isEmpty() ||
                 String.valueOf(brandEditText.getText()).isEmpty() ||
                 String.valueOf(modelEditText.getText()).isEmpty() ||
                 String.valueOf(yearEditText.getText()).isEmpty() ||
                 String.valueOf(priceEditText.getText()).isEmpty() ||
                 String.valueOf(locationEditText.getText()).isEmpty();
-    }
-    //Creates Map of Ad
-    public Map<String, Object> generateCarHashMap(String carTitle, String carID, String carBrand, String carModel, String carYear, Long carPrice, String carLocation, String carEmail) {
-        Map<String, Object> CarId = new HashMap<String, Object>();
-
-        //KEYS gives String to field inside document
-        CarId.put("CarTitle", carTitle);
-        CarId.put("CarId", carID);
-        CarId.put("CarBrand", carBrand);
-        CarId.put("CarModel", carModel);
-        CarId.put("CarYear", carYear);
-        CarId.put("CarPrice", carPrice);
-        CarId.put("CarLocation", carLocation);
-        CarId.put("CarEmail", carEmail);
-        return CarId;
     }
 }

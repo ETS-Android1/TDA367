@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#33B4ADFF"
     android:orientation="vertical"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".view.SignInFragment">
 
     <ScrollView
         android:id="@+id/scrollView"

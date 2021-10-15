@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tda367.ui.notifications.NotificationsFragment;
+import com.example.tda367.model.CarAdModel;
+import com.example.tda367.R;
+import com.example.tda367.RecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -93,7 +95,7 @@ public class ProfileFragment extends Fragment {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
     }
     private void loadSignInFragment(){
-        Fragment signInFragment = new NotificationsFragment();
+        Fragment signInFragment = new SignInFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }

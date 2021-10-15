@@ -1,4 +1,4 @@
-package com.example.tda367.ui.dashboard;
+package com.example.tda367.controller;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
