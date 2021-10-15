@@ -56,7 +56,7 @@ public class FirebaseHandler {
     }
 
     public void uploadImage(Uri uri, String uid) {
-        StorageReference imageRef = imagesRef.child(uid + "/car");//Gets last part of the path (file name)
+        StorageReference imageRef = imagesRef.child(uid + "/car");
         UploadTask uploadTask = imageRef.putFile(uri);
 
 

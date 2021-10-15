@@ -21,7 +21,7 @@ import com.example.tda367.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
-    private HomeViewModel homeViewModel;
+    private HomeViewModel homeViewModel = new HomeViewModel();
 
     private ImageView myImageView;
     private ImageButton nextButton;
@@ -44,11 +44,8 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         super.onCreate(savedInstanceState);
-        firebaseAuth = FirebaseAuth.getInstance();
 
         myImageView = (ImageView) view.findViewById(R.id.myImageView);
         nextButton = (ImageButton) view.findViewById(R.id.nextButton);
@@ -56,32 +53,21 @@ public class HomeFragment extends Fragment {
         findCarButton = (Button) view.findViewById(R.id.findCarButton);
         addCarButton = (Button) view.findViewById(R.id.addCarButton);
         howDoButton = (Button) view.findViewById(R.id.howDoButton);
-        firebaseAuth = FirebaseAuth.getInstance();
         numberOfTextView = (TextView) view.findViewById(R.id.numberOfTextView);
-
 
         nextButton.setOnClickListener(changeNextImage);
         backButton.setOnClickListener(changePreviousImage);
 
-
-        findCarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadDashboardFragment();
-            }
-        });
+        findCarButton.setOnClickListener(v -> homeViewModel.loadDashboardFragment(getParentFragmentManager()));
 
         // if logged in, go to add car ad, else go to sign in
-        addCarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (firebaseAuth.getCurrentUser() != null) {
-                    loadAddCarFragment();
-                } else {
-                    loadSignInFragment();
-                    makeToast("You need to log in first!");
-                }
+        addCarButton.setOnClickListener(v -> {
+            if (homeViewModel.getCurrentUser() != null) {
+                homeViewModel.loadAddCarFragment(getParentFragmentManager());
+                return;
             }
+            homeViewModel.loadSignInFragment(getParentFragmentManager());
+            makeToast("You need to log in first!");
         });
 
 
@@ -95,24 +81,6 @@ public class HomeFragment extends Fragment {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(getContext(), message, duration);
         toast.show();
-    }
-
-    private void loadAddCarFragment(){
-        Fragment addCarFragment = new AddCarAdFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarFragment).commit();
-    }
-
-    private void loadDashboardFragment(){
-        Fragment dashboardFragment = new DashboardFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, dashboardFragment).commit();
-    }
-
-    private void loadSignInFragment(){
-        Fragment signInFragment = new SignInFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }
 
 
