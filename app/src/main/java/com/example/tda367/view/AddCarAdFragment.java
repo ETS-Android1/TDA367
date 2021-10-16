@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
 import com.example.tda367.controller.ProfileViewModel;
@@ -28,6 +29,7 @@ public class AddCarAdFragment extends Fragment {
     private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveAdButton;
     private Button uploadImageButton;
+    private Button cancelAdButton;
     private EditText titleEditText;
     private EditText brandEditText;
     private EditText modelEditText;
@@ -51,6 +53,7 @@ public class AddCarAdFragment extends Fragment {
         priceEditText = view.findViewById(R.id.priceEditText);
         saveAdButton = view.findViewById(R.id.saveAdButton);
         uploadImageButton = view.findViewById(R.id.uploadImageButton);
+        cancelAdButton = view.findViewById(R.id.cancelAdButton);
         spinnerLocation = view.findViewById(R.id.spinnerLocation);
         spinnerLocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -66,6 +69,7 @@ public class AddCarAdFragment extends Fragment {
 
         saveAdButton.setOnClickListener(v -> addAdToFirebase());
         uploadImageButton.setOnClickListener(v -> loadGallery());
+        cancelAdButton.setOnClickListener(v -> loadProfileFragment());
 
         carPreview = view.findViewById(R.id.carPreview);
         carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
@@ -76,6 +80,12 @@ public class AddCarAdFragment extends Fragment {
     public void loadGallery(){
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+    }
+
+    private void loadProfileFragment(){
+        Fragment profileFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 
     @Override
