@@ -1,6 +1,8 @@
 package com.example.tda367;
 
-public class CarAdModel {
+import java.io.Serializable;
+
+public class CarAdModel implements Serializable {
     private String carBrand;
     private String carModel;
     private String carTitle;

@@ -68,7 +68,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void setAdapter(View view){
-        recyclerViewAdapter = new RecyclerViewAdapter(carList);
+        recyclerViewAdapter = new RecyclerViewAdapter(carList,getContext());
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter);
