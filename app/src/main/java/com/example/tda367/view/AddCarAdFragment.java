@@ -7,15 +7,20 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
 import com.example.tda367.controller.ProfileViewModel;
+import com.example.tda367.model.CarAdModel;
 
 public class AddCarAdFragment extends Fragment {
 
@@ -24,32 +29,47 @@ public class AddCarAdFragment extends Fragment {
     private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveAdButton;
     private Button uploadImageButton;
+    private Button cancelAdButton;
     private EditText titleEditText;
     private EditText brandEditText;
     private EditText modelEditText;
     private EditText yearEditText;
     private EditText priceEditText;
-    private EditText locationEditText;
     private ImageView carPreview;
+    private Spinner spinnerLocation;
     private Uri selectedImage;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.create_ad, container, false);
 
+        String[] locations = {"Göteborg", "Stockholm", "Malmö"};
+
         titleEditText = view.findViewById(R.id.titleEditText);
         brandEditText = view.findViewById(R.id.brandEditText);
         modelEditText = view.findViewById(R.id.modelEditText);
         yearEditText = view.findViewById(R.id.yearEditText);
         priceEditText = view.findViewById(R.id.priceEditText);
-        locationEditText = view.findViewById(R.id.locationEditText);
         saveAdButton = view.findViewById(R.id.saveAdButton);
         uploadImageButton = view.findViewById(R.id.uploadImageButton);
+        cancelAdButton = view.findViewById(R.id.cancelAdButton);
+        spinnerLocation = view.findViewById(R.id.spinnerLocation);
+        spinnerLocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int i, long l) {}
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {}});
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, locations);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinnerLocation.setAdapter(adapter);
 
         saveAdButton.setOnClickListener(v -> addAdToFirebase());
         uploadImageButton.setOnClickListener(v -> loadGallery());
+        cancelAdButton.setOnClickListener(v -> loadProfileFragment());
 
         carPreview = view.findViewById(R.id.carPreview);
         carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
@@ -60,6 +80,12 @@ public class AddCarAdFragment extends Fragment {
     public void loadGallery(){
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+    }
+
+    private void loadProfileFragment(){
+        Fragment profileFragment = new ProfileFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 
     @Override
@@ -79,17 +105,17 @@ public class AddCarAdFragment extends Fragment {
             String carModel = String.valueOf(modelEditText.getText());
             String carYear = String.valueOf(yearEditText.getText());
             Integer carPrice = Integer.valueOf(String.valueOf(priceEditText.getText()));
-            String carLocation = String.valueOf(locationEditText.getText());
+            String carLocation = String.valueOf(spinnerLocation.getSelectedItem());
             profileViewModel.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
         }
     }
+
     //Checks if inputFields are empty -> returns true if any field is empty.
     private boolean areFieldsEmpty() {
         return String.valueOf(titleEditText.getText()).isEmpty() ||
                 String.valueOf(brandEditText.getText()).isEmpty() ||
                 String.valueOf(modelEditText.getText()).isEmpty() ||
                 String.valueOf(yearEditText.getText()).isEmpty() ||
-                String.valueOf(priceEditText.getText()).isEmpty() ||
-                String.valueOf(locationEditText.getText()).isEmpty();
+                String.valueOf(priceEditText.getText()).isEmpty();
     }
 }

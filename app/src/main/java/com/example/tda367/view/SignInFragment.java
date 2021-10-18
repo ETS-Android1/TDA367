@@ -58,7 +58,7 @@ public class SignInFragment extends Fragment {
         return view;
     }
 
-    private boolean isFieldsEmpty() {
+    public boolean isFieldsEmpty() {
         return String.valueOf(editEmailText.getText()).isEmpty() || String.valueOf(editPasswordText.getText()).isEmpty();
     }
 
