@@ -29,7 +29,6 @@ public class HomeFragment extends Fragment {
     private Button findCarButton;
     private Button addCarButton;
     private Button howDoButton;
-    private FirebaseAuth firebaseAuth;
     private TextView numberOfTextView;
 
     int[] images = {
