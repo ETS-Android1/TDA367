@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                         if (documentSnapshot.getString("CarEmail").equals(userEmail)){
                             adList.add(new CarAdModel(documentSnapshot.getString("CarBrand"), documentSnapshot.getString("CarModel"), documentSnapshot.getString("CarTitle"), documentSnapshot.getString("CarYear"),
-                                    documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId"), documentSnapshot.getString("CarEmail")));//Kanske är CarID
+                                    documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId"), documentSnapshot.getString("CarEmail"), (ArrayList<Long>) documentSnapshot.get("CarBookedDates")));//Kanske är CarID
                         }
 
                     }

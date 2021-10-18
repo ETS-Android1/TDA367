@@ -88,7 +88,9 @@ public class DashboardFragment extends Fragment {
                                 documentSnapshot.getString("CarLocation"),
                                 documentSnapshot.getLong("CarPrice").intValue(),
                                 documentSnapshot.getString("CarId"),
-                                documentSnapshot.getString("CarEmail")));
+                                documentSnapshot.getString("CarEmail"),
+                                (ArrayList<Long>) documentSnapshot.get("CarBookedDates")));
+
                     }
                     setAdapter(view);
                 } else {
