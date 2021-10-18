@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -30,7 +31,7 @@ public class FirebaseHandler {
         String carEmail = this.getCurrentUser().getEmail();
         //creates empty array for temp use in firebase
         ArrayList<Long> emptyDateList = new ArrayList<>();
-        CarAdModel carAd = new CarAdModel(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, carEmail, emptyDateList);
+        CarAdModel carAd = new CarAdModel(carBrand, carModel, carTitle, carYear, carLocation, carPrice, newCarRef.getId(), carEmail, emptyDateList);
         Map<String, Object> data = carAd.generateCarHashMap();
         newCarRef.set(data);
         uploadImage(selectedImage, newCarRef.getId());
@@ -83,6 +84,29 @@ public class FirebaseHandler {
 
     public FirebaseUser getCurrentUser(){
         return FirebaseAuth.getInstance().getCurrentUser();
+    }
+
+    public void getAds(String userEmail){
+        ArrayList<CarAdModel> adList = new ArrayList<CarAdModel>();
+
+        fireStore.collection("cars").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                    if (documentSnapshot.getString("CarEmail").equals(userEmail)){
+                        adList.add(new CarAdModel(documentSnapshot.getString("CarBrand"),
+                                documentSnapshot.getString("CarModel"),
+                                documentSnapshot.getString("CarTitle"),
+                                documentSnapshot.getString("CarYear"),
+                                documentSnapshot.getString("CarLocation"),
+                                documentSnapshot.getLong("CarPrice").intValue(),
+                                documentSnapshot.getString("CarId"),
+                                documentSnapshot.getString("CarEmail"),
+                                (ArrayList<Long>) documentSnapshot.get("CarBookedDates")));
+                    }
+
+                }
+            }
+        });
     }
 
     public void signOut(){
