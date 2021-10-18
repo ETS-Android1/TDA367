@@ -4,15 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.dashboard.DashboardFragment"
-    android:background="@color/statusBarColor"
+    tools:context=".view.DashboardFragment"
+    android:background="#33B4ADFF"
     >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#33B4ADFF">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/nav_bar"
@@ -32,20 +31,63 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:paddingRight="10dp"
-                android:drawableRight="@drawable/ic_baseline_search_24"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/round_button"
                 android:backgroundTint="@android:color/white"
+                android:drawableRight="@drawable/ic_baseline_search_24"
                 android:ems="10"
                 android:fontFamily="@font/roboto"
                 android:hint="@android:string/search_go"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
+                android:paddingRight="10dp"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchBar">
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/gbgRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Göteborg" />
+
+                    <RadioButton
+                        android:id="@+id/malmoRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_weight="1"
+                        android:text="Malmö" />
+
+                    <RadioButton
+                        android:id="@+id/sthlmRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Stockholm" />
+                </RadioGroup>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -56,13 +98,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center_horizontal"
             android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_horizontal" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -72,7 +114,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose" />
+            app:layout_constraintTop_toBottomOf="@+id/choose"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/choose"
@@ -84,7 +127,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
             android:text="Choose a car"
-            android:textColor="@color/colorSecondary"
+            android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nav_bar"
@@ -95,11 +138,11 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             android:background="@drawable/filter_icon"
             app:layout_constraintBottom_toBottomOf="@+id/filterText"
             app:layout_constraintEnd_toStartOf="@+id/filterText"
-            app:layout_constraintTop_toTopOf="@+id/filterText"
-            android:layout_marginRight="4dp" />
+            app:layout_constraintTop_toTopOf="@+id/filterText" />
 
         <TextView
             android:id="@+id/filterText"
@@ -110,7 +153,7 @@
             android:layout_marginRight="16dp"
             android:fontFamily="sans-serif"
             android:text="Filter"
-            android:textColor="@color/colorSecondary"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

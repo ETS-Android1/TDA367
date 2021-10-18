@@ -1,6 +1,5 @@
-package com.example.tda367.ui.home;
+package com.example.tda367.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,16 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.example.tda367.AddCarAdFragment;
-import com.example.tda367.MainActivity;
-import com.example.tda367.ProfileFragment;
+import com.example.tda367.controller.HomeViewModel;
 import com.example.tda367.R;
-import com.example.tda367.SignUpPaymentFragment;
-import com.example.tda367.ui.dashboard.DashboardFragment;
-import com.example.tda367.ui.notifications.NotificationsFragment;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
@@ -118,7 +110,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadSignInFragment(){
-        Fragment signInFragment = new NotificationsFragment();
+        Fragment signInFragment = new SignInFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }

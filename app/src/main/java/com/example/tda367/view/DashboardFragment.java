@@ -1,4 +1,4 @@
-package com.example.tda367.ui.dashboard;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,7 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tda367.CarAdModel;
+import com.example.tda367.controller.DashboardViewModel;
+import com.example.tda367.model.CarAdModel;
 import com.example.tda367.RecyclerViewAdapter;
 import com.example.tda367.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,12 +32,11 @@ public class DashboardFragment extends Fragment {
 
     private RecyclerViewAdapter recyclerViewAdapter;
     private DashboardViewModel dashboardViewModel;
-    private FirebaseAuth firebaseAuth;
     EditText inputSearch;
 
+    private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> carList = new ArrayList<>();
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
 
@@ -73,15 +73,22 @@ public class DashboardFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
-    //Kanske ska köra Long istället för int
+
     private void setUpRecyclerView(View view){
         firestore.collection("cars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        carList.add(new CarAdModel(documentSnapshot.getString("CarBrand"), documentSnapshot.getString("CarModel"), documentSnapshot.getString("CarTitle"), documentSnapshot.getString("CarYear"),
-                                documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId"), documentSnapshot.getString("CarEmail")));//Kanske är CarID
+                        carList.add(new CarAdModel(
+                                documentSnapshot.getString("CarBrand"),
+                                documentSnapshot.getString("CarModel"),
+                                documentSnapshot.getString("CarTitle"),
+                                documentSnapshot.getString("CarYear"),
+                                documentSnapshot.getString("CarLocation"),
+                                documentSnapshot.getLong("CarPrice").intValue(),
+                                documentSnapshot.getString("CarId"),
+                                documentSnapshot.getString("CarEmail")));
                     }
                     setAdapter(view);
                 } else {
