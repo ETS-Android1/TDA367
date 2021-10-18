@@ -37,15 +37,18 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tvMainSalam"
+    <com.tomer.fadingtextview.FadingTextView
+        android:id="@+id/fading_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:texts="@array/example_one"
         android:layout_below="@+id/flMain"
+        app:timeout="1000"
         android:elevation="5dp"
         android:gravity="center"
-        android:text="WELCOME"
+        android:layout_centerInParent="true"
         android:textColor="@android:color/white"
+        android:textStyle="bold"
         android:textSize="14sp" />
 
     <LinearLayout
