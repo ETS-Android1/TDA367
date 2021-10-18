@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class SignUpFragment extends Fragment {
 
-    private SignUpViewModel signUpViewModel = new SignUpViewModel();
+    private final SignUpViewModel signUpViewModel = new SignUpViewModel();
 
     private Button buttonContinuePayment;
     private Button buttonCancelRegistation;
@@ -37,11 +37,6 @@ public class SignUpFragment extends Fragment {
     private EditText addressInput;
     private EditText cityInput;
     private EditText phoneNumberInput;
-    private String userID;
-
-    public static SignUpFragment newInstance() {
-        return new SignUpFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,18 +55,16 @@ public class SignUpFragment extends Fragment {
         cityInput = (EditText) view.findViewById(R.id.cityInput);
         phoneNumberInput = (EditText) view.findViewById(R.id.phoneNumberInput);
 
-        buttonContinuePayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        buttonContinuePayment.setOnClickListener(v -> {
+            if (!isFieldsEmpty()) {
                 registerUser();
+                loadSignUpPaymentFragment();
+                return;
             }
+            makeToast("You need to fill in all the fields");
+            System.out.println("You need to fill in all the fields");
         });
-        buttonCancelRegistation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSignInFragment();
-            }
-        });
+        buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
     }
@@ -85,13 +78,7 @@ public class SignUpFragment extends Fragment {
         String city = cityInput.getText().toString();
         String phoneNumber = phoneNumberInput.getText().toString();
 
-        if (!isFieldsEmpty()) {
-            signUpViewModel.registerUserWithEmailAndPassword(email, password, firstName,surName, address, city, phoneNumber);
-        }
-        else {
-            System.out.println("Alla fields är inte fyllda");
-            makeToast("You need to fill in all the fields!");
-        }
+        signUpViewModel.registerUserWithEmailAndPassword(email, password, firstName,surName, address, city, phoneNumber);
     }
 
     private boolean isFieldsEmpty() {
@@ -109,6 +96,10 @@ public class SignUpFragment extends Fragment {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(getContext(), message, duration);
         toast.show();
+    }
+
+    private void loadSignUpPaymentFragment(){
+        signUpViewModel.loadSignUpPaymentFragment(getParentFragmentManager());
     }
 
     private void loadProfileFragment(){

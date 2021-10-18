@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
 import com.example.tda367.model.FirebaseHandler;
+import com.example.tda367.view.ProfileFragment;
+import com.example.tda367.view.SignInFragment;
 import com.example.tda367.view.SignUpPaymentFragment;
 
 public class SignUpViewModel extends ViewModel {
@@ -28,11 +30,16 @@ public class SignUpViewModel extends ViewModel {
     }
     
     public void loadProfileFragment(FragmentManager fragmentManager){
-        Fragment profileFragment = new SignUpPaymentFragment();
+        Fragment profileFragment = new ProfileFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
     public void loadSignInFragment(FragmentManager fragmentManager){
-        Fragment signInFragment = new SignUpPaymentFragment();
+        Fragment signInFragment = new SignInFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
+    }
+
+    public void loadSignUpPaymentFragment(FragmentManager fragmentManager) {
+        Fragment signUpPaymentFragment = new SignUpPaymentFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpPaymentFragment).commit();
     }
 }

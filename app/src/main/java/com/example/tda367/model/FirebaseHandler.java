@@ -58,12 +58,12 @@ public class FirebaseHandler {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener((task -> {
                     if(task.isSuccessful()) {
-                        System.out.println("login success");
+                        System.out.println("signup success");
                         String uid = firebaseAuth.getUid();
                         fireStore.collection("users").document(uid).set(generateHashMap(uid, email, firstName, surName, address, city, phoneNumber));
 
                     }else{
-                        System.out.println("login failed");
+                        System.out.println("signup failed");
                         FirebaseAuthException e = (FirebaseAuthException)task.getException();
                         assert e != null;
                     }
