@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setAdapter(View view) {
-        recyclerViewAdapter = new RecyclerViewAdapter(adList);
+        recyclerViewAdapter = new RecyclerViewAdapter(adList, getContext());
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewProfile);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter);

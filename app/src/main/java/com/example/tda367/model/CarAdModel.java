@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CarAdModel {
+import java.io.Serializable;
+
+public class CarAdModel implements Serializable{
     private String carBrand;
     private String carModel;
     private String carTitle;
