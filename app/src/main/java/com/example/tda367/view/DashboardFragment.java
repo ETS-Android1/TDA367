@@ -34,7 +34,6 @@ public class DashboardFragment extends Fragment {
     private DashboardViewModel dashboardViewModel;
     EditText inputSearch;
 
-    private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> carList = new ArrayList<>();
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tda367.controller.ProfileViewModel;
 import com.example.tda367.model.CarAdModel;
 import com.example.tda367.R;
 import com.example.tda367.RecyclerViewAdapter;
@@ -27,9 +28,10 @@ import java.util.ArrayList;
 
 
 public class ProfileFragment extends Fragment {
+
+    private ProfileViewModel profileViewModel = new ProfileViewModel();
+
     private RecyclerViewAdapter recyclerViewAdapter;
-    private ProfileFragment profileFragment;
-    private FirebaseAuth firebaseAuth;
     private Button addCarAdButton;
     private Button logOutButton;
     private String userEmail;
@@ -39,25 +41,17 @@ public class ProfileFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
-        firebaseAuth = FirebaseAuth.getInstance();
-        userEmail = firebaseAuth.getCurrentUser().getEmail().toString();
-        System.out.println(userEmail);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.profile_user, container, false);
         setUpRecyclerView(view);
+
+        userEmail = profileViewModel.getUserEmail();
         addCarAdButton = (Button) view.findViewById(R.id.addCarAdButton);
-        addCarAdButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadAddCarAdFragment();
-            }
-        });
+        addCarAdButton.setOnClickListener(v -> profileViewModel.loadAddCarAdFragment(getParentFragmentManager()));
+
         logOutButton = (Button) view.findViewById(R.id.logOutButton);
-        logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-                makeToast("You have been logged out!");
-            }
+        logOutButton.setOnClickListener(v -> {
+            signOut();
+            makeToast("You have been logged out!");
         });
         return view;
     }
@@ -89,19 +83,9 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void loadAddCarAdFragment(){
-        Fragment addCarAdFragment = new AddCarAdFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
-    }
-    private void loadSignInFragment(){
-        Fragment signInFragment = new SignInFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
-    }
     private void signOut(){
-        FirebaseAuth.getInstance().signOut();
-        loadSignInFragment();
+        profileViewModel.signOut();
+        profileViewModel.loadSignInFragment(getParentFragmentManager());
     }
 
     private void makeToast(CharSequence message) {
