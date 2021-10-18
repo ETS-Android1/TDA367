@@ -1,4 +1,4 @@
-package com.example.tda367;
+package com.example.tda367.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.tda367.R;
 import com.example.tda367.controller.DateSelectorViewModel;
 
 public class DateSelectorFragment extends Fragment {

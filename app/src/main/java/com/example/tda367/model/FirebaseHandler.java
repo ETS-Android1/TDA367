@@ -12,6 +12,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class FirebaseHandler {
@@ -25,7 +26,9 @@ public class FirebaseHandler {
     public void addAd(String carTitle, String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage) {
         DocumentReference newCarRef = db.collection("cars").document();
         String carEmail = this.getCurrentUser().getEmail();
-        CarAdModel carAd = new CarAdModel(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, carEmail);
+        //creates empty array for temp use in firebase
+        ArrayList<Long> emptyDateList = new ArrayList<>();
+        CarAdModel carAd = new CarAdModel(carTitle, newCarRef.getId(), carBrand, carModel, carYear, carPrice, carLocation, carEmail, emptyDateList);
         Map<String, Object> data = carAd.generateCarHashMap();
         newCarRef.set(data);
         uploadImage(selectedImage, newCarRef.getId());

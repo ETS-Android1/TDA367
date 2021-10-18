@@ -1,5 +1,6 @@
 package com.example.tda367.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,9 +13,10 @@ public class CarAdModel {
     private int carPrice;
     private String carID;// Hash created by firebase.
     private String carEmail;
+    private ArrayList<Long> carBookedDates;
 
 
-    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, String carID, String carEmail) {
+    public CarAdModel(String carBrand, String carModel, String carTitle, String carYear, String carLocation, int carPrice, String carID, String carEmail, ArrayList<Long> carBookedDates) {
         this.carBrand = carBrand;
         this.carModel = carModel;
         this.carTitle = carTitle;
@@ -23,6 +25,7 @@ public class CarAdModel {
         this.carPrice = carPrice;
         this.carID = carID;
         this.carEmail = carEmail;
+        this.carBookedDates = carBookedDates;
     }
 
     public Map<String, Object> generateCarHashMap() {
@@ -37,6 +40,7 @@ public class CarAdModel {
         CarId.put("CarPrice", carPrice);
         CarId.put("CarLocation", carLocation);
         CarId.put("CarEmail", carEmail);
+        CarId.put("CarBookedDates", carBookedDates);
         return CarId;
     }
 
