@@ -40,10 +40,6 @@ public class SignInViewModel extends ViewModel {
         firebaseHandler.signInWithEmailAndPassword(email, password);
     }
 
-    //private boolean isFieldsEmpty() {
-    //    return String.valueOf(editEmailText.getText()).isEmpty() || String.valueOf(editPasswordText.getText()).isEmpty();
-    //}
-
     public LiveData<String> getText() {
         return mText;
     }
