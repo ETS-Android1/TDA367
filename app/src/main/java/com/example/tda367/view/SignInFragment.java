@@ -53,6 +53,7 @@ public class SignInFragment extends Fragment {
                 signInViewModel.signIn(String.valueOf(editEmailText.getText()), String.valueOf(editPasswordText.getText()));
                 if (signInViewModel.isUserLoggedIn()){
                     signInViewModel.loadProfileFragment(getParentFragmentManager());
+                    makeToast("You have signed in");
                 }
             }
         });

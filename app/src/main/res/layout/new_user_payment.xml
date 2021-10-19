@@ -21,6 +21,7 @@
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:ems="10"
+            android:maxLength="16"
             android:hint="Card number"
             android:inputType="numberDecimal" />
 
@@ -40,6 +41,7 @@
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:ems="10"
+            android:maxLength="5"
             android:hint="Date MM/YY"
             android:inputType="date" />
 
@@ -50,6 +52,7 @@
             android:layout_margin="15dp"
             android:ems="10"
             android:hint="CVV ex 000"
+            android:maxLength="3"
             android:inputType="numberDecimal" />
 
         <Button
