@@ -3,6 +3,7 @@ package com.example.tda367;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import android.content.Intent;
 import android.widget.ImageView;
 
 import com.example.tda367.model.CarAdModel;
+import com.example.tda367.model.FirebaseHandler;
 import com.example.tda367.view.CarDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,12 +28,14 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
     private ArrayList<CarAdModel> carList;
+    private FirebaseHandler firebaseHandler = new FirebaseHandler();
     List<CarAdModel> listFull;
     Context context;
 
+
     public RecyclerViewAdapter(ArrayList<CarAdModel> carList, Context context){
         this.carList = carList;
-        listFull=new ArrayList<>(carList);
+        listFull = new ArrayList<>(carList);
         this.context = context;
     }
 
@@ -101,14 +106,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         CarAdModel car = carList.get(position);
+        String carID = car.getCarID();
+        String url = firebaseHandler.GetCarImageUrl(carID);
         holder.carBrand.setText(car.getCarBrand());
         holder.carModel.setText(car.getCarModel());
         holder.carYear.setText(car.getCarYear());
         holder.carTitle.setText(car.getCarTitle());
         holder.carLocation.setText(car.getCarLocation());
         holder.carPrice.setText(String.valueOf(car.getCarPrice()));
+
+        Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/stulb-a595c.appspot.com/o/images%2Fe2eF5egOPkvoxfLt6jMM%2Fcar?alt=media&token=08f77c2b-c312-4648-8462-11c20fd4bc07").fit().centerCrop().into(holder.imageView);
+
 
         //Move to car detail activity
         holder.itemView.setOnClickListener(new View.OnClickListener() {

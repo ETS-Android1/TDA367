@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private Button howDoButton;
     private TextView numberOfTextView;
 
+
     int[] images = {
             R.drawable.ic_launcher_foreground,
             R.drawable.ic_launcher_background,
@@ -69,9 +70,9 @@ public class HomeFragment extends Fragment {
             makeToast("You need to log in first!");
         });
 
-
         myImageView.setImageResource(images[currentImage]);
         numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
+
 
         return view;
     }

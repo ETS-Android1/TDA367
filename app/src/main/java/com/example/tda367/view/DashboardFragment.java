@@ -30,11 +30,14 @@ import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
 
+    private DashboardViewModel dashboardViewModel = new DashboardViewModel();
+
+    private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
-    private DashboardViewModel dashboardViewModel;
+    private RecyclerView.LayoutManager layoutManager;
     EditText inputSearch;
 
-    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     ArrayList<CarAdModel> carList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void setUpRecyclerView(View view){
-        firestore.collection("cars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        fireStore.collection("cars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

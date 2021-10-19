@@ -3,6 +3,10 @@ package com.example.tda367.model;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +29,12 @@ public class FirebaseHandler {
     private FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
+    private String url;
+
+
+    public String getUrl(){
+        return url;
+    }
 
     public void addAd(String carTitle, String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage) {
         DocumentReference newCarRef = fireStore.collection("cars").document();
@@ -137,6 +147,20 @@ public class FirebaseHandler {
             System.out.println("Upload succeeded");
         });
     }
+
+    public void GenerateCarImageUrl(String carID){
+        imagesRef.child(carID+"/car").getDownloadUrl().addOnSuccessListener(uri -> {
+            url = uri.toString();
+            System.out.println(url + " THIS IS GENERATE");
+        }).addOnFailureListener(e -> System.out.println("Failed to get download url for image"));
+    }
+
+    public String GetCarImageUrl(String carID){
+        GenerateCarImageUrl(carID);
+        System.out.println("This is get");
+        return getUrl();
+    }
+
     public Map<String, Object> generateHashMap(String userID, String email, String firstName, String surname, String address, String city, String phoneNumber) {
         Map<String, Object> UsersID = new HashMap<String, Object>();
 
