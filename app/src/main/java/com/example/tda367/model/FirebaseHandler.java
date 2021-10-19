@@ -109,6 +109,18 @@ public class FirebaseHandler {
         });
     }
 
+    public void registerCard(String cardNumber, String cardHolderName, String date, String cvv){
+        String uid = firebaseAuth.getUid();
+        fireStore.collection("users").document(uid).collection("CardInfo").
+                document("Card").set(generateCardHashMap(cardNumber, cardHolderName, date, cvv)).
+                addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        System.out.println("Card info added");
+                    }
+
+        });
+    }
+
     public void signOut(){
         firebaseAuth.getInstance().signOut();
     }
@@ -138,6 +150,18 @@ public class FirebaseHandler {
         UsersID.put("UserPhoneNumber", phoneNumber);
 
         return UsersID;
+    }
+
+    public Map<String, Object> generateCardHashMap(String cardNumber, String cardHolderName, String date, String cvv) {
+        Map<String, Object> CardInfo = new HashMap<String, Object>();
+
+        //KEYS gives String to field inside document
+        CardInfo.put("CardholderNumber", cardNumber);
+        CardInfo.put("CardholderName", cardHolderName);
+        CardInfo.put("CardholderDate", date);
+        CardInfo.put("CardholderCVVNumber", cvv);
+
+        return CardInfo;
     }
 
 

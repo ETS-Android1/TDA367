@@ -1,6 +1,7 @@
 package com.example.tda367.controller;
 
 import android.net.Uri;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class ProfileViewModel extends ViewModel {
 
@@ -57,6 +60,14 @@ public class ProfileViewModel extends ViewModel {
 
     public void signOut(){
         firebaseHandler.signOut();
+    }
+
+    public ArrayList<CarAdModel> carAds(){
+        ArrayList<CarAdModel> cars = new ArrayList<CarAdModel>();
+
+
+
+        return cars;
     }
 
 }

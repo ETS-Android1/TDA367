@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tda367.R;
+import com.example.tda367.controller.SignUpViewModel;
 
 public class SignUpConfirmationFragment extends Fragment {
+
+    private final SignUpViewModel signUpViewModel = new SignUpViewModel();
 
     private Button continueProfileButton;
     private Button continueAddButton;
@@ -20,7 +23,6 @@ public class SignUpConfirmationFragment extends Fragment {
     public static SignUpConfirmationFragment newInstance() {
         return new SignUpConfirmationFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,31 +32,17 @@ public class SignUpConfirmationFragment extends Fragment {
         continueProfileButton = (Button) view.findViewById(R.id.continueProfileButton);
         continueAddButton = (Button) view.findViewById(R.id.continueAddButton);
 
-        continueProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadProfileFragment();
-            }
-        });
+        continueProfileButton.setOnClickListener(v -> loadProfileFragment());
 
-        continueAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadAddCarAdFragment();
-            }
-        });
+        continueAddButton.setOnClickListener(v -> loadAddCarAdFragment());
 
         return view;
     }
 
     private void loadProfileFragment(){
-        Fragment profileFragment = new ProfileFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
+        signUpViewModel.loadProfileFragment(getParentFragmentManager());
     }
     private void loadAddCarAdFragment(){
-        Fragment addCarAdFragment = new AddCarAdFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
+        signUpViewModel.addCarAdFragment(getParentFragmentManager());
     }
 }

@@ -64,21 +64,18 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setUpRecyclerView(View view){
-        firestore.collection("cars").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        if (documentSnapshot.getString("CarEmail").equals(userEmail)){
-                            adList.add(new CarAdModel(documentSnapshot.getString("CarBrand"), documentSnapshot.getString("CarModel"), documentSnapshot.getString("CarTitle"), documentSnapshot.getString("CarYear"),
-                                    documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId"), documentSnapshot.getString("CarEmail"), (ArrayList<Long>) documentSnapshot.get("CarBookedDates")));//Kanske är CarID
-                        }
-
+        firestore.collection("cars").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                    if (documentSnapshot.getString("CarEmail").equals(userEmail)){
+                        adList.add(new CarAdModel(documentSnapshot.getString("CarBrand"), documentSnapshot.getString("CarModel"), documentSnapshot.getString("CarTitle"), documentSnapshot.getString("CarYear"),
+                                documentSnapshot.getString("CarLocation"), documentSnapshot.getLong("CarPrice").intValue(), documentSnapshot.getString("CarId"), documentSnapshot.getString("CarEmail"), (ArrayList<Long>) documentSnapshot.get("CarBookedDates")));//Kanske är CarID
                     }
-                    setAdapter(view);
-                } else {
-                    System.out.println("Error: " + task.getException());
+
                 }
+                setAdapter(view);
+            } else {
+                System.out.println("Error: " + task.getException());
             }
         });
     }

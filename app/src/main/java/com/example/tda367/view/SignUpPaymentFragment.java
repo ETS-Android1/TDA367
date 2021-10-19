@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
+import com.example.tda367.controller.SignUpViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,11 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignUpPaymentFragment extends Fragment {
+
+    private SignUpViewModel signUpViewModel = new SignUpViewModel();
+
     private EditText cardnumberInput;
     private EditText cardholderNameInput;
     private EditText dateInput;
     private EditText cvvInput;
-    private String CardholderID;
     private Button buttonContinueConfirmation;
     private Button buttonCancelNewUserSignup;
     private FirebaseAuth firebaseAuth;
@@ -40,10 +43,9 @@ public class SignUpPaymentFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() != null) {
-            //ändra fragment till profil
+        if (signUpViewModel.isUserLoggedIn()) {
+            loadProfileFragment(getParentFragmentManager());
         }
-
 
         cardnumberInput = (EditText) view.findViewById(R.id.cardnumberInput);
         cardholderNameInput = (EditText) view.findViewById(R.id.cardholderNameInput);
@@ -52,65 +54,29 @@ public class SignUpPaymentFragment extends Fragment {
         buttonContinueConfirmation = (Button) view.findViewById(R.id.buttonContinueConfirmation);
         buttonCancelNewUserSignup = (Button) view.findViewById(R.id.buttonCancelNewUserSignup);
 
-        buttonContinueConfirmation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerCardholder();
-            }
-        });
+        buttonContinueConfirmation.setOnClickListener(v -> registerCardholder());
 
-        buttonCancelNewUserSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadSignUpFragment();
-            }
-        });
+        buttonCancelNewUserSignup.setOnClickListener(view1 -> loadSignUpFragment(getParentFragmentManager()));
         return view;
     }
 
     private void registerCardholder() {
-        final String cardnumber = cardnumberInput.getText().toString();
-        String cardholderName = cardholderNameInput.getText().toString();
+        String cardNumber = cardnumberInput.getText().toString();
+        String cardHolderName = cardholderNameInput.getText().toString();
         String date = dateInput.getText().toString();
         String cvv = cvvInput.getText().toString();
-        
-        String userID = firebaseAuth.getUid();
-        // skapar ny collection med document card som håller cardInfo inom userInfo
-        FirebaseFirestore.getInstance().collection("users").document(userID).collection("CardInfo").document("Card")
-                .set(generateCardHashMap(cardnumber,cardholderName,date,cvv))
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
-                        System.out.println("la till cardinfo");
-                        loadConfirmationFragment();
-                    }else {
-                        FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                        assert e != null;
-                        System.out.println( "felmeddelande: " + e.getMessage());
-                    }
-                });
+        signUpViewModel.registerCard(cardNumber, cardHolderName, date, cvv);
     }
 
-    private void loadSignUpFragment(){
-        Fragment signUpFragment = new SignUpFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpFragment).commit();
+    private void loadSignUpFragment(FragmentManager fragmentManager){
+        signUpViewModel.loadSignUpFragment(fragmentManager);
     }
-    private void loadConfirmationFragment(){
-        Fragment signUpConfirmationFragment = new SignUpConfirmationFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpConfirmationFragment).commit();
+    private void loadConfirmationFragment(FragmentManager fragmentManager){
+        signUpViewModel.loadSignUpConfirmationFragment(fragmentManager);
     }
 
-    public Map<String, Object> generateCardHashMap(String cardnumber, String cardholderID, String date, String cvv) {
-        Map<String, Object> CardInfo = new HashMap<String, Object>();
-
-        //KEYS gives String to field inside document
-        CardInfo.put("CardholderNumber", cardnumber);
-        CardInfo.put("CardholderName", cardholderID);
-        CardInfo.put("CardholderDate", date);
-        CardInfo.put("CardholderCVVNumber", cvv);
-
-        return CardInfo;
+    private void loadProfileFragment(FragmentManager fragmentManager){
+        signUpViewModel.loadProfileFragment(fragmentManager);
     }
 }
 
