@@ -3,14 +3,18 @@ package com.example.tda367;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.content.Intent;
+import android.widget.ImageView;
 
 import com.example.tda367.model.CarAdModel;
+import com.example.tda367.view.CarDetailActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,10 +26,12 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
     private ArrayList<CarAdModel> carList;
     List<CarAdModel> listFull;
+    Context context;
 
-    public RecyclerViewAdapter(ArrayList<CarAdModel> carList){
+    public RecyclerViewAdapter(ArrayList<CarAdModel> carList, Context context){
         this.carList = carList;
         listFull=new ArrayList<>(carList);
+        this.context = context;
     }
 
     // Search function
@@ -52,8 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
 
             }
-            FilterResults filterResults=new FilterResults();
-            filterResults.values=listTemp;
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = listTemp;
             return filterResults;
         }
 
@@ -73,6 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView carLocation;
         private TextView carPrice;
         private TextView carID;
+        ImageView imageView;
 
         public MyViewHolder(final View view){
             super(view);
@@ -82,6 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             carTitle = view.findViewById(R.id.carTitle);
             carLocation = view.findViewById(R.id.carLocation);
             carPrice = view.findViewById(R.id.carPrice);
+            imageView = view.findViewById(R.id.carImage);
         }
     }
 
@@ -102,6 +110,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carLocation.setText(car.getCarLocation());
         holder.carPrice.setText(String.valueOf(car.getCarPrice()));
 
+        //Move to car detail activity
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CarDetailActivity.class);
+                intent.putExtra("car", carList.get(position));
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -16,12 +16,17 @@ import com.example.tda367.controller.ProfileViewModel;
 import com.example.tda367.controller.SignInViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.tomer.fadingtextview.FadingTextView;
 
+import android.widget.TextClock;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignInFragment extends Fragment {
 
     private SignInViewModel signInViewModel = new SignInViewModel();
+
+    private FadingTextView fadingTextView;
 
     private Button buttonLogIn;
     private Button buttonSignup;
@@ -39,6 +44,7 @@ public class SignInFragment extends Fragment {
         editPasswordText = (EditText) view.findViewById(R.id.editPasswordText);
         buttonLogIn = (Button) view.findViewById(R.id.buttonLogIn);
         buttonSignup = (Button) view.findViewById(R.id.buttonSignup);
+        fadingTextView = (FadingTextView) view.findViewById(R.id.fading_text_view);
 
         buttonLogIn.setOnClickListener(v -> {
             if (isFieldsEmpty()) {
@@ -56,6 +62,7 @@ public class SignInFragment extends Fragment {
         });
 
         return view;
+
     }
 
     public boolean isFieldsEmpty() {
