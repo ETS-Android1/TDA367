@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,10 +55,52 @@ public class SignUpPaymentFragment extends Fragment {
         buttonContinueConfirmation = (Button) view.findViewById(R.id.buttonContinueConfirmation);
         buttonCancelNewUserSignup = (Button) view.findViewById(R.id.buttonCancelNewUserSignup);
 
-        buttonContinueConfirmation.setOnClickListener(v -> registerCardholder());
+        buttonContinueConfirmation.setOnClickListener(v -> {
+            checkInputLimitations();
+            registerCardholder();
+        });
 
         buttonCancelNewUserSignup.setOnClickListener(view1 -> loadSignUpFragment(getParentFragmentManager()));
         return view;
+    }
+
+    private void checkInputLimitations() {
+        if (isFieldsEmpty()) {
+            makeToast("You need to fill in all the fields!");
+            return;
+        }
+        else if (!checkCardLength()) {
+            makeToast("Cardnumber must be 16 digits!");
+            return;
+        }
+        else if (!checkDateInput()) {
+            makeToast("Incorrect date input!");
+            return;
+        }
+        else if (!checkCvvLength()) {
+            makeToast("CVV must be 3 digits!");
+            return;
+        }
+    }
+
+    private boolean checkCvvLength() {
+        return cvvInput.getText().toString().length() > 2;
+    }
+
+    private boolean checkCardLength() {
+        return cardnumberInput.getText().toString().length() > 15;
+    }
+
+    private boolean isFieldsEmpty() {
+        return cardnumberInput.getText().toString().isEmpty() ||
+                cardholderNameInput.getText().toString().isEmpty() ||
+                dateInput.getText().toString().isEmpty() ||
+                cvvInput.getText().toString().isEmpty();
+    }
+
+    private boolean checkDateInput() {
+        String regex = "[0-9]";
+        return dateInput.getText().toString().matches(regex + regex + "/" + regex + regex);
     }
 
     private void registerCardholder() {
@@ -77,6 +120,13 @@ public class SignUpPaymentFragment extends Fragment {
 
     private void loadProfileFragment(FragmentManager fragmentManager){
         signUpViewModel.loadProfileFragment(fragmentManager);
+    }
+
+    private void makeToast(CharSequence message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getContext(), message, duration);
+        View view = toast.getView();
+        toast.show();
     }
 }
 

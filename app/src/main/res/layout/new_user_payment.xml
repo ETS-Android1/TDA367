@@ -19,7 +19,7 @@
             android:id="@+id/cardnumberInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="15dp"
+            android:layout_margin="16dp"
             android:ems="10"
             android:maxLength="16"
             android:hint="Card number"
@@ -29,7 +29,7 @@
             android:id="@+id/cardholderNameInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="15dp"
+            android:layout_margin="16dp"
             android:ems="10"
             android:hint="Cardholder name"
             android:inputType="textPersonName"
@@ -39,7 +39,7 @@
             android:id="@+id/dateInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="15dp"
+            android:layout_margin="16dp"
             android:ems="10"
             android:maxLength="5"
             android:hint="Date MM/YY"
@@ -49,35 +49,37 @@
             android:id="@+id/cvvInput"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="15dp"
+            android:layout_margin="16dp"
             android:ems="10"
             android:hint="CVV ex 000"
             android:maxLength="3"
             android:inputType="numberDecimal" />
 
-        <Button
-            android:id="@+id/buttonContinueConfirmation"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_margin="15dp"
-            android:background="@drawable/rounded_button"
-            android:text="Continue" />
+            android:layout_margin="16dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/buttonCancelNewUserSignup"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="170dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="96dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_button_cancel"
-            android:text="Cancel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonContinuePayment"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            <Button
+                android:id="@+id/buttonCancelNewUserSignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_cancel"
+                android:text="cancel" />
+
+            <Button
+                android:id="@+id/buttonContinueConfirmation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button"
+                android:text="continue" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
