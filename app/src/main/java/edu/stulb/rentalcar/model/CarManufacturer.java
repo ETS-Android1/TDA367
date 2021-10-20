@@ -5,20 +5,20 @@ package edu.stulb.rentalcar.model;
  *  @author Josef Ngo
  */
 public class CarManufacturer {
-    private String manafacturer;
+    private String manufacturer;
 
     /**
      * Constructor to create a manafacturer
      * @param manafacturer - Name of the manufacturer
      */
     public CarManufacturer(String manafacturer) {
-        this.manafacturer = manafacturer;
+        this.manufacturer = manafacturer;
     }
 
     /**
      * @return String with the name of the manufacturer
      */
     public String getManufacturer() {
-        return manafacturer;
+        return manufacturer;
     }
 }
