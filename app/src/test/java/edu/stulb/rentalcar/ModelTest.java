@@ -37,6 +37,14 @@ public class ModelTest {
         assertEquals(reservation.getReservationsDatesList(), testList);
     }
     @Test
+    public void userIsCorrect() {
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com", card);
+        assertEquals(user.getName(), "Hannes");
+        assertEquals(user.getEmail(), "Hannes@gmail.com");
+        assertEquals(user.getCard().getCardName(), "Hannes Thörn");
+    }
+    @Test
     public void listingIsCorrect(){
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
         Car car = new Car("v90", carManufacturer, 2005);
@@ -48,6 +56,7 @@ public class ModelTest {
         assertEquals(listing.getLocation().getCity(), "Göteborg");
         assertEquals(listing.getPricePerDay(), 200);
         assertEquals(listing.getUser().getName(), "Hannes");
+        assertEquals(listing.getUid(), listing.getUid());
     }
 
 }
