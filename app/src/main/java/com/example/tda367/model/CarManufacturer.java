@@ -1,10 +1,11 @@
 package com.example.tda367.model;
 
 /**
- *  CarManufacturer is a class to represent the manufacturer of a Car.
+ *  CarManufacturer is a class to represent the manufacturer of a Car
+ *  @author Josef Ngo
  */
 public class CarManufacturer {
-    String manafacturer;
+    private String manafacturer;
 
     /**
      * Constructor to create a manafacturer
