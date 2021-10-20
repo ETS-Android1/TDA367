@@ -13,10 +13,10 @@ public class ModelTest {
 
     @Test
     public void carCreationIsCorrect(){
-        CarManufacturer carManufacturer = new CarManufacturer("Honda");
-        Car car = new Car("Civic", carManufacturer, 2021);
-        assertEquals(car.getCarModel(), "Civic");
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        Car car = new Car("V70", carManufacturer, 2021);
+        assertEquals(car.getCarModel(), "V70");
         assertEquals(car.getCarYear(), 2021);
-        assertEquals(car.getCarManufacturer().getManufacturer(), "Honda");
+        assertEquals(car.getCarManufacturer().getManufacturer(), "volvo");
     }
 }
