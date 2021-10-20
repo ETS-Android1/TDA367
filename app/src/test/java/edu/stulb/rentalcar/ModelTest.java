@@ -43,6 +43,9 @@ public class ModelTest {
         assertEquals(user.getName(), "Hannes");
         assertEquals(user.getEmail(), "Hannes@gmail.com");
         assertEquals(user.getCard().getCardName(), "Hannes Thörn");
+        assertEquals(user.getCard().getCardCvv(), "111");
+        assertEquals(user.getCard().getCardDate(), "11/25");
+        assertEquals(user.getCard().getCardNumber(), "5355830012341234");
     }
     @Test
     public void listingIsCorrect(){
