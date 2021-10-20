@@ -9,12 +9,22 @@ public class Listing {
     private int pricePerDay;
     private Location location;
     private User user;
+    private final String uid;
 
     public Listing(Car car, int pricePerDay, Location location, User user) {
         this.car = car;
         this.pricePerDay = pricePerDay;
         this.location = location;
         this.user = user;
+        this.uid = java.util.UUID.randomUUID().toString();
+    }
+
+    /**
+     * Returns uid for listing.
+     * @return String of unique identifier for listing.
+     */
+    public String getUid() {
+        return uid;
     }
 
     /**
