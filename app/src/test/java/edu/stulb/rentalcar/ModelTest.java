@@ -44,7 +44,10 @@ public class ModelTest {
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
         User user = new User("Hannes", "Hannes@gmail.com", card);
         Listing listing = new Listing(car, 200, location, user);
-        assertEquals(listing.getCar().getCarModel(), "Volvo");
+        assertEquals(listing.getCar().getCarModel(), "v90");
+        assertEquals(listing.getLocation().getCity(), "Göteborg");
+        assertEquals(listing.getPricePerDay(), 200);
+        assertEquals(listing.getUser().getName(), "Hannes");
     }
 
 }
