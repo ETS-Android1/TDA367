@@ -1,4 +1,4 @@
-package com.example.tda367;
+package edu.stulb.rentalcar;
 
 import android.content.Context;
 
