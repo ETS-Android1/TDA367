@@ -1,18 +1,26 @@
 package edu.stulb.rentalcar.model;
 
 /**
- *  CarManufacturer is a class to represent the manufacturer of a Car
- *  @author Josef Ngo
+ * CarManufacturer is a class to represent the manufacturer of a Car
+ *
+ * @author Josef Ngo
  */
 public class CarManufacturer {
     private String manufacturer;
 
     /**
      * Constructor to create a manafacturer
-     * @param manafacturer - Name of the manufacturer
+     *
+     * @param manufacturer - manufacturers index in our predetermined array.
      */
-    public CarManufacturer(String manafacturer) {
-        this.manufacturer = manafacturer;
+    public CarManufacturer(String manufacturer) {
+        if (checkValidManufacturer(manufacturer)) {
+            this.manufacturer = manufacturer.toLowerCase();
+        } else {
+            this.manufacturer = "Manufacturer not found";
+            System.out.println("Manufacturer not found");
+        }
+
     }
 
     /**
@@ -20,5 +28,35 @@ public class CarManufacturer {
      */
     public String getManufacturer() {
         return manufacturer;
+    }
+
+    private boolean checkValidManufacturer(String manufacturer){
+        String manufacturerL = manufacturer.toLowerCase();
+        String[] validManufacturers = getManufacturers();
+        for (String validManufacturer : validManufacturers) {
+            if (validManufacturer.equals(manufacturerL)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String[] getManufacturers() {
+
+        return new String[]{
+                "volvo",
+                "volkswagen",
+                "kia",
+                "toyota",
+                "bmw",
+                "audi",
+                "mercedes",
+                "skoda",
+                "renault",
+                "peugeot",
+                "nissan",
+                "seat",
+                "ford"
+        };
     }
 }
