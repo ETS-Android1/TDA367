@@ -5,19 +5,19 @@ package com.example.tda367.model;
  *  CarModel is a class to represent the model (model name, manufacturer and manufacturing year) of a Car
  *  @author Josef Ngo
  */
-public class CarModel {
-    private final String carModelName;
+public class Car {
+    private final String carModel;
     private final CarManufacturer carManufacturer;
     private final int carYear;
 
     /**
      * Constructor to create a CarModel
-     * @param carModelName name of the car model, example V70
+     * @param carModel name of the car model, example V70
      * @param carManufacturer CarManufacturer
      * @param carYear year the car was manufactured
      */
-    public CarModel(String carModelName, CarManufacturer carManufacturer, int carYear) {
-        this.carModelName = carModelName;
+    public Car(String carModel, CarManufacturer carManufacturer, int carYear) {
+        this.carModel = carModel;
         this.carManufacturer = carManufacturer;
         this.carYear = carYear;
     }
@@ -26,8 +26,8 @@ public class CarModel {
      * getter for carModelName
      * @return the name of the carModel
      */
-    public String getCarModelName() {
-        return carModelName;
+    public String getCarModel() {
+        return carModel;
     }
 
     /**
