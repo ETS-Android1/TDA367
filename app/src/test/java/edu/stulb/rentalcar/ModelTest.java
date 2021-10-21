@@ -9,11 +9,11 @@ import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Car;
 import edu.stulb.rentalcar.model.listing.CarManufacturer;
-import edu.stulb.rentalcar.model.listing.ListingHandler;
-import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.listing.Listing;
+import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
+import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.user.User;
 import edu.stulb.rentalcar.model.user.UserHandler;
 
@@ -54,9 +54,10 @@ public class ModelTest {
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
         Car car = new Car("v90", carManufacturer, "2005");
         Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
         User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
-        Listing listing = new Listing(car, 200, location, user, "PathentillBilden");
+        Listing listing = new Listing(car, 200, location, user,reservation, "PathentillBilden");
         assertEquals(listing.getCar().getCarModel(), "v90");
         assertEquals(listing.getLocation().getCity(), "Göteborg");
         assertEquals(listing.getPricePerDay(), 200);
@@ -75,11 +76,13 @@ public class ModelTest {
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
         Car car = new Car("v90", carManufacturer, "2005");
         Location location = new Location("Göteborg");
-        ListingHandler.getInstance().createListing(car, 200, location, user, "PathTillBilden");
+        Reservation reservation = new Reservation();
+        ListingHandler.getInstance().createListing(car, 200, location, user, reservation, "PathTillBilden");
         ArrayList<Listing> tempList = ListingHandler.getInstance().getListings();
         System.out.println(tempList.get(0).getCar().getCarModel());
         System.out.println();
     }
+
 
 
 }
