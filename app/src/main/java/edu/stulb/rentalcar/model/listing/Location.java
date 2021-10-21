@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.model.listing;
 
 /**
  * Location is a class to represent the location of a car
@@ -9,7 +9,7 @@ public class Location {
 
     /**
      * Constructor to create a mew location
-     * @param city
+     * @param city a city
      */
     public Location(String city) {
         this.city = city;

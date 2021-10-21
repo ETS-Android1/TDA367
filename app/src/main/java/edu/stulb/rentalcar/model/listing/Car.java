@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.model.listing;
 
 
 /**
@@ -8,7 +8,7 @@ package edu.stulb.rentalcar.model;
 public class Car {
     private final String carModel;
     private final CarManufacturer carManufacturer;
-    private final int carYear;
+    private final String carYear;
 
     /**
      * Constructor to create a CarModel
@@ -16,7 +16,7 @@ public class Car {
      * @param carManufacturer CarManufacturer
      * @param carYear year the car was manufactured
      */
-    public Car(String carModel, CarManufacturer carManufacturer, int carYear) {
+    public Car(String carModel, CarManufacturer carManufacturer, String carYear) {
         this.carModel = carModel;
         this.carManufacturer = carManufacturer;
         this.carYear = carYear;
@@ -30,6 +30,8 @@ public class Car {
         return carModel;
     }
 
+
+
     /**
      * getter for carManufacturer
      * @return a CarManufacturer for the specific carModel
@@ -38,12 +40,11 @@ public class Car {
         return carManufacturer;
     }
 
-
     /**
      * getter for what year the car was manufactured
      * @return An int with the year of manufacturing
      */
-    public int getCarYear() {
+    public String getCarYear() {
         return carYear;
     }
 }

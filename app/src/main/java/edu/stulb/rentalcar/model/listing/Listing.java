@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.model.listing;
 
 import edu.stulb.rentalcar.model.user.User;
 
@@ -12,13 +12,15 @@ public class Listing {
     private Location location;
     private User user;
     private final String uid;
+    private String imagePath;
 
-    public Listing(Car car, int pricePerDay, Location location, User user) {
+    public Listing(Car car, int pricePerDay, Location location, User user, String imagePath) {
         this.car = car;
         this.pricePerDay = pricePerDay;
         this.location = location;
         this.user = user;
         this.uid = java.util.UUID.randomUUID().toString();
+        this.imagePath = imagePath;
     }
 
     /**
@@ -59,5 +61,9 @@ public class Listing {
      */
     public User getUser() {
         return user;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }

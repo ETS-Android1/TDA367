@@ -8,14 +8,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.user.User;
 
 public class DatabaseHandler implements IQueryManager{
 
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-
-
 
     public User getUser() {
         User user;

@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.model.listing;
 
 /**
  * CarManufacturer is a class to represent the manufacturer of a Car

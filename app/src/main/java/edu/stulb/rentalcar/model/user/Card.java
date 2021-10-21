@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.model.user;
 
 /**
  * Card is a class to represent a users card used for payment
@@ -12,10 +12,10 @@ public class Card {
 
     /**
      * Constructor to create a card
-     * @param cardName
-     * @param cardNumber
-     * @param cardDate
-     * @param cardCvv
+     * @param cardName cards name
+     * @param cardNumber cards number
+     * @param cardDate cards date
+     * @param cardCvv cards Cvv
      */
     public Card(String cardName, String cardNumber, String cardDate, String cardCvv) {
         this.cardName = cardName;

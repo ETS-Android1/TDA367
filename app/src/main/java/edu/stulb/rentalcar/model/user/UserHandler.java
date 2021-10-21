@@ -2,7 +2,6 @@ package edu.stulb.rentalcar.model.user;
 
 import java.util.ArrayList;
 
-import edu.stulb.rentalcar.model.Card;
 import edu.stulb.rentalcar.model.Database;
 
 /**

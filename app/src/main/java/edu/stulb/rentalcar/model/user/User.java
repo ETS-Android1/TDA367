@@ -1,7 +1,5 @@
 package edu.stulb.rentalcar.model.user;
 
-import edu.stulb.rentalcar.model.Card;
-
 /**
  * User is a class to represent a user
  * @author Johan Sandberg
