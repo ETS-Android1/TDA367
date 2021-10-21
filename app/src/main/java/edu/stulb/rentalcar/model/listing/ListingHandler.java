@@ -29,14 +29,13 @@ public class ListingHandler {
         return listings;
     }
 
-    public ArrayList<Listing> getUsersListings(){
+    public ArrayList<Listing> getUserListings(User user){
         ArrayList<Listing> usersListing = new ArrayList<>();
         //Nullcatch
-        if (UserHandler.getInstance().getCurrentUser().getEmail() == null)
+        if (user.getEmail() == null)
             return usersListing;
         for (Listing listing: listings) {
-            if (listing.getUser().getEmail().equalsIgnoreCase(
-                    UserHandler.getInstance().getCurrentUser().getEmail())){
+            if (listing.getUser().getEmail().equalsIgnoreCase(user.getEmail())){
                 usersListing.add(listing);
             }
         }

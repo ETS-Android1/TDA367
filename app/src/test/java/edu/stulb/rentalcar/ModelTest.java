@@ -65,7 +65,7 @@ public class ModelTest {
     }
 
     @Test
-    public void signInIsCorrect(){
+    public void signInAndCarCreationIsCorrect(){
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
         UserHandler.getInstance().createUser("Hannes", "hannes@gmail.com", "Stulb123", card);
         UserHandler.getInstance().signIn("Hannes@gmail.com", "Stulb123");
@@ -75,10 +75,10 @@ public class ModelTest {
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
         Car car = new Car("v90", carManufacturer, "2005");
         Location location = new Location("Göteborg");
-
         ListingHandler.getInstance().createListing(car, 200, location, user, "PathTillBilden");
         ArrayList<Listing> tempList = ListingHandler.getInstance().getListings();
         System.out.println(tempList.get(0).getCar().getCarModel());
+        System.out.println();
     }
 
 
