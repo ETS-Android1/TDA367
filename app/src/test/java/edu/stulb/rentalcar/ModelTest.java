@@ -69,15 +69,8 @@ public class ModelTest {
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
         UserHandler.getInstance().createUser("Hannes", "hannes@gmail.com", "Stulb123", card);
         UserHandler.getInstance().signIn("Hannes@gmail.com", "Stulb123");
-    }
 
-    @Test
-    public void listingCreationIsCorrect(){
-        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
-        UserHandler.getInstance().createUser("Hannes", "hannes@gmail.com", "Stulb123", card);
-        UserHandler.getInstance().signIn("Hannes@gmail.com", "Stulb123");
         User user = UserHandler.getInstance().getCurrentUser();
-
 
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
         Car car = new Car("v90", carManufacturer, "2005");
