@@ -12,14 +12,16 @@ public class Listing {
     private Location location;
     private User user;
     private final String uid;
+    private Reservation reservation;
     private String imagePath;
 
-    public Listing(Car car, int pricePerDay, Location location, User user, String imagePath) {
+    public Listing(Car car, int pricePerDay, Location location, User user,Reservation reservation, String imagePath) {
         this.car = car;
         this.pricePerDay = pricePerDay;
         this.location = location;
         this.user = user;
         this.uid = java.util.UUID.randomUUID().toString();
+        this.reservation = reservation;
         this.imagePath = imagePath;
     }
 
@@ -61,6 +63,10 @@ public class Listing {
      */
     public User getUser() {
         return user;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
     }
 
     public String getImagePath() {

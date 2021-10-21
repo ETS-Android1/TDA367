@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import edu.stulb.rentalcar.model.Database;
 import edu.stulb.rentalcar.model.user.User;
-import edu.stulb.rentalcar.model.user.UserHandler;
 
 public class ListingHandler {
     private static ListingHandler instance = new ListingHandler();
@@ -17,9 +16,9 @@ public class ListingHandler {
         return instance;
     }
 
-    public boolean createListing(Car car, int pricePerDay, Location location, User user, String imagePath){
+    public boolean createListing(Car car, int pricePerDay, Location location, User user, Reservation reservation, String imagePath){
         //TODO kolla om den är med kanske?
-        Listing listing = new Listing(car, pricePerDay, location, user, imagePath);
+        Listing listing = new Listing(car, pricePerDay, location, user, reservation, imagePath);
         listings.add(listing);
         System.out.println("Listing created");
         return true;
