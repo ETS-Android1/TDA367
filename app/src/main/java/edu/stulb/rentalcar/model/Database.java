@@ -46,12 +46,12 @@ public class Database {
         listingHashMap.put("ListingPricePerDay", listing.getPricePerDay());
         listingHashMap.put("ListingLocation", listing.getLocation().getCity());
         listingHashMap.put("UserEmail", listing.getUser().getEmail());
-        listingHashMap.put("ReservationBookedDates", listing.getReservation());
+        listingHashMap.put("ReservationBookedDates", listing.getReservation().getReservationsDatesList());
         return listingHashMap;
     }
-
+//TODO ändra från testUsers till den riktiga
     public void publishListing(Listing listing){
         HashMap<String, Object> tempMap = generateListingHashMap(listing);
-        FirebaseFirestore.getInstance().collection("testUsers").document("test").set(tempMap);
+        FirebaseFirestore.getInstance().collection("testUsers").document(listing.getUid()).set(tempMap);
     }
 }

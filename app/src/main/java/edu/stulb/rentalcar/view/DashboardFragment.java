@@ -13,9 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import edu.stulb.rentalcar.controller.DashboardViewModel;
-import edu.stulb.rentalcar.model.CarAdModel;
-import edu.stulb.rentalcar.RecyclerViewAdapter;
 import com.example.tda367.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,9 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-
-
 import java.util.ArrayList;
+
+import edu.stulb.rentalcar.RecyclerViewAdapter;
+import edu.stulb.rentalcar.controller.DashboardViewModel;
+import edu.stulb.rentalcar.model.CarAdModel;
 
 public class DashboardFragment extends Fragment {
 
@@ -39,7 +38,6 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_dashboard, container, false);
-
         //Search function
         inputSearch = view.findViewById(R.id.searchBar);
         inputSearch.addTextChangedListener(new TextWatcher() {
