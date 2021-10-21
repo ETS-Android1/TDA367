@@ -1,16 +1,18 @@
 package edu.stulb.rentalcar.model;
 
+import edu.stulb.rentalcar.model.user.User;
+
 public interface IQueryManager {
 
-    public User getUser();
+    User getUser();
 
-    public void createUser();
+    void createUser();
 
-    public void createListing();
+    void createListing();
 
-    public boolean isUserSignedIn();
+    boolean isUserSignedIn();
 
-    public void signOut();
+    void signOut();
 
-    public Listing getListing();
+    Listing getListing();
 }

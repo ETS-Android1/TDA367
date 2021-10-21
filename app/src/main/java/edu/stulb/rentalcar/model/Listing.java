@@ -1,5 +1,7 @@
 package edu.stulb.rentalcar.model;
 
+import edu.stulb.rentalcar.model.user.User;
+
 /**
  *  Listing is a class to represent a listing of a Car.
  *  @author Josef Ngo

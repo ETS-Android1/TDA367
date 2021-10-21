@@ -10,10 +10,12 @@ import java.util.List;
 import edu.stulb.rentalcar.model.Car;
 import edu.stulb.rentalcar.model.CarManufacturer;
 import edu.stulb.rentalcar.model.Card;
+import edu.stulb.rentalcar.model.Database;
 import edu.stulb.rentalcar.model.Listing;
 import edu.stulb.rentalcar.model.Location;
 import edu.stulb.rentalcar.model.Reservation;
-import edu.stulb.rentalcar.model.User;
+import edu.stulb.rentalcar.model.user.User;
+import edu.stulb.rentalcar.model.user.UserHandler;
 
 public class ModelTest {
 
@@ -39,7 +41,7 @@ public class ModelTest {
     @Test
     public void userIsCorrect() {
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
-        User user = new User("Hannes", "Hannes@gmail.com", card);
+        User user = new User("Hannes", "Hannes@gmail.com", "Stulb123", card);
         assertEquals(user.getName(), "Hannes");
         assertEquals(user.getEmail(), "Hannes@gmail.com");
         assertEquals(user.getCard().getCardName(), "Hannes Thörn");
@@ -53,13 +55,20 @@ public class ModelTest {
         Car car = new Car("v90", carManufacturer, 2005);
         Location location = new Location("Göteborg");
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
-        User user = new User("Hannes", "Hannes@gmail.com", card);
+        User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
         Listing listing = new Listing(car, 200, location, user);
         assertEquals(listing.getCar().getCarModel(), "v90");
         assertEquals(listing.getLocation().getCity(), "Göteborg");
         assertEquals(listing.getPricePerDay(), 200);
         assertEquals(listing.getUser().getName(), "Hannes");
         assertEquals(listing.getUid(), listing.getUid());
+    }
+
+    @Test
+    public void signInIsCorrect(){
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        UserHandler.getInstance().createUser("Hannes", "hannes@gmail.com", "Stulb123", card);
+        UserHandler.getInstance().signIn("Hannes@gmail.com", "Stulb123");
     }
 
 }
