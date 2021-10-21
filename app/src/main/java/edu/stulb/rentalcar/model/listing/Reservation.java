@@ -17,6 +17,9 @@ public class Reservation {
     public Reservation() {
     }
 
+    public Reservation(List<Long> reservationsDatesList) {
+        this.reservationsDatesList = reservationsDatesList;
+    }
 
     /**
      * Getter for reservationsDatesList

@@ -1,7 +1,6 @@
 package edu.stulb.rentalcar.model.listing;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import edu.stulb.rentalcar.model.Database;
 import edu.stulb.rentalcar.model.user.User;
@@ -17,9 +16,9 @@ public class ListingHandler {
         return instance;
     }
 
-    public boolean createListing(Car car, int pricePerDay, Location location, User user, Reservation reservation, String imagePath){
+    public boolean createListing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath){
         //TODO kolla om den är med kanske?
-        Listing listing = new Listing(car, pricePerDay, location, user, reservation, imagePath);
+        Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
         listings.add(listing);
         System.out.println("Listing created");
         return true;
@@ -35,7 +34,7 @@ public class ListingHandler {
         if (user.getEmail() == null)
             return usersListing;
         for (Listing listing: listings) {
-            if (listing.getUser().getEmail().equalsIgnoreCase(user.getEmail())){
+            if (listing.getUserEmail().equalsIgnoreCase(user.getEmail())){
                 usersListing.add(listing);
             }
         }

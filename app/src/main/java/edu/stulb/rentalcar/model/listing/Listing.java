@@ -2,8 +2,6 @@ package edu.stulb.rentalcar.model.listing;
 
 import java.util.HashMap;
 
-import edu.stulb.rentalcar.model.user.User;
-
 /**
  *  Listing is a class to represent a listing of a Car.
  *  @author Josef Ngo
@@ -12,16 +10,16 @@ public class Listing {
     private Car car;
     private int pricePerDay;
     private Location location;
-    private User user;
+    private String userEmail;
     private final String uid;
     private Reservation reservation;
     private String imagePath;
 
-    public Listing(Car car, int pricePerDay, Location location, User user,Reservation reservation, String imagePath) {
+    public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath) {
         this.car = car;
         this.pricePerDay = pricePerDay;
         this.location = location;
-        this.user = user;
+        this.userEmail = userEmail;
         this.uid = java.util.UUID.randomUUID().toString();
         this.reservation = reservation;
         this.imagePath = imagePath;
@@ -63,8 +61,8 @@ public class Listing {
      * Getter for listings user
      * @return the User that created the listing.
      */
-    public User getUser() {
-        return user;
+    public String getUserEmail() {
+        return userEmail;
     }
 
     public Reservation getReservation() {
@@ -85,8 +83,9 @@ public class Listing {
         listingHashMap.put("CarYear", this.getCar().getCarYear());
         listingHashMap.put("ListingPricePerDay", this.getPricePerDay());
         listingHashMap.put("ListingLocation", this.getLocation().getCity());
-        listingHashMap.put("UserEmail", this.getUser().getEmail());
+        listingHashMap.put("UserEmail", this.getUserEmail());
         listingHashMap.put("ReservationBookedDates", this.getReservation().getReservationsDatesList());
+        listingHashMap.put("ImagePath", this.getImagePath());
         return listingHashMap;
     }
 }

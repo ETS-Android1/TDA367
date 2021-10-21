@@ -57,11 +57,11 @@ public class ModelTest {
         Reservation reservation = new Reservation();
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
         User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
-        Listing listing = new Listing(car, 200, location, user,reservation, "PathentillBilden");
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "PathentillBilden");
         assertEquals(listing.getCar().getCarModel(), "v90");
         assertEquals(listing.getLocation().getCity(), "Göteborg");
         assertEquals(listing.getPricePerDay(), 200);
-        assertEquals(listing.getUser().getName(), "Hannes");
+        assertEquals(listing.getUserEmail(), "Hannes@gmail.com");
         assertEquals(listing.getUid(), listing.getUid());
     }
 
@@ -71,13 +71,13 @@ public class ModelTest {
         UserHandler.getInstance().createUser("Hannes", "hannes@gmail.com", "Stulb123", card);
         UserHandler.getInstance().signIn("Hannes@gmail.com", "Stulb123");
 
-        User user = UserHandler.getInstance().getCurrentUser();
+        String userEmail = UserHandler.getInstance().getCurrentUser().getEmail();
 
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
         Car car = new Car("v90", carManufacturer, "2005");
         Location location = new Location("Göteborg");
         Reservation reservation = new Reservation();
-        ListingHandler.getInstance().createListing(car, 200, location, user, reservation, "PathTillBilden");
+        ListingHandler.getInstance().createListing(car, 200, location, userEmail, reservation, "PathTillBilden");
         ArrayList<Listing> tempList = ListingHandler.getInstance().getListings();
         System.out.println(tempList.get(0).getCar().getCarModel());
         System.out.println();
