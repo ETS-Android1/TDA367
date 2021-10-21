@@ -1,5 +1,7 @@
 package edu.stulb.rentalcar.model.user;
 
+import java.util.HashMap;
+
 /**
  * User is a class to represent a user
  * @author Johan Sandberg
@@ -54,5 +56,19 @@ public class User {
      */
     public String getPassword() {
         return password;
+    }
+
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> userHashMap = new HashMap<>();
+
+        //KEYS gives String to field inside document
+        userHashMap.put("Name", this.getName());
+        userHashMap.put("Email", this.getEmail());
+        userHashMap.put("Password", this.getPassword());
+        userHashMap.put("CardName", this.getCard().getCardName());
+        userHashMap.put("CardNumber", this.getCard().getCardNumber());
+        userHashMap.put("CardDate", this.getCard().getCardDate());
+        userHashMap.put("CardCVV", this.getCard().getCardCvv());
+        return userHashMap;
     }
 }

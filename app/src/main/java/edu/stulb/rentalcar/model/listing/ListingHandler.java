@@ -1,6 +1,7 @@
 package edu.stulb.rentalcar.model.listing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import edu.stulb.rentalcar.model.Database;
 import edu.stulb.rentalcar.model.user.User;

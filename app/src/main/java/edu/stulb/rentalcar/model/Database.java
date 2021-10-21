@@ -3,7 +3,6 @@ package edu.stulb.rentalcar.model;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.user.User;
@@ -14,7 +13,7 @@ import edu.stulb.rentalcar.model.user.User;
 public class Database {
 
     private static Database instance = new Database();
-    private FirebaseFirestore fireStore = FirebaseFirestore.getInstance();
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Listing> listings = new ArrayList<>();
@@ -35,23 +34,13 @@ public class Database {
         return listings;
     }
 
-    private HashMap<String, Object> generateListingHashMap(Listing listing) {
-        HashMap<String, Object> listingHashMap = new HashMap<>();
 
-        //KEYS gives String to field inside document
-        listingHashMap.put("ListingId", listing.getUid());
-        listingHashMap.put("CarManufacturer", listing.getCar().getCarManufacturer().getManufacturer());
-        listingHashMap.put("CarModel", listing.getCar().getCarModel());
-        listingHashMap.put("CarYear", listing.getCar().getCarYear());
-        listingHashMap.put("ListingPricePerDay", listing.getPricePerDay());
-        listingHashMap.put("ListingLocation", listing.getLocation().getCity());
-        listingHashMap.put("UserEmail", listing.getUser().getEmail());
-        listingHashMap.put("ReservationBookedDates", listing.getReservation().getReservationsDatesList());
-        return listingHashMap;
-    }
 //TODO ändra från testUsers till den riktiga
     public void publishListing(Listing listing){
-        HashMap<String, Object> tempMap = generateListingHashMap(listing);
-        FirebaseFirestore.getInstance().collection("testUsers").document(listing.getUid()).set(tempMap);
+        firestore.collection("listings").document(listing.getUid()).set(listing.toHashMap());
+    }
+
+    public void publishUser(User user){
+        firestore.collection("users").document(user.getEmail()).set(user.toHashMap());
     }
 }

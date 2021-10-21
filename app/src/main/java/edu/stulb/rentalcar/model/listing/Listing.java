@@ -1,5 +1,7 @@
 package edu.stulb.rentalcar.model.listing;
 
+import java.util.HashMap;
+
 import edu.stulb.rentalcar.model.user.User;
 
 /**
@@ -71,5 +73,20 @@ public class Listing {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> listingHashMap = new HashMap<>();
+
+        //KEYS gives String to field inside document
+        listingHashMap.put("ListingId", this.getUid());
+        listingHashMap.put("CarManufacturer", this.getCar().getCarManufacturer().getManufacturer());
+        listingHashMap.put("CarModel", this.getCar().getCarModel());
+        listingHashMap.put("CarYear", this.getCar().getCarYear());
+        listingHashMap.put("ListingPricePerDay", this.getPricePerDay());
+        listingHashMap.put("ListingLocation", this.getLocation().getCity());
+        listingHashMap.put("UserEmail", this.getUser().getEmail());
+        listingHashMap.put("ReservationBookedDates", this.getReservation().getReservationsDatesList());
+        return listingHashMap;
     }
 }
