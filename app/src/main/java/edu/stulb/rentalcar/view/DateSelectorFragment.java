@@ -26,27 +26,27 @@ public class DateSelectorFragment extends Fragment {
 
         TextView selectedDatesTextView = (TextView) view.findViewById(R.id.selectedDatesTextView);
 
-        dateSelectorViewModel.getBookedListFirebase("4D3wxMpargBqR3VmQ61c");
-
         CalendarView calendarView = (CalendarView) view.findViewById(R.id.calendarView);
         calendarView.setMinDate(System.currentTimeMillis());
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String clickedDate = dateSelectorViewModel.formatDate(year, month, dayOfMonth);
-                long convertedLong = dateSelectorViewModel.convertToMillis(clickedDate);
                 //Adds the clicked date to clickedDatesList
-                dateSelectorViewModel.addToDateList(convertedLong);
-                System.out.println(convertedLong);
+                if (dateSelectorViewModel.clickedDate(year, month, dayOfMonth)){
+                    System.out.println("La till datum");
+                } else {
+                    System.out.println("Datum upptaget");
+                }
                 //Sets textview to view the clicked dates
-                selectedDatesTextView.setText(dateSelectorViewModel.setTextView());
+                selectedDatesTextView.setText(dateSelectorViewModel.displayClickedDates());
+
             }
 
         });
         confirmDateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dateSelectorViewModel.combineDateLists("4D3wxMpargBqR3VmQ61c");
+
             }
         });
         return view;

@@ -66,7 +66,8 @@ public class Database {
                 Location location = new Location(documentSnapshot.getString("ListingLocation"));
                 Reservation reservation = new Reservation((List<Long>) documentSnapshot.get("ReservationBookedDates"));
                 String imagePath = documentSnapshot.getString("ImagePath");
-                Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
+                String uid = documentSnapshot.getString("ListingId");
+                Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath, uid);
                 listings.add(listing);
             }
         }

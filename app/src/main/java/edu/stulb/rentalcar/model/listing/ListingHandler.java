@@ -27,6 +27,16 @@ public class ListingHandler {
         return listings;
     }
 
+    public ArrayList<Long> getListingReservation(String listingId){
+        for (Listing listing: listings) {
+            if (listing.getUid().equals(listingId)){
+                System.out.println("Hittade rätt id");
+                return (ArrayList<Long>) listing.getReservation().getReservationsDatesList();
+            }
+        }
+        return new ArrayList<>();
+    }
+
     public ArrayList<Listing> getUserListings(String userEmail){
         ArrayList<Listing> usersListing = new ArrayList<>();
         //Nullcatch
