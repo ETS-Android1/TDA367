@@ -24,6 +24,15 @@ public class Listing {
         this.reservation = reservation;
         this.imagePath = imagePath;
     }
+    public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath, String uid) {
+        this.car = car;
+        this.pricePerDay = pricePerDay;
+        this.location = location;
+        this.userEmail = userEmail;
+        this.uid = uid;
+        this.reservation = reservation;
+        this.imagePath = imagePath;
+    }
 
     /**
      * Returns uid for listing.
