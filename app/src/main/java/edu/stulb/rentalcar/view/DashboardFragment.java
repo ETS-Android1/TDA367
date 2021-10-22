@@ -39,4 +39,5 @@ public class DashboardFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
 }
