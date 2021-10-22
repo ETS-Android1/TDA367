@@ -31,10 +31,10 @@ public class ProfileFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.profile_user, container, false);
 
         //userEmail = profileViewModel.getUserEmail();
-        addCarAdButton = (Button) view.findViewById(R.id.addCarAdButton);
+        addCarAdButton = view.findViewById(R.id.addCarAdButton);
         addCarAdButton.setOnClickListener(v -> profileViewModel.loadAddCarAdFragment(getParentFragmentManager()));
 
-        logOutButton = (Button) view.findViewById(R.id.logOutButton);
+        logOutButton = view.findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(v -> {
             signOut();
             makeToast("You have been logged out!");
@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void signOut(){
-        //profileViewModel.signOut();
+        profileViewModel.signOut();
         profileViewModel.loadSignInFragment(getParentFragmentManager());
     }
 

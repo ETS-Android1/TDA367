@@ -45,7 +45,6 @@ public class AddCarAdFragment extends Fragment {
 
         String[] locations = {"Göteborg", "Stockholm", "Malmö"};
 
-        titleEditText = view.findViewById(R.id.titleEditText);
         brandEditText = view.findViewById(R.id.brandEditText);
         modelEditText = view.findViewById(R.id.modelEditText);
         yearEditText = view.findViewById(R.id.yearEditText);
@@ -62,13 +61,13 @@ public class AddCarAdFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}});
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, locations);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, locations);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLocation.setAdapter(adapter);
 
         saveAdButton.setOnClickListener(v -> addAdToFirebase());
         uploadImageButton.setOnClickListener(v -> loadGallery());
-        cancelAdButton.setOnClickListener(v -> loadProfileFragment());
+        cancelAdButton.setOnClickListener(v -> loadProfileFragment(getParentFragmentManager()));
 
         carPreview = view.findViewById(R.id.carPreview);
         carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
@@ -81,9 +80,8 @@ public class AddCarAdFragment extends Fragment {
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
     }
 
-    private void loadProfileFragment(){
+    private void loadProfileFragment(FragmentManager fragmentManager){
         Fragment profileFragment = new ProfileFragment();
-        FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 
@@ -99,20 +97,18 @@ public class AddCarAdFragment extends Fragment {
 
     private void addAdToFirebase() {
         if (!areFieldsEmpty() && selectedImage != null) {
-            String carTitle = String.valueOf(titleEditText.getText());
             String carBrand = String.valueOf(brandEditText.getText());
             String carModel = String.valueOf(modelEditText.getText());
             String carYear = String.valueOf(yearEditText.getText());
-            Integer carPrice = Integer.valueOf(String.valueOf(priceEditText.getText()));
+            int carPrice = Integer.parseInt(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(spinnerLocation.getSelectedItem());
-            profileViewModel.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
+            profileViewModel.addAd(carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
         }
     }
 
     //Checks if inputFields are empty -> returns true if any field is empty.
     private boolean areFieldsEmpty() {
-        return String.valueOf(titleEditText.getText()).isEmpty() ||
-                String.valueOf(brandEditText.getText()).isEmpty() ||
+        return String.valueOf(brandEditText.getText()).isEmpty() ||
                 String.valueOf(modelEditText.getText()).isEmpty() ||
                 String.valueOf(yearEditText.getText()).isEmpty() ||
                 String.valueOf(priceEditText.getText()).isEmpty();
