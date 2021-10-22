@@ -1,4 +1,4 @@
-#TDA367 Project Group: Stulb
+# TDA367 Project Group: Stulb
 ### Android application
 
 ### Running the application
