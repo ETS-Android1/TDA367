@@ -22,8 +22,6 @@ public class SignInFragment extends Fragment {
 
     private SignInViewModel signInViewModel = new SignInViewModel();
 
-    private FadingTextView fadingTextView;
-
     private Button buttonLogIn;
     private Button buttonSignup;
     private EditText editEmailText;
@@ -36,27 +34,22 @@ public class SignInFragment extends Fragment {
         int currentFragment = R.layout.fragment_signin;
         View view = LayoutInflater.from(getContext()).inflate(currentFragment, container, false);
 
-        editEmailText = (EditText) view.findViewById(R.id.editEmailText);
-        editPasswordText = (EditText) view.findViewById(R.id.editPasswordText);
-        buttonLogIn = (Button) view.findViewById(R.id.buttonLogIn);
-        buttonSignup = (Button) view.findViewById(R.id.buttonSignup);
-        fadingTextView = (FadingTextView) view.findViewById(R.id.fading_text_view);
+        editEmailText = view.findViewById(R.id.editEmailText);
+        editPasswordText = view.findViewById(R.id.editPasswordText);
+        buttonLogIn = view.findViewById(R.id.buttonLogIn);
+        buttonSignup = view.findViewById(R.id.buttonSignup);
+        FadingTextView fadingTextView = view.findViewById(R.id.fading_text_view);
 
         buttonLogIn.setOnClickListener(v -> {
             if (isFieldsEmpty()) {
                 makeToast("You need to fill in all the fields!");
-            } else {
-                signInViewModel.signIn(String.valueOf(editEmailText.getText()), String.valueOf(editPasswordText.getText()));
-                if (signInViewModel.isUserLoggedIn()){
-                    signInViewModel.loadProfileFragment(getParentFragmentManager());
-                    makeToast("You have signed in");
-                }
+            }
+            if (signInViewModel.signIn(String.valueOf(editEmailText.getText()), String.valueOf(editPasswordText.getText()))) {
+                signInViewModel.loadProfileFragment(getParentFragmentManager());
             }
         });
 
-        buttonSignup.setOnClickListener(v -> {
-            signInViewModel.loadSignupFragment(getParentFragmentManager());
-        });
+        buttonSignup.setOnClickListener(v -> signInViewModel.loadSignupFragment(getParentFragmentManager()));
 
         return view;
 

@@ -8,11 +8,13 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
 import edu.stulb.rentalcar.model.FirebaseHandler;
+import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.ProfileFragment;
 import edu.stulb.rentalcar.view.SignUpFragment;
 
 public class SignInViewModel extends ViewModel {
     private MutableLiveData<String> mText;
+    private UserHandler userHandler = UserHandler.getInstance();
     private FirebaseHandler firebaseHandler = new FirebaseHandler();
 
     public SignInViewModel() {
@@ -21,7 +23,7 @@ public class SignInViewModel extends ViewModel {
     }
 
     public boolean isUserLoggedIn(){
-        return firebaseHandler.isUserLoggedIn();
+        return userHandler.isUserSignedIn();
     }
 
     public void loadSignupFragment(FragmentManager fragmentManager){
@@ -34,8 +36,8 @@ public class SignInViewModel extends ViewModel {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
     }
 
-    public void signIn(String email, String password){
-        firebaseHandler.signInWithEmailAndPassword(email, password);
+    public boolean signIn(String email, String password){
+        return userHandler.signIn(email, password);
     }
 
     public LiveData<String> getText() {
