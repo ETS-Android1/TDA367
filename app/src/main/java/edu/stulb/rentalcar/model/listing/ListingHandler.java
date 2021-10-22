@@ -3,7 +3,6 @@ package edu.stulb.rentalcar.model.listing;
 import java.util.ArrayList;
 
 import edu.stulb.rentalcar.model.Database;
-import edu.stulb.rentalcar.model.user.User;
 
 public class ListingHandler {
     private static ListingHandler instance = new ListingHandler();
@@ -28,13 +27,13 @@ public class ListingHandler {
         return listings;
     }
 
-    public ArrayList<Listing> getUserListings(User user){
+    public ArrayList<Listing> getUserListings(String userEmail){
         ArrayList<Listing> usersListing = new ArrayList<>();
         //Nullcatch
-        if (user.getEmail() == null)
+        if (userEmail == null)
             return usersListing;
         for (Listing listing: listings) {
-            if (listing.getUserEmail().equalsIgnoreCase(user.getEmail())){
+            if (listing.getUserEmail().equalsIgnoreCase(userEmail)){
                 usersListing.add(listing);
             }
         }

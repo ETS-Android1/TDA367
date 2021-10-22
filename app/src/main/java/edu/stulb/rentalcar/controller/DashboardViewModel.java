@@ -1,23 +1,16 @@
 package edu.stulb.rentalcar.controller;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import java.util.ArrayList;
+
+import edu.stulb.rentalcar.model.listing.Listing;
+import edu.stulb.rentalcar.model.listing.ListingHandler;
 
 public class DashboardViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
-
-
-    public DashboardViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
-    }
-    public void newListItem(){
-
+    public ArrayList<Listing> getListings(){
+        return ListingHandler.getInstance().getListings();
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 }

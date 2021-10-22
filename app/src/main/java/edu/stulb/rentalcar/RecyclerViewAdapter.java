@@ -1,46 +1,41 @@
 package edu.stulb.rentalcar;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.TextView;
-import android.content.Intent;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tda367.R;
 
-import edu.stulb.rentalcar.model.CarAdModel;
-import edu.stulb.rentalcar.model.FirebaseHandler;
-import edu.stulb.rentalcar.view.CarDetailActivity;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
+import edu.stulb.rentalcar.model.listing.Listing;
 
 
 /**
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
-    private ArrayList<CarAdModel> carList;
-    private FirebaseHandler firebaseHandler = new FirebaseHandler();
-    List<CarAdModel> listFull;
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+    private ArrayList<Listing> listingsList;
+    List<Listing> listFull;
     Context context;
 
 
-    public RecyclerViewAdapter(ArrayList<CarAdModel> carList, Context context){
-        this.carList = carList;
-        listFull = new ArrayList<>(carList);
+    public RecyclerViewAdapter(ArrayList<Listing> listingsList, Context context){
+        this.listingsList = listingsList;
+        listFull = new ArrayList<>(listingsList);
         this.context = context;
     }
 
+
     // Search function
+    /*
     @Override
     public Filter getFilter() {
         return FilterResult;
@@ -76,7 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             notifyDataSetChanged();
         }
     };
-
+*/
     public class MyViewHolder extends RecyclerView.ViewHolder{
         private TextView carBrand;
         private TextView carModel;
@@ -106,33 +101,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        CarAdModel car = carList.get(position);
-        String carID = car.getCarID();
+        Listing listing = listingsList.get(position);
+        String carID = listing.getUid();
         //String url = firebaseHandler.GetCarImageUrl(carID);
-        holder.carBrand.setText(car.getCarBrand());
-        holder.carModel.setText(car.getCarModel());
-        holder.carYear.setText(car.getCarYear());
-        holder.carTitle.setText(car.getCarTitle());
-        holder.carLocation.setText(car.getCarLocation());
-        holder.carPrice.setText(String.valueOf(car.getCarPrice()));
+        holder.carBrand.setText(listing.getCar().getCarManufacturer().getManufacturer());
+        holder.carModel.setText(listing.getCar().getCarModel());
+        holder.carYear.setText(listing.getCar().getCarModel());
+        holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer()+" "+listing.getCar().getCarModel());
+        holder.carLocation.setText(listing.getLocation().getCity());
+        holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));
 
         //Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/stulb-a595c.appspot.com/o/images%2Fe2eF5egOPkvoxfLt6jMM%2Fcar?alt=media&token=08f77c2b-c312-4648-8462-11c20fd4bc07").fit().centerCrop().into(holder.imageView);
-
+/*
         //Move to car detail activity
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CarDetailActivity.class);
-                intent.putExtra("car", carList.get(position));
+                Intent intent = new Intent(context, CarDetailFragment.class);
+                intent.putExtra("car", listingsList.get(position));
                 context.startActivity(intent);
             }
         });
+
+ */
     }
 
     @Override
     public int getItemCount() {
-        return carList.size();
+        return listingsList.size();
     }
 }
