@@ -14,6 +14,7 @@ import edu.stulb.rentalcar.model.listing.CarManufacturer;
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
+import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.user.User;
 
 /**
@@ -22,7 +23,7 @@ import edu.stulb.rentalcar.model.user.User;
 public class Database {
 
     private static Database instance = new Database();
-    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Listing> listings = new ArrayList<>();
@@ -52,10 +53,10 @@ public class Database {
     }
 
     public void fetchListings() { //kanske kan va privat senare
-        firestore.collection("listings").get().addOnCompleteListener(this::onComplete);
+        firestore.collection("listings").get().addOnCompleteListener(this::onListingsComplete);
     }
 
-    private void onComplete(Task<QuerySnapshot> task) {
+    private void onListingsComplete(Task<QuerySnapshot> task) {
         if (task.isSuccessful()) {
             for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
                 CarManufacturer carManufacturer = new CarManufacturer(documentSnapshot.getString("CarManufacturer"));
@@ -69,5 +70,29 @@ public class Database {
                 listings.add(listing);
             }
         }
+    }
+
+    public void fetchUsers(){
+        firestore.collection("users").get().addOnCompleteListener(this::onUsersComplete);
+    }
+
+    private void onUsersComplete(Task<QuerySnapshot> task){
+        if (task.isSuccessful()) {
+            for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
+                users.add(fillUser(documentSnapshot));
+            }
+        }
+    }
+
+    private User fillUser(QueryDocumentSnapshot documentSnapshot){
+        String name = documentSnapshot.getString("Name");
+        String email = documentSnapshot.getString("Email");
+        String password = documentSnapshot.getString("Password");
+        String cardCVV = documentSnapshot.getString("CardCVV");
+        String cardDate = documentSnapshot.getString("CardDate");
+        String cardName = documentSnapshot.getString("CardName");
+        String cardNumber = documentSnapshot.getString("CardNumber");
+        Card card = new Card(cardName, cardNumber, cardDate, cardCVV);
+        return new User(name, email, password, card);
     }
 }
