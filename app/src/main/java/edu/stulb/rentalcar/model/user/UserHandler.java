@@ -52,6 +52,10 @@ public class UserHandler {
         return currentUser;
     }
 
+    public boolean isUserSignedIn() {
+        return isUserSignedIn;
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }
