@@ -27,6 +27,14 @@ public class ListingHandler {
         return listings;
     }
 
+    public boolean updateListingReservation(Listing listing, Reservation reservation){
+        listings.remove(listing);
+        Listing updatedListing = new Listing(listing.getCar(), listing.getPricePerDay(), listing.getLocation(), listing.getUserEmail(),reservation ,listing.getImagePath(), listing.getUid());
+        listings.add(updatedListing);
+        System.out.println("Listing created");
+        return true;
+    }
+
     public ArrayList<Long> getListingReservation(String listingId){
         for (Listing listing: listings) {
             if (listing.getUid().equals(listingId)){
