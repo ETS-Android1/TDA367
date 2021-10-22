@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
 import edu.stulb.rentalcar.model.FirebaseHandler;
+import edu.stulb.rentalcar.model.user.Card;
+import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.AddCarAdFragment;
 import edu.stulb.rentalcar.view.ProfileFragment;
 import edu.stulb.rentalcar.view.SignInFragment;
@@ -16,6 +18,7 @@ import edu.stulb.rentalcar.view.SignUpPaymentFragment;
 
 public class SignUpViewModel extends ViewModel {
     private MutableLiveData<String> mText;
+    private UserHandler userHandler = UserHandler.getInstance();
     private FirebaseHandler firebaseHandler = new FirebaseHandler();
 
     public SignUpViewModel() {
@@ -23,13 +26,13 @@ public class SignUpViewModel extends ViewModel {
         mText.setValue("This is signup fragment");
     }
 
-    public boolean isUserLoggedIn() {
-        return firebaseHandler.isUserLoggedIn();
+    public boolean isUserSignedIn() {
+        return userHandler.isUserSignedIn();
     }
 
     public void registerUserWithEmailAndPassword(String email, String password, String
             firstName, String surName, String address, String city, String phoneNumber) {
-        firebaseHandler.registerUserWithEmailAndPassword(email, password, firstName, surName, address, city, phoneNumber);
+
     }
 
     public void loadProfileFragment(FragmentManager fragmentManager) {
@@ -64,5 +67,10 @@ public class SignUpViewModel extends ViewModel {
 
     public void registerCard(String cardNumber, String cardHolderName, String date, String cvv){
         firebaseHandler.registerCard(cardNumber, cardHolderName, date, cvv);
+    }
+
+    public void createUser(String email, String password, String name, String cardNumber, String cardName, String cardDate, String cardCVV) {
+        Card card = new Card(cardName, cardNumber, cardDate, cardCVV);
+        userHandler.createUser(name, email, password, card);
     }
 }

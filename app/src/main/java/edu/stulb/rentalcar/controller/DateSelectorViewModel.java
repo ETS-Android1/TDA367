@@ -5,11 +5,14 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 
 import edu.stulb.rentalcar.model.listing.DateHandler;
+import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
+import edu.stulb.rentalcar.model.listing.Reservation;
 
 public class DateSelectorViewModel extends ViewModel {
     String inDataListingID = "1ed5733f-44e0-4345-9068-29f93d06c517";
     DateHandler dateHandler = new DateHandler();
+    ListingHandler listingHandler = ListingHandler.getInstance();
     ArrayList<Long> clickedDatesList = new ArrayList<>();
     ArrayList<Long> listingsReservedDates = ListingHandler.getInstance().getListingReservation(inDataListingID);
 
@@ -31,4 +34,19 @@ public class DateSelectorViewModel extends ViewModel {
         return dateHandler.getClickedDatesString(clickedDatesList);
     }
 
+    public void confirmBooking(){
+        ArrayList<Long> updatedList= new ArrayList<>();
+        updatedList.addAll(listingsReservedDates);
+        updatedList.addAll(clickedDatesList);
+        Reservation reservation = new Reservation(updatedList);
+        listingHandler.updateListingReservation(getCurrentListing(), reservation);
+    }
+    private Listing getCurrentListing(){
+        for (Listing listing:listingHandler.getListings()) {
+            if (listing.getUid().equals(inDataListingID)){
+                return listing;
+            }
+        }
+        return null;
+    }
 }

@@ -27,7 +27,6 @@ public class SignUpPaymentFragment extends Fragment {
     private EditText cvvInput;
     private Button buttonContinueConfirmation;
     private Button buttonCancelNewUserSignup;
-    private FirebaseAuth firebaseAuth;
 
     public static SignUpPaymentFragment newInstance() {
         return new SignUpPaymentFragment();
@@ -36,19 +35,17 @@ public class SignUpPaymentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_payment, container, false);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        if (signUpViewModel.isUserLoggedIn()) {
+        
+        if (signUpViewModel.isUserSignedIn()) {
             loadProfileFragment(getParentFragmentManager());
         }
 
-        cardnumberInput = (EditText) view.findViewById(R.id.cardnumberInput);
-        cardholderNameInput = (EditText) view.findViewById(R.id.cardholderNameInput);
-        dateInput = (EditText) view.findViewById(R.id.dateInput);
-        cvvInput = (EditText) view.findViewById(R.id.cvvInput);
-        buttonContinueConfirmation = (Button) view.findViewById(R.id.buttonContinueConfirmation);
-        buttonCancelNewUserSignup = (Button) view.findViewById(R.id.buttonCancelNewUserSignup);
+        cardnumberInput = view.findViewById(R.id.cardnumberInput);
+        cardholderNameInput = view.findViewById(R.id.cardholderNameInput);
+        dateInput = view.findViewById(R.id.dateInput);
+        cvvInput = view.findViewById(R.id.cvvInput);
+        buttonContinueConfirmation = view.findViewById(R.id.buttonContinueConfirmation);
+        buttonCancelNewUserSignup = view.findViewById(R.id.buttonCancelNewUserSignup);
 
         buttonContinueConfirmation.setOnClickListener(v -> {
             checkInputLimitations();
