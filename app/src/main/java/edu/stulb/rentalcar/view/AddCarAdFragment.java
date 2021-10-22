@@ -29,7 +29,6 @@ public class AddCarAdFragment extends Fragment {
     private Button saveAdButton;
     private Button uploadImageButton;
     private Button cancelAdButton;
-    private EditText titleEditText;
     private EditText brandEditText;
     private EditText modelEditText;
     private EditText yearEditText;

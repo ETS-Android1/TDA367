@@ -73,10 +73,10 @@ public class Database {
     }
 
     public void fetchUsers(){
-        firestore.collection("users").get().addOnCompleteListener(this::onUsersComplete);
+        firestore.collection("users").get().addOnCompleteListener(this::onFetchUsersComplete);
     }
 
-    private void onUsersComplete(Task<QuerySnapshot> task){
+    private void onFetchUsersComplete(Task<QuerySnapshot> task){
         if (task.isSuccessful()) {
             for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
                 users.add(fillUser(documentSnapshot));
@@ -94,5 +94,30 @@ public class Database {
         String cardNumber = documentSnapshot.getString("CardNumber");
         Card card = new Card(cardName, cardNumber, cardDate, cardCVV);
         return new User(name, email, password, card);
+    }
+
+    private void overwriteListings(ArrayList<Listing> listings){
+        this.listings = listings;
+    }
+
+    private void overwriteUsers(ArrayList<User> users){
+        this.users = users;
+    }
+
+    private void writeUsers() {
+        for (User user: users) {
+            publishUser(user);
+        }
+    }
+
+    private void writeListings() {
+        for (Listing listing: listings) {
+            publishListing(listing);
+        }
+    }
+
+    public void writeToFirebase(){
+        writeUsers();
+        writeListings();
     }
 }

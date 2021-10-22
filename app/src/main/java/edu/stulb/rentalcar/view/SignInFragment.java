@@ -18,6 +18,8 @@ import com.tomer.fadingtextview.FadingTextView;
 
 import android.widget.Toast;
 
+
+
 public class SignInFragment extends Fragment {
 
     private SignInViewModel signInViewModel = new SignInViewModel();
@@ -28,6 +30,7 @@ public class SignInFragment extends Fragment {
     private EditText editPasswordText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        signInViewModel.signIn("hannes@gmail.com", "Stulb123");
         if(signInViewModel.isUserLoggedIn()){
             signInViewModel.loadProfileFragment(getParentFragmentManager());
         }
