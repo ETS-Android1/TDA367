@@ -33,7 +33,7 @@ public class SignUpFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (signUpViewModel.isUserLoggedIn()){
+        if (signUpViewModel.isUserSignedIn()){
             loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
