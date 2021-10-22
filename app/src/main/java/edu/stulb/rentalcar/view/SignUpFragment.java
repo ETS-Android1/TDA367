@@ -20,7 +20,7 @@ public class SignUpFragment extends Fragment {
 
     private final SignUpViewModel signUpViewModel = new SignUpViewModel();
 
-    private Button buttonContinuePayment;
+    private Button buttonSignUp;
     private Button buttonCancelRegistation;
     private EditText emailInput;
     private EditText passwordInput;
@@ -37,7 +37,7 @@ public class SignUpFragment extends Fragment {
             loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
-        buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinueConfirmation);
+        buttonSignUp = (Button) view.findViewById(R.id.buttonSignUp);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
         emailInput = (EditText) view.findViewById(R.id.emailInput);
         passwordInput = (EditText) view.findViewById(R.id.passwordInput);
@@ -48,7 +48,7 @@ public class SignUpFragment extends Fragment {
         cityInput = (EditText) view.findViewById(R.id.editCityInput);
         phoneNumberInput = (EditText) view.findViewById(R.id.editPhoneNumberInput);
 
-        buttonContinuePayment.setOnClickListener(v -> {
+        buttonSignUp.setOnClickListener(v -> {
             if (!isFieldsEmpty()) {
                 registerUser();
                 loadSignUpPaymentFragment();

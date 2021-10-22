@@ -14,8 +14,6 @@ import com.example.tda367.R;
 
 import edu.stulb.rentalcar.controller.SignInViewModel;
 
-import com.tomer.fadingtextview.FadingTextView;
-
 import android.widget.Toast;
 
 
@@ -40,7 +38,6 @@ public class SignInFragment extends Fragment {
         editPasswordText = view.findViewById(R.id.editPasswordText);
         buttonLogIn = view.findViewById(R.id.buttonLogIn);
         buttonSignup = view.findViewById(R.id.buttonSignup);
-        FadingTextView fadingTextView = view.findViewById(R.id.fading_text_view);
 
         buttonLogIn.setOnClickListener(v -> {
             if (isFieldsEmpty()) {
@@ -48,6 +45,8 @@ public class SignInFragment extends Fragment {
             }
             if (signInViewModel.signIn(String.valueOf(editEmailText.getText()), String.valueOf(editPasswordText.getText()))) {
                 signInViewModel.loadProfileFragment(getParentFragmentManager());
+            } else {
+                makeToast("Wrong email or password!");
             }
         });
 
