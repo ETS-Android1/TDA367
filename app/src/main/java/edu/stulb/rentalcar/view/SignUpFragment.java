@@ -37,16 +37,16 @@ public class SignUpFragment extends Fragment {
             loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
-        buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
+        buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinueConfirmation);
         buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
         emailInput = (EditText) view.findViewById(R.id.emailInput);
         passwordInput = (EditText) view.findViewById(R.id.passwordInput);
         reEnterPasswordInput = (EditText) view.findViewById(R.id.reEnterPasswordInput);
-        firstNameInput = (EditText) view.findViewById(R.id.firstNameInput);
-        surnameInput = (EditText) view.findViewById(R.id.surnameInput);
-        addressInput = (EditText) view.findViewById(R.id.addressInput);
-        cityInput = (EditText) view.findViewById(R.id.cityInput);
-        phoneNumberInput = (EditText) view.findViewById(R.id.phoneNumberInput);
+        firstNameInput = (EditText) view.findViewById(R.id.editFirstNameInput);
+        surnameInput = (EditText) view.findViewById(R.id.editSurnameInput);
+        addressInput = (EditText) view.findViewById(R.id.editAddressInput);
+        cityInput = (EditText) view.findViewById(R.id.editCityInput);
+        phoneNumberInput = (EditText) view.findViewById(R.id.editPhoneNumberInput);
 
         buttonContinuePayment.setOnClickListener(v -> {
             if (!isFieldsEmpty()) {
@@ -60,6 +60,36 @@ public class SignUpFragment extends Fragment {
         buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
+    }
+
+    private void checkInputLimitations() {
+        if (!checkEmailInput()) {
+            makeToast("Email must contain a @");
+            return;
+        }
+        else if (!checkPasswordLength()) {
+            makeToast("Password must be at least 8 characters!");
+            return;
+        }
+        else if (!checkPasswordsEqual()) {
+            makeToast("Passwords must be the same!");
+            return;
+        }
+        registerUser();
+        loadSignUpPaymentFragment();
+    }
+
+    private boolean checkPasswordsEqual() {
+        return passwordInput.getText().toString().equals(reEnterPasswordInput.getText().toString());
+    }
+
+    private boolean checkPasswordLength() {
+        return (emailInput.getText().toString().length() > 7) ||
+                (reEnterPasswordInput.getText().toString().length() > 7);
+    }
+
+    private boolean checkEmailInput() {
+        return emailInput.getText().toString().contains("@");
     }
 
     private void registerUser(){
