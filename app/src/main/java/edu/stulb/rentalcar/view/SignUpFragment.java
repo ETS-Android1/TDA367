@@ -22,36 +22,39 @@ public class SignUpFragment extends Fragment {
 
     private Button buttonContinuePayment;
     private Button buttonCancelRegistation;
+
     private EditText emailInput;
     private EditText passwordInput;
     private EditText reEnterPasswordInput;
-    private EditText firstNameInput;
-    private EditText surnameInput;
-    private EditText addressInput;
-    private EditText cityInput;
-    private EditText phoneNumberInput;
+    private EditText nameInput;
+    private EditText cardNumberInput;
+    private EditText cardNameInput;
+    private EditText cardDateInput;
+    private EditText cardCVVInput;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (signUpViewModel.isUserLoggedIn()){
+        if (signUpViewModel.isUserSignedIn()){
             loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
-        buttonContinuePayment = (Button) view.findViewById(R.id.buttonContinuePayment);
-        buttonCancelRegistation = (Button) view.findViewById(R.id.buttonCancelRegistation);
-        emailInput = (EditText) view.findViewById(R.id.emailInput);
-        passwordInput = (EditText) view.findViewById(R.id.passwordInput);
-        reEnterPasswordInput = (EditText) view.findViewById(R.id.reEnterPasswordInput);
-        firstNameInput = (EditText) view.findViewById(R.id.firstNameInput);
-        surnameInput = (EditText) view.findViewById(R.id.surnameInput);
-        addressInput = (EditText) view.findViewById(R.id.addressInput);
-        cityInput = (EditText) view.findViewById(R.id.cityInput);
-        phoneNumberInput = (EditText) view.findViewById(R.id.phoneNumberInput);
+        buttonContinuePayment = view.findViewById(R.id.buttonSignUp);
+        buttonCancelRegistation = view.findViewById(R.id.buttonCancelRegistation);
+        emailInput = view.findViewById(R.id.emailInput);
+        passwordInput = view.findViewById(R.id.passwordInput);
+        reEnterPasswordInput = view.findViewById(R.id.reEnterPasswordInput);
+        nameInput = view.findViewById(R.id.nameInput);
+        cardNumberInput = view.findViewById(R.id.cardnumberInput);
+        cardNameInput = view.findViewById(R.id.cardnameInput);
+        cardDateInput = view.findViewById(R.id.dateInput);
+        cardCVVInput = view.findViewById(R.id.cvvInput);
 
         buttonContinuePayment.setOnClickListener(v -> {
             if (!isFieldsEmpty()) {
                 registerUser();
-                loadSignUpPaymentFragment();
+                makeToast("Sign up success!");
+                loadSignInFragment();
                 return;
             }
             makeToast("You need to fill in all the fields");
@@ -62,27 +65,28 @@ public class SignUpFragment extends Fragment {
 
     }
 
+
+
     private void registerUser(){
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-        String firstName = firstNameInput.getText().toString();
-        String surName = surnameInput.getText().toString();
-        String address = addressInput.getText().toString();
-        String city = cityInput.getText().toString();
-        String phoneNumber = phoneNumberInput.getText().toString();
-
-        signUpViewModel.registerUserWithEmailAndPassword(email, password, firstName,surName, address, city, phoneNumber);
+        String name = nameInput.getText().toString();
+        String cardNumber = cardNumberInput.getText().toString();
+        String cardName = cardNameInput.getText().toString();
+        String cardDate = cardDateInput.getText().toString();
+        String cardCVV = cardCVVInput.getText().toString();
+        signUpViewModel.createUser(email, password, name, cardNumber, cardName, cardDate, cardCVV);
     }
 
     private boolean isFieldsEmpty() {
         return String.valueOf(emailInput.getText()).isEmpty() ||
                 String.valueOf(passwordInput.getText()).isEmpty() ||
                 String.valueOf(reEnterPasswordInput.getText()).isEmpty() ||
-                String.valueOf(firstNameInput.getText()).isEmpty() ||
-                String.valueOf(surnameInput.getText()).isEmpty() ||
-                String.valueOf(addressInput.getText()).isEmpty() ||
-                String.valueOf(cityInput.getText()).isEmpty() ||
-                String.valueOf(phoneNumberInput.getText()).isEmpty();
+                String.valueOf(nameInput.getText()).isEmpty() ||
+                String.valueOf(cardNameInput.getText()).isEmpty() ||
+                String.valueOf(cardNumberInput.getText()).isEmpty() ||
+                String.valueOf(cardDateInput.getText()).isEmpty() ||
+                String.valueOf(cardCVVInput.getText()).isEmpty();
     }
 
     private void makeToast(CharSequence message) {

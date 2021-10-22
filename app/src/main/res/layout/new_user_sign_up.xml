@@ -91,13 +91,14 @@
             android:hint="CVV ex 000"
             android:maxLength="3"
             android:inputType="numberDecimal" />
+
         <Button
-            android:id="@+id/buttonContinuePayment"
+            android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_button"
-            android:text="Continue" />
+            android:text="Sign Up" />
 
         <Button
             android:id="@+id/buttonCancelRegistation"
