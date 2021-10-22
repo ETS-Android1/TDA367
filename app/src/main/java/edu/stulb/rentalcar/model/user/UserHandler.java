@@ -48,6 +48,13 @@ public class UserHandler {
         return false;
     }
 
+    public void signOut(){
+        if (isUserSignedIn){
+            isUserSignedIn = false;
+            currentUser = null;
+        }
+    }
+
     public User getCurrentUser(){
         return currentUser;
     }

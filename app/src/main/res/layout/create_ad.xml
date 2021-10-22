@@ -33,15 +33,6 @@
                     android:textSize="24dp" />
 
                 <EditText
-                    android:id="@+id/titleEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Title:"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp" />
-
-                <EditText
                     android:id="@+id/brandEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,3 +124,4 @@
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

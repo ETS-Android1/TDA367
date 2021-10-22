@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">TDA367</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_Browse">Browse</string>
+    <string name="title_profile">Profile</string>
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="log_in">Log in</string>

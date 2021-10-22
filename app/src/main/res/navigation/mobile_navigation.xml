@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="edu.stulb.rentalcar.view.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_Browse"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="edu.stulb.rentalcar.view.SignInFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_signin" />
 </navigation>
