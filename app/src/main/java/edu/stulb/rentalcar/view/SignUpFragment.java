@@ -50,16 +50,46 @@ public class SignUpFragment extends Fragment {
 
         buttonContinuePayment.setOnClickListener(v -> {
             if (!isFieldsEmpty()) {
-                registerUser();
-                loadSignUpPaymentFragment();
-                return;
+                checkInputLimitations();
             }
-            makeToast("You need to fill in all the fields");
-            System.out.println("You need to fill in all the fields");
+            else {
+                makeToast("You need to fill in all the fields");
+                System.out.println("You need to fill in all the fields");
+            }
         });
         buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
+    }
+
+    private void checkInputLimitations() {
+        if (!checkEmailInput()) {
+            makeToast("Email must contain a @");
+            return;
+        }
+        else if (!checkPasswordLength()) {
+            makeToast("Password must be at least 8 characters!");
+            return;
+        }
+        else if (!checkPasswordsEqual()) {
+            makeToast("Passwords must be the same!");
+            return;
+        }
+        registerUser();
+        loadSignUpPaymentFragment();
+    }
+
+    private boolean checkPasswordsEqual() {
+        return passwordInput.getText().toString().equals(reEnterPasswordInput.getText().toString());
+    }
+
+    private boolean checkPasswordLength() {
+        return (emailInput.getText().toString().length() > 7) ||
+                (reEnterPasswordInput.getText().toString().length() > 7);
+    }
+
+    private boolean checkEmailInput() {
+        return emailInput.getText().toString().contains("@");
     }
 
     private void registerUser(){
