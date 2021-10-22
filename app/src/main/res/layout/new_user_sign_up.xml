@@ -43,56 +43,54 @@
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/firstNameInput"
+            android:id="@+id/nameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:ems="10"
-            android:hint="First name"
+            android:hint="Full name"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/surnameInput"
+            android:id="@+id/cardnumberInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
             android:ems="10"
-            android:hint="Surname"
+            android:maxLength="16"
+            android:hint="Card number"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/cardnameInput"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:ems="10"
+            android:hint="Cardholder name"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/addressInput"
+            android:id="@+id/dateInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
             android:ems="10"
-            android:hint="Address"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:maxLength="5"
+            android:hint="Date MM/YY"
+            android:inputType="date" />
 
         <EditText
-            android:id="@+id/cityInput"
+            android:id="@+id/cvvInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
             android:ems="10"
-            android:hint="City"
-            android:inputType="textPersonName"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/phoneNumberInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:ems="10"
-            android:hint="Enter Phonenumber"
-            android:inputType="phone"
-            android:maxLength="12"
-            android:minHeight="48dp" />
-
+            android:hint="CVV ex 000"
+            android:maxLength="3"
+            android:inputType="numberDecimal" />
         <Button
             android:id="@+id/buttonContinuePayment"
             android:layout_width="match_parent"
@@ -126,6 +124,8 @@
             android:ems="10"
             android:hint="ScrollAble2"
             android:inputType="numberDecimal" />
+
+
 
     </LinearLayout>
 
