@@ -45,6 +45,17 @@ public class ProfileViewModel extends ViewModel {
         //return firebaseHandler.getCurrentUser().getEmail().toString();
         return "";
     }
+
+    public void loadSignInFragment(FragmentManager fragmentManager) {
+        Fragment signInFragment = new SignInFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
+    }
+
+    public void loadAddCarAdFragment(FragmentManager fragmentManager) {
+        Fragment addCarAdFragment = new AddCarAdFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
+    }
+
     public void signOut(){
         userHandler.signOut();
     }

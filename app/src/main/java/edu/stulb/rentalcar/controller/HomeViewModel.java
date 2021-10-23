@@ -28,7 +28,19 @@ public class HomeViewModel extends ViewModel {
         return mText;
     }
 
-    public FirebaseUser getCurrentUser() {
-        return firebaseHandler.getCurrentUser();
+    public void loadAddCarFragment(FragmentManager fragmentManager){
+        Fragment addCarFragment = new AddCarAdFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarFragment).commit();
+    }
+
+    public void loadDashboardFragment(FragmentManager fragmentManager){
+        Fragment dashboardFragment = new DashboardFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, dashboardFragment).commit();
+    }
+
+
+    public void loadSignInFragment(FragmentManager fragmentManager){
+        Fragment signInFragment = new SignInFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }
 }

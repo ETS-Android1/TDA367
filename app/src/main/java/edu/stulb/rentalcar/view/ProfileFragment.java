@@ -32,7 +32,7 @@ public class ProfileFragment extends Fragment {
 
         //userEmail = profileViewModel.getUserEmail();
         addCarAdButton = view.findViewById(R.id.addCarAdButton);
-        addCarAdButton.setOnClickListener(v -> fragmentHandler.loadAddCarFragment(getParentFragmentManager()));
+        addCarAdButton.setOnClickListener(v -> profileViewModel.loadAddCarAdFragment(getParentFragmentManager()));
 
         logOutButton = view.findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(v -> {
@@ -52,7 +52,7 @@ public class ProfileFragment extends Fragment {
 
     private void signOut(){
         profileViewModel.signOut();
-        fragmentHandler.loadSignInFragment(getParentFragmentManager());
+        profileViewModel.loadSignInFragment(getParentFragmentManager());
     }
 
     private void makeToast(CharSequence message) {
