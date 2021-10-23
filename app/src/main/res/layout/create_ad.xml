@@ -5,7 +5,7 @@
     android:id="@+id/saveButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#33B4ADFF"
+    android:background="#FFFFFF"
     >
     <ScrollView
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                     >
 
                     <Button
-                        android:id="@+id/logOutButton"
+                        android:id="@+id/cancelAdButton"
                         android:layout_width="182dp"
                         android:layout_height="50dp"
                         android:layout_marginBottom="32dp"
@@ -110,7 +110,7 @@
                         android:text="cancel" />
 
                     <Button
-                        android:id="@+id/editButton"
+                        android:id="@+id/saveAdButton"
                         android:layout_width="182dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="16dp"
