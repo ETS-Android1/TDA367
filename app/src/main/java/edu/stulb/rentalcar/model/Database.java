@@ -52,7 +52,7 @@ public class Database {
         firestore.collection("users").document(user.getEmail()).set(user.toHashMap());
     }
 
-    public void fetchListings() { //kanske kan va privat senare
+    public void fetchListings() {
         firestore.collection("listings").get().addOnCompleteListener(this::onListingsComplete);
     }
 
@@ -95,14 +95,6 @@ public class Database {
         String cardNumber = documentSnapshot.getString("CardNumber");
         Card card = new Card(cardName, cardNumber, cardDate, cardCVV);
         return new User(name, email, password, card);
-    }
-
-    private void overwriteListings(ArrayList<Listing> listings){
-        this.listings = listings;
-    }
-
-    private void overwriteUsers(ArrayList<User> users){
-        this.users = users;
     }
 
     private void writeUsers() {
