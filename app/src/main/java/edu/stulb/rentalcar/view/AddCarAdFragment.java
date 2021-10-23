@@ -18,7 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.example.tda367.R;
+
 import edu.stulb.rentalcar.controller.ProfileViewModel;
 
 public class AddCarAdFragment extends Fragment {
@@ -64,7 +66,7 @@ public class AddCarAdFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLocation.setAdapter(adapter);
 
-        saveAdButton.setOnClickListener(v -> addAdToFirebase());
+        saveAdButton.setOnClickListener(v -> createListing());
         uploadImageButton.setOnClickListener(v -> loadGallery());
         cancelAdButton.setOnClickListener(v -> loadProfileFragment(getParentFragmentManager()));
 
@@ -75,7 +77,7 @@ public class AddCarAdFragment extends Fragment {
     }
 
     public void loadGallery(){
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent galleryIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
     }
 
@@ -89,19 +91,30 @@ public class AddCarAdFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && data != null){
             selectedImage = data.getData();
-            carPreview.setImageURI(selectedImage);
+            Glide.with(getContext()).load(selectedImage).into(carPreview);
             carPreview.setVisibility(View.VISIBLE);//Makes preview visible
+            /*Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }*/
         }
     }
 
-    private void addAdToFirebase() {
+    private void createListing() {
         if (!areFieldsEmpty() && selectedImage != null) {
             String carBrand = String.valueOf(brandEditText.getText());
             String carModel = String.valueOf(modelEditText.getText());
             String carYear = String.valueOf(yearEditText.getText());
             int carPrice = Integer.parseInt(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(spinnerLocation.getSelectedItem());
-            profileViewModel.addAd(carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
+            profileViewModel.createListing(carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
+            loadProfileFragment(getParentFragmentManager());
         }
     }
 
