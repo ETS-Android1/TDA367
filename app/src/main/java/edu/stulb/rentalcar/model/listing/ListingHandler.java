@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import edu.stulb.rentalcar.model.Database;
 
 public class ListingHandler {
-    private static ListingHandler instance = new ListingHandler();
-    private ArrayList<Listing> listings = Database.getInstance().getListings();
+    private static final ListingHandler instance = new ListingHandler();
+    private final ArrayList<Listing> listings = Database.getInstance().getListings();
 
     private ListingHandler(){
     }
@@ -16,7 +16,6 @@ public class ListingHandler {
     }
 
     public boolean createListing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath){
-        //TODO kolla om den är med kanske?
         Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
         listings.add(listing);
         System.out.println("Listing created");

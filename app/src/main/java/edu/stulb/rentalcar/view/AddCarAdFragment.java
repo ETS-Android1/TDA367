@@ -19,11 +19,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
+
+import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.ProfileViewModel;
 
 public class AddCarAdFragment extends Fragment {
 
-    private ProfileViewModel profileViewModel = new ProfileViewModel();
+    private final ProfileViewModel profileViewModel = new ProfileViewModel();
+    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveAdButton;
@@ -64,9 +67,9 @@ public class AddCarAdFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLocation.setAdapter(adapter);
 
-        saveAdButton.setOnClickListener(v -> addAdToFirebase());
+        saveAdButton.setOnClickListener(v -> createAd());
         uploadImageButton.setOnClickListener(v -> loadGallery());
-        cancelAdButton.setOnClickListener(v -> loadProfileFragment(getParentFragmentManager()));
+        cancelAdButton.setOnClickListener(v -> fragmentHandler.loadProfileFragment(getParentFragmentManager()));
 
         carPreview = view.findViewById(R.id.carPreview);
         carPreview.setVisibility(View.GONE);//Makes it invisible and not take up space before image is selected.
@@ -79,11 +82,6 @@ public class AddCarAdFragment extends Fragment {
         startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
     }
 
-    private void loadProfileFragment(FragmentManager fragmentManager){
-        Fragment profileFragment = new ProfileFragment();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -94,18 +92,17 @@ public class AddCarAdFragment extends Fragment {
         }
     }
 
-    private void addAdToFirebase() {
+    private void createAd() {
         if (!areFieldsEmpty() && selectedImage != null) {
             String carBrand = String.valueOf(brandEditText.getText());
             String carModel = String.valueOf(modelEditText.getText());
             String carYear = String.valueOf(yearEditText.getText());
             int carPrice = Integer.parseInt(String.valueOf(priceEditText.getText()));
             String carLocation = String.valueOf(spinnerLocation.getSelectedItem());
-            profileViewModel.addAd(carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
+            profileViewModel.createAd(carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
         }
     }
 
-    //Checks if inputFields are empty -> returns true if any field is empty.
     private boolean areFieldsEmpty() {
         return String.valueOf(brandEditText.getText()).isEmpty() ||
                 String.valueOf(modelEditText.getText()).isEmpty() ||

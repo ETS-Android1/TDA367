@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tda367.R;
 
+import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.SignInViewModel;
 
 import android.widget.Toast;
@@ -20,8 +21,8 @@ import android.widget.Toast;
 
 public class SignInFragment extends Fragment {
 
-    private SignInViewModel signInViewModel = new SignInViewModel();
-
+    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
+    private final SignInViewModel signInViewModel = new SignInViewModel();
     private Button buttonLogIn;
     private Button buttonSignup;
     private EditText editEmailText;
@@ -50,8 +51,7 @@ public class SignInFragment extends Fragment {
             }
         });
 
-        buttonSignup.setOnClickListener(v -> signInViewModel.loadSignupFragment(getParentFragmentManager()));
-
+        buttonSignup.setOnClickListener(v -> fragmentHandler.loadSignupFragment(getParentFragmentManager()));
         return view;
 
     }

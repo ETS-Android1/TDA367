@@ -14,11 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.HomeViewModel;
 import com.example.tda367.R;
 
 public class HomeFragment extends Fragment {
-    private HomeViewModel homeViewModel = new HomeViewModel();
+    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
+    private final HomeViewModel homeViewModel = new HomeViewModel();
 
     private ImageView myImageView;
     private ImageButton nextButton;
@@ -43,13 +45,13 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         super.onCreate(savedInstanceState);
 
-        myImageView = (ImageView) view.findViewById(R.id.myImageView);
-        nextButton = (ImageButton) view.findViewById(R.id.nextButton);
-        backButton = (ImageButton) view.findViewById(R.id.backButton);
-        findCarButton = (Button) view.findViewById(R.id.findCarButton);
-        addCarButton = (Button) view.findViewById(R.id.addCarButton);
-        howDoButton = (Button) view.findViewById(R.id.howDoButton);
-        numberOfTextView = (TextView) view.findViewById(R.id.numberOfTextView);
+        myImageView = view.findViewById(R.id.myImageView);
+        nextButton = view.findViewById(R.id.nextButton);
+        backButton = view.findViewById(R.id.backButton);
+        findCarButton = view.findViewById(R.id.findCarButton);
+        addCarButton = view.findViewById(R.id.addCarButton);
+        howDoButton = view.findViewById(R.id.howDoButton);
+        numberOfTextView = view.findViewById(R.id.numberOfTextView);
 
         nextButton.setOnClickListener(changeNextImage);
         backButton.setOnClickListener(changePreviousImage);
