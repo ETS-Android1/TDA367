@@ -115,7 +115,7 @@
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:enabled="false" />
 
         <EditText
             android:id="@+id/editTextNumberDecimal4"
@@ -123,8 +123,7 @@
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:ems="10"
-            android:hint="ScrollAble2"
-            android:inputType="numberDecimal" />
+            android:enabled="false" />
 
 
 
