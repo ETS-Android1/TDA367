@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
 import edu.stulb.rentalcar.controller.SignUpViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpPaymentFragment extends Fragment {
 
@@ -49,7 +48,6 @@ public class SignUpPaymentFragment extends Fragment {
 
         buttonContinueConfirmation.setOnClickListener(v -> {
             checkInputLimitations();
-            registerCardholder();
         });
 
         buttonCancelNewUserSignup.setOnClickListener(view1 -> loadSignUpFragment(getParentFragmentManager()));
@@ -93,14 +91,6 @@ public class SignUpPaymentFragment extends Fragment {
     private boolean checkDateInput() {
         String regex = "[0-9]";
         return dateInput.getText().toString().matches(regex + regex + "/" + regex + regex);
-    }
-
-    private void registerCardholder() {
-        String cardNumber = cardnumberInput.getText().toString();
-        String cardHolderName = cardholderNameInput.getText().toString();
-        String date = dateInput.getText().toString();
-        String cvv = cvvInput.getText().toString();
-        signUpViewModel.registerCard(cardNumber, cardHolderName, date, cvv);
     }
 
     private void loadSignUpFragment(FragmentManager fragmentManager){
