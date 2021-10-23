@@ -125,7 +125,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             CarDetailFragment carDetailFragment = new CarDetailFragment();
 
             carDetailFragment.setArguments(args);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_fragment, carDetailFragment).commit();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, carDetailFragment).commit();
 
         });
     }

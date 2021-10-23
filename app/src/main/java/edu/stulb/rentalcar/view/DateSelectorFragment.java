@@ -46,7 +46,11 @@ public class DateSelectorFragment extends Fragment {
             selectedDatesTextView.setText(dateSelectorViewModel.displayClickedDates());
 
         });
-        confirmDateBtn.setOnClickListener(v -> dateSelectorViewModel.confirmBooking());
+        confirmDateBtn.setOnClickListener(v -> {
+            dateSelectorViewModel.confirmBooking();
+            dateSelectorViewModel.loadBookingConfirmationFragment(getParentFragmentManager(), receivedUidString, dateSelectorViewModel.displayClickedDates());
+        });
+
         return view;
     }
 

@@ -20,35 +20,23 @@ import com.example.tda367.R;
 public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel = new HomeViewModel();
 
-    private ImageView myImageView;
     private ImageButton nextButton;
     private ImageButton backButton;
     private Button findCarButton;
     private Button addCarButton;
-    private Button howDoButton;
+    private ImageView featuredImageView;
     private TextView numberOfTextView;
-
-    int[] images = {
-            R.drawable.ic_launcher_foreground,
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_home_black_24dp,
-            R.drawable.ic_dashboard_black_24dp,
-    };
-
-    int currentImage = 0;
-    int numImages = images.length;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         super.onCreate(savedInstanceState);
 
-        myImageView = (ImageView) view.findViewById(R.id.myImageView);
+        featuredImageView = (ImageView) view.findViewById(R.id.myImageView);
         nextButton = (ImageButton) view.findViewById(R.id.nextButton);
         backButton = (ImageButton) view.findViewById(R.id.backButton);
         findCarButton = (Button) view.findViewById(R.id.findCarButton);
         addCarButton = (Button) view.findViewById(R.id.addCarButton);
-        howDoButton = (Button) view.findViewById(R.id.howDoButton);
         numberOfTextView = (TextView) view.findViewById(R.id.numberOfTextView);
 
         nextButton.setOnClickListener(changeNextImage);
@@ -66,9 +54,7 @@ public class HomeFragment extends Fragment {
             makeToast("You need to log in first!");
         });
 
-
-        myImageView.setImageResource(images[currentImage]);
-        numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
+        homeViewModel.setFirstState(featuredImageView, numberOfTextView);
 
         return view;
     }
@@ -82,33 +68,13 @@ public class HomeFragment extends Fragment {
 
     View.OnClickListener changeNextImage = new OnClickListener() {
         public void onClick(View v) {
-            if (currentImage == images.length) {
-                currentImage = 0;
-            } else {
-                //Increment Counter to move to next Image
-                currentImage++;
-                currentImage = currentImage % numImages;
-                //Set the image depending on the counter.
-                currentImage = currentImage % images.length;
-        }
-            myImageView.setImageResource(images[currentImage]);
-            numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
+            homeViewModel.nextImage(featuredImageView, numberOfTextView);
         }
     };
 
     View.OnClickListener changePreviousImage = new OnClickListener() {
         public void onClick(View v) {
-            if (currentImage == 0) {
-                currentImage = images.length - 1;
-            } else {
-                //Increment Counter to move to next Image
-                currentImage--;
-                currentImage = currentImage % numImages;
-                //Set the image depending on the counter.
-                currentImage = currentImage % images.length;
-            }
-            myImageView.setImageResource(images[currentImage]);
-            numberOfTextView.setText("Showing image " + (currentImage+1) + " of " + images.length);
+            homeViewModel.previousImage(featuredImageView, numberOfTextView);
         }
     };
 
