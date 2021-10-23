@@ -14,15 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.tda367.R;
-
-import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.SignUpViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpPaymentFragment extends Fragment {
 
-    private final SignUpViewModel signUpViewModel = new SignUpViewModel();
-    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
+    private SignUpViewModel signUpViewModel = new SignUpViewModel();
 
     private EditText cardnumberInput;
     private EditText cardholderNameInput;
@@ -40,7 +37,7 @@ public class SignUpPaymentFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_payment, container, false);
         
         if (signUpViewModel.isUserSignedIn()) {
-            fragmentHandler.loadProfileFragment(getParentFragmentManager());
+            loadProfileFragment(getParentFragmentManager());
         }
 
         cardnumberInput = view.findViewById(R.id.cardnumberInput);
@@ -55,7 +52,7 @@ public class SignUpPaymentFragment extends Fragment {
             registerCardholder();
         });
 
-        buttonCancelNewUserSignup.setOnClickListener(view1 -> fragmentHandler.loadSignupFragment(getParentFragmentManager()));
+        buttonCancelNewUserSignup.setOnClickListener(view1 -> loadSignUpFragment(getParentFragmentManager()));
         return view;
     }
 
@@ -104,6 +101,17 @@ public class SignUpPaymentFragment extends Fragment {
         String date = dateInput.getText().toString();
         String cvv = cvvInput.getText().toString();
         signUpViewModel.registerCard(cardNumber, cardHolderName, date, cvv);
+    }
+
+    private void loadSignUpFragment(FragmentManager fragmentManager){
+        signUpViewModel.loadSignUpFragment(fragmentManager);
+    }
+    private void loadConfirmationFragment(FragmentManager fragmentManager){
+        signUpViewModel.loadSignUpConfirmationFragment(fragmentManager);
+    }
+
+    private void loadProfileFragment(FragmentManager fragmentManager){
+        signUpViewModel.loadProfileFragment(fragmentManager);
     }
 
     private void makeToast(CharSequence message) {

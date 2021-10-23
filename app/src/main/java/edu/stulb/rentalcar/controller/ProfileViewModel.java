@@ -32,15 +32,17 @@ public class ProfileViewModel extends ViewModel {
         return listingHandler.getUserListings(userHandler.getCurrentUser().getEmail());
     }
 
-    public void createAd(String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage){
+    public void addAd(String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage){
         Car car = Car.createCar(carModel, carBrand, carYear);
         Location location = new Location(carLocation);
         String email = userHandler.getCurrentUser().getEmail();
 
         listingHandler.createListing(car, carPrice, location, email, new Reservation(), selectedImage.toString());
+        //firebaseHandler.addAd(carTitle, carBrand, carModel, carYear, carPrice, carLocation, selectedImage);
     }
 
     public String getUserEmail(){
+        //return firebaseHandler.getCurrentUser().getEmail().toString();
         return "";
     }
     public void signOut(){

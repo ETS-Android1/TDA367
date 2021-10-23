@@ -10,13 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tda367.R;
-
-import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.SignUpViewModel;
 
 public class SignUpConfirmationFragment extends Fragment {
 
-    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
     private final SignUpViewModel signUpViewModel = new SignUpViewModel();
 
     private Button continueProfileButton;
@@ -31,14 +28,20 @@ public class SignUpConfirmationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_confirmation, container, false);
 
-        continueProfileButton = view.findViewById(R.id.continueProfileButton);
-        continueAddButton = view.findViewById(R.id.continueAddButton);
+        continueProfileButton = (Button) view.findViewById(R.id.continueProfileButton);
+        continueAddButton = (Button) view.findViewById(R.id.continueAddButton);
 
-        continueProfileButton.setOnClickListener(v -> fragmentHandler.loadProfileFragment(getParentFragmentManager()));
+        continueProfileButton.setOnClickListener(v -> loadProfileFragment());
 
-        continueAddButton.setOnClickListener(v -> fragmentHandler.loadAddCarFragment(getParentFragmentManager()));
+        continueAddButton.setOnClickListener(v -> loadAddCarAdFragment());
 
         return view;
     }
 
+    private void loadProfileFragment(){
+        signUpViewModel.loadProfileFragment(getParentFragmentManager());
+    }
+    private void loadAddCarAdFragment(){
+        signUpViewModel.addCarAdFragment(getParentFragmentManager());
+    }
 }
