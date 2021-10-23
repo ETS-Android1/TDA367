@@ -51,21 +51,51 @@ public class SignUpFragment extends Fragment {
         cardCVVInput = view.findViewById(R.id.cvvInput);
 
         buttonContinuePayment.setOnClickListener(v -> {
-            if (!isFieldsEmpty()) {
-                registerUser();
-                makeToast("Sign up success!");
-                loadSignInFragment();
-                return;
-            }
-            makeToast("You need to fill in all the fields");
-            System.out.println("You need to fill in all the fields");
+            checkContinuePayment();
         });
         buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
     }
 
-
+    private void checkContinuePayment() {
+        if (!isFieldsEmpty()) {
+            if (!signUpViewModel.checkEmailInput(emailInput.getText().toString())) {
+                makeToast("Email must contain @");
+                return;
+            }
+            else if (!signUpViewModel.checkPasswordLength(passwordInput.getText().toString(),
+                    reEnterPasswordInput.getText().toString())) {
+                makeToast("Password must be at least 8 characters!");
+                return;
+            }
+            else if (!signUpViewModel.checkPasswordsEqual(passwordInput.getText().toString(),
+                    reEnterPasswordInput.getText().toString())) {
+                makeToast("Passwords must be equal!");
+                return;
+            }
+            else if (!signUpViewModel.checkCardLength(cardNumberInput.getText().toString())) {
+                makeToast("Cardnumber must be 16 digits!");
+                return;
+            }
+            else if (!signUpViewModel.checkDateInput(cardDateInput.getText().toString())) {
+                makeToast("Incorrect date input, must be: MM/YY");
+                return;
+            }
+            else if (!signUpViewModel.checkCvvLength(cardCVVInput.getText().toString())) {
+                makeToast("CVV must be 3 digits!");
+                return;
+            }
+            else {
+                registerUser();
+                makeToast("Sign up successful!");
+                loadSignInFragment();
+                return;
+            }
+        }
+        makeToast("You need to fill in all the fields");
+        System.out.println("You need to fill in all the fields");
+    }
 
     private void registerUser(){
         String email = emailInput.getText().toString();
@@ -104,35 +134,6 @@ public class SignUpFragment extends Fragment {
     }
     private void loadSignInFragment(){
         signUpViewModel.loadSignInFragment(getParentFragmentManager());
-    }
-    private void checkInputLimitations() {
-        if (!checkEmailInput()) {
-            makeToast("Email must contain a @");
-            return;
-        }
-        else if (!checkPasswordLength()) {
-            makeToast("Password must be at least 8 characters!");
-            return;
-        }
-        else if (!checkPasswordsEqual()) {
-            makeToast("Passwords must be the same!");
-            return;
-        }
-        registerUser();
-        loadSignUpPaymentFragment();
-    }
-
-    private boolean checkPasswordsEqual() {
-        return passwordInput.getText().toString().equals(reEnterPasswordInput.getText().toString());
-    }
-
-    private boolean checkPasswordLength() {
-        return (emailInput.getText().toString().length() > 7) ||
-                (reEnterPasswordInput.getText().toString().length() > 7);
-    }
-
-    private boolean checkEmailInput() {
-        return emailInput.getText().toString().contains("@");
     }
 
 

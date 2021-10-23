@@ -13,7 +13,6 @@ import edu.stulb.rentalcar.view.ProfileFragment;
 import edu.stulb.rentalcar.view.SignInFragment;
 import edu.stulb.rentalcar.view.SignUpConfirmationFragment;
 import edu.stulb.rentalcar.view.SignUpFragment;
-import edu.stulb.rentalcar.view.SignUpPaymentFragment;
 
 public class SignUpViewModel extends ViewModel {
     private MutableLiveData<String> mText;
@@ -26,6 +25,32 @@ public class SignUpViewModel extends ViewModel {
 
     public boolean isUserSignedIn() {
         return userHandler.isUserSignedIn();
+    }
+
+    public boolean checkPasswordsEqual(String passwordOne, String passwordTwo) {
+        return passwordOne.equals(passwordTwo);
+    }
+
+    public boolean checkPasswordLength(String passwordOne, String passwordTwo) {
+        return (passwordOne.length() > 7) ||
+                (passwordTwo.length() > 7);
+    }
+
+    public boolean checkEmailInput(String email) {
+        return email.contains("@");
+    }
+
+    public boolean checkCvvLength(String cvv) {
+        return cvv.length() > 2;
+    }
+
+    public boolean checkCardLength(String card) {
+        return card.length() > 15;
+    }
+
+    public boolean checkDateInput(String date) {
+        String regex = "[0-9]";
+        return date.matches(regex + regex + "/" + regex + regex);
     }
 
     public void registerUserWithEmailAndPassword(String email, String password, String
