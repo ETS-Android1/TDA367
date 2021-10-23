@@ -61,6 +61,14 @@ public class DateSelectorViewModel extends ViewModel {
         listingsReservedDates = ListingHandler.getInstance().getListingReservation(listingId);
     }
 
+    public String getTotalCost(){
+        return String.valueOf(listingHandler.getListingPricePerDay(listingId)*clickedDatesList.size());
+    }
+
+    public String getCarTitle(){
+        return listingHandler.getCarTitle(listingId);
+    }
+
     public void loadBookingConfirmationFragment(FragmentManager fragmentManager, String uid, String bookedDates){
         Bundle args = new Bundle();
         args.putString("listingId", uid);
