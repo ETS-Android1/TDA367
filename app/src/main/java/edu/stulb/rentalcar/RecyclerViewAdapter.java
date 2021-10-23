@@ -2,6 +2,7 @@ package edu.stulb.rentalcar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tda367.R;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Listing;
+import edu.stulb.rentalcar.view.CarDetailFragment;
 
 
 /**
@@ -105,8 +108,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Listing listing = listingsList.get(position);
-        String carID = listing.getUid();
-        //String url = firebaseHandler.GetCarImageUrl(carID);
         holder.carBrand.setText(listing.getCar().getCarManufacturer().getManufacturer());
         holder.carModel.setText(listing.getCar().getCarModel());
         holder.carYear.setText(listing.getCar().getCarModel());
@@ -115,18 +116,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));
 
         //Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/stulb-a595c.appspot.com/o/images%2Fe2eF5egOPkvoxfLt6jMM%2Fcar?alt=media&token=08f77c2b-c312-4648-8462-11c20fd4bc07").fit().centerCrop().into(holder.imageView);
-/*
-        //Move to car detail activity
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CarDetailFragment.class);
-                intent.putExtra("car", listingsList.get(position));
-                context.startActivity(intent);
-            }
+
+
+        holder.itemView.setOnClickListener(v -> {
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            Bundle args = new Bundle();
+            args.putString("listingId", listing.getUid());
+            CarDetailFragment carDetailActivity = new CarDetailFragment();
+
+            carDetailActivity.setArguments(args);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_fragment, carDetailActivity).commit();
+
         });
 
- */
+
     }
 
     @Override

@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="edu.stulb.rentalcar.view.DashboardFragment"
     android:background="#33B4ADFF"
+    android:id="@+id/dashboard_fragment"
     >
 
 

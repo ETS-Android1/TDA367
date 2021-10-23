@@ -45,6 +45,15 @@ public class ListingHandler {
         return new ArrayList<>();
     }
 
+    public Listing getListingFromUid(String uid){
+        for (Listing listing:listings) {
+            if (listing.getUid().equals(uid)){
+                return listing;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Listing> getUserListings(String userEmail){
         ArrayList<Listing> usersListing = new ArrayList<>();
         //Nullcatch
