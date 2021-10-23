@@ -18,14 +18,21 @@ import edu.stulb.rentalcar.controller.FragmentHandler;
 public class DateSelectorFragment extends Fragment {
     private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
     DateSelectorViewModel dateSelectorViewModel = new DateSelectorViewModel();
+    String receivedUidString;
 
     TextView selectedDatesTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_date_selector, container, false);
-        Button confirmDateBtn = view.findViewById(R.id.confirmDateBtn);
 
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            receivedUidString = bundle.getString("listingId");
+        }
+        dateSelectorViewModel.getCurrentUid(receivedUidString);
+
+        Button confirmDateBtn = view.findViewById(R.id.confirmDateBtn);
         TextView selectedDatesTextView = view.findViewById(R.id.selectedDatesTextView);
 
         CalendarView calendarView = view.findViewById(R.id.calendarView);

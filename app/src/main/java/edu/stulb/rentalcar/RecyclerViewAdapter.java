@@ -23,6 +23,7 @@ import edu.stulb.rentalcar.view.CarDetailFragment;
 
 
 /**
+ *
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private ArrayList<Listing> listingsList;
@@ -30,7 +31,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     Context context;
 
 
-    public RecyclerViewAdapter(ArrayList<Listing> listingsList, Context context){
+    public RecyclerViewAdapter(ArrayList<Listing> listingsList, Context context) {
         this.listingsList = listingsList;
         listFull = new ArrayList<>(listingsList);
         this.context = context;
@@ -75,7 +76,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     };
 */
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView carBrand;
         private TextView carModel;
         private TextView carYear;
@@ -85,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView carID;
         ImageView imageView;
 
-        public MyViewHolder(final View view){
+        public MyViewHolder(final View view) {
             super(view);
             carBrand = view.findViewById(R.id.carBrand);
             carModel = view.findViewById(R.id.carModel);
@@ -111,7 +112,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carBrand.setText(listing.getCar().getCarManufacturer().getManufacturer());
         holder.carModel.setText(listing.getCar().getCarModel());
         holder.carYear.setText(listing.getCar().getCarModel());
-        holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer()+" "+listing.getCar().getCarModel());
+        holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer() + " " + listing.getCar().getCarModel());
         holder.carLocation.setText(listing.getLocation().getCity());
         holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));
 
@@ -122,14 +123,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             Bundle args = new Bundle();
             args.putString("listingId", listing.getUid());
-            CarDetailFragment carDetailActivity = new CarDetailFragment();
+            CarDetailFragment carDetailFragment = new CarDetailFragment();
 
-            carDetailActivity.setArguments(args);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_fragment, carDetailActivity).commit();
+            carDetailFragment.setArguments(args);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_fragment, carDetailFragment).commit();
 
         });
-
-
     }
 
     @Override

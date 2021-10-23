@@ -10,11 +10,11 @@ import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.listing.Reservation;
 
 public class DateSelectorViewModel extends ViewModel {
-    String inDataListingID = "1ed5733f-44e0-4345-9068-29f93d06c517";
     DateHandler dateHandler = new DateHandler();
     ListingHandler listingHandler = ListingHandler.getInstance();
     ArrayList<Long> clickedDatesList = new ArrayList<>();
-    ArrayList<Long> listingsReservedDates = ListingHandler.getInstance().getListingReservation(inDataListingID);
+    String listingId;
+    ArrayList<Long> listingsReservedDates;
 
     public boolean clickedDate(int year, int month, int dayOfMonth){
         Long clickedDate = dateHandler.convertToMillis(dateHandler.formatDate(year, month, dayOfMonth));
@@ -43,10 +43,15 @@ public class DateSelectorViewModel extends ViewModel {
     }
     private Listing getCurrentListing(){
         for (Listing listing:listingHandler.getListings()) {
-            if (listing.getUid().equals(inDataListingID)){
+            if (listing.getUid().equals(listingId)){
                 return listing;
             }
         }
         return null;
+    }
+
+    public void getCurrentUid(String uid){
+        listingId = uid;
+        listingsReservedDates = ListingHandler.getInstance().getListingReservation(listingId);
     }
 }
