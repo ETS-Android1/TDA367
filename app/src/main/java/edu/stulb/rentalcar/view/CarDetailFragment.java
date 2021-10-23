@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.tda367.R;
 
 import edu.stulb.rentalcar.controller.CarDetailViewModel;
+import edu.stulb.rentalcar.controller.ProfileViewModel;
+import edu.stulb.rentalcar.controller.SignInViewModel;
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
 
@@ -55,11 +58,23 @@ public class CarDetailFragment extends Fragment {
         carLocation.setText(clickedListing.getLocation().getCity());
     }
     reservationButton.setOnClickListener(v -> {
-        carDetailViewModel.loadDateSelectorFragment(getParentFragmentManager(), receivedString);
+        if (!carDetailViewModel.isUserSignedIn()) {
+            carDetailViewModel.loadSignInFragment(getParentFragmentManager());
+            makeToast("You need to log in first!");
+        }
+        else {
+            carDetailViewModel.loadDateSelectorFragment(getParentFragmentManager(), receivedString);
+        }
 
     });
 
 
         return view;
+    }
+
+    private void makeToast(CharSequence message) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(getContext(), message, duration);
+        toast.show();
     }
 }
