@@ -25,12 +25,10 @@ public class ProfileFragment extends Fragment {
     private RecyclerViewAdapter recyclerViewAdapter;
     private Button addCarAdButton;
     private Button logOutButton;
-    private String userEmail;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.profile_user, container, false);
 
-        //userEmail = profileViewModel.getUserEmail();
         addCarAdButton = view.findViewById(R.id.addCarAdButton);
         addCarAdButton.setOnClickListener(v -> profileViewModel.loadAddCarAdFragment(getParentFragmentManager()));
 

@@ -7,17 +7,17 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
-import com.google.firebase.auth.FirebaseUser;
 
-import edu.stulb.rentalcar.model.FirebaseHandler;
+import edu.stulb.rentalcar.model.user.User;
+import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.AddCarAdFragment;
 import edu.stulb.rentalcar.view.DashboardFragment;
 import edu.stulb.rentalcar.view.SignInFragment;
 
 public class HomeViewModel extends ViewModel {
 
+    private UserHandler userHandler = UserHandler.getInstance();
     private MutableLiveData<String> mText;
-    private FirebaseHandler firebaseHandler = new FirebaseHandler();
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -42,5 +42,9 @@ public class HomeViewModel extends ViewModel {
     public void loadSignInFragment(FragmentManager fragmentManager){
         Fragment signInFragment = new SignInFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
+    }
+
+    public User getCurrentUser() {
+        return userHandler.getCurrentUser();
     }
 }

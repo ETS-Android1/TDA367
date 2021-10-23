@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
-import edu.stulb.rentalcar.model.FirebaseHandler;
 import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.AddCarAdFragment;
@@ -19,7 +18,6 @@ import edu.stulb.rentalcar.view.SignUpPaymentFragment;
 public class SignUpViewModel extends ViewModel {
     private MutableLiveData<String> mText;
     private UserHandler userHandler = UserHandler.getInstance();
-    private FirebaseHandler firebaseHandler = new FirebaseHandler();
 
     public SignUpViewModel() {
         mText = new MutableLiveData<>();
@@ -63,10 +61,6 @@ public class SignUpViewModel extends ViewModel {
     public void loadSignUpConfirmationFragment(FragmentManager fragmentManager) {
         Fragment signUpConfirmationFragment = new SignUpConfirmationFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpConfirmationFragment).commit();
-    }
-
-    public void registerCard(String cardNumber, String cardHolderName, String date, String cvv){
-        firebaseHandler.registerCard(cardNumber, cardHolderName, date, cvv);
     }
 
     public void createUser(String email, String password, String name, String cardNumber, String cardName, String cardDate, String cardCVV) {

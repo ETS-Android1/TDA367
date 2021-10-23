@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
-import edu.stulb.rentalcar.model.FirebaseHandler;
 import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.ProfileFragment;
 import edu.stulb.rentalcar.view.SignUpFragment;
@@ -15,7 +14,6 @@ import edu.stulb.rentalcar.view.SignUpFragment;
 public class SignInViewModel extends ViewModel {
     private MutableLiveData<String> mText;
     private UserHandler userHandler = UserHandler.getInstance();
-    private FirebaseHandler firebaseHandler = new FirebaseHandler();
 
     public SignInViewModel() {
         mText = new MutableLiveData<>();
