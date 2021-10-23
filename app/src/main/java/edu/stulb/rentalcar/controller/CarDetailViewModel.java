@@ -10,10 +10,13 @@ import com.example.tda367.R;
 
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
+import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.DateSelectorFragment;
+import edu.stulb.rentalcar.view.SignInFragment;
 
 public class CarDetailViewModel extends ViewModel {
     ListingHandler listingHandler = ListingHandler.getInstance();
+    private UserHandler userHandler = UserHandler.getInstance();
 
     public Listing getClickedListing(String uid){
         return listingHandler.getListingFromUid(uid);
@@ -27,5 +30,13 @@ public class CarDetailViewModel extends ViewModel {
         fragmentManager.beginTransaction().replace(R.id.carDetailFragment, dateSelectorFragment).commit();
     }
 
+    public boolean isUserSignedIn() {
+        return userHandler.isUserSignedIn();
+    }
+
+    public void loadSignInFragment(FragmentManager fragmentManager) {
+        Fragment signInFragment = new SignInFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
+    }
 
 }
