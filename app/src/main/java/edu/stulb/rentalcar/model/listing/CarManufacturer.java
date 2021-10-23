@@ -17,7 +17,7 @@ public class CarManufacturer {
         if (checkValidManufacturer(manufacturer)) {
             this.manufacturer = manufacturer.toLowerCase();
         } else {
-            this.manufacturer = "Manufacturer not found";
+            this.manufacturer = "N/A";
             System.out.println("Manufacturer not found");
         }
 

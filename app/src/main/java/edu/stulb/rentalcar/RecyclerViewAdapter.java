@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.tda367.R;
 
 import java.util.ArrayList;
@@ -20,7 +21,6 @@ import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.view.CarDetailFragment;
-
 
 /**
  *
@@ -115,9 +115,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer() + " " + listing.getCar().getCarModel());
         holder.carLocation.setText(listing.getLocation().getCity());
         holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));
-
-        //Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/stulb-a595c.appspot.com/o/images%2Fe2eF5egOPkvoxfLt6jMM%2Fcar?alt=media&token=08f77c2b-c312-4648-8462-11c20fd4bc07").fit().centerCrop().into(holder.imageView);
-
+        System.out.println(listing.getImagePath());
+        Glide.with(context).load(listing.getImagePath()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
