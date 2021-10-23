@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,15 +19,17 @@ import com.bumptech.glide.Glide;
 import com.example.tda367.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.view.CarDetailFragment;
+import edu.stulb.rentalcar.view.DashboardFragment;
 
 /**
  *
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
     private ArrayList<Listing> listingsList;
     List<Listing> listFull;
     Context context;
@@ -37,29 +41,48 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.context = context;
     }
 
-
-    // Search function
-    /*
     @Override
     public Filter getFilter() {
         return FilterResult;
     }
 
-    Filter FilterResult=new Filter() {
+    //call this method when use call adapter from fragment
+    Filter FilterResult = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            String searchedText=constraint.toString().toLowerCase().trim();
-            List<CarAdModel>listTemp=new ArrayList<>();
-            if (searchedText.isEmpty() || searchedText.length()==0)
-            {
-                listTemp.addAll(listFull);
-            }else {
-                for ( CarAdModel car:listFull)
-                {
-                    if (car.getCarTitle().toString().toLowerCase().contains(searchedText))
-                    {
-                        listTemp.add(car);
+            String searchedText = constraint.toString().toLowerCase().trim();
+            ArrayList<Listing> listTemp = new ArrayList<>();
+            //if user didn'ot added anything in inputfield
+            if (searchedText.isEmpty() || searchedText.length() == 0) {
+
+                //if user didnot selected any location
+                if (!DashboardFragment.location.equals(null)) {
+                    for (Listing mylist : listFull) {
+                        if (mylist.getLocation().getCity().toString().toLowerCase().contains(DashboardFragment.location)) {
+                            listTemp.add(mylist);
+                        }
                     }
+                }
+                //if user did'nt selected any location and didn't typed anything in EditTExt Field
+                else {
+                    listTemp.addAll(listFull);
+                }
+
+            } else {
+                // if user didnt typed in edittext text
+                for (Listing myList : listFull) {
+                    //&& car.getLocation().toString().equals(DashboardFragment.location.toLowerCase()
+                    if (DashboardFragment.location.equals(null)) {
+                        if (myList.getCar().getCarManufacturer().getManufacturer().toString().toLowerCase().contains(searchedText)) {
+                            listTemp.add(myList);
+                        }
+                    } else {
+                        if (myList.getCar().getCarManufacturer().getManufacturer().toString().toLowerCase().contains(searchedText) && myList.getLocation().getCity().toString().toLowerCase().contains(DashboardFragment.location)) {
+                            listTemp.add(myList);
+                        }
+                    }
+
+
                 }
 
             }
@@ -68,14 +91,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             return filterResults;
         }
 
+        //publish result=mean if i typed anything in input field it will live show onn recyclerview
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            carList.clear();
-            carList.addAll((Collection<? extends CarAdModel>) results.values);
+            listingsList.clear();
+            listingsList.addAll((Collection<? extends Listing>) results.values);
             notifyDataSetChanged();
         }
     };
-*/
+
+
+    // Search function
+
+
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView carBrand;
         private TextView carModel;
