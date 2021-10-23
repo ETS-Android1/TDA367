@@ -8,10 +8,10 @@ import edu.stulb.rentalcar.model.Database;
  * Singleton UserHandler class to handle currentUser and user sign in
  */
 public class UserHandler {
-    private static final UserHandler instance = new UserHandler();
+    private static UserHandler instance = new UserHandler();
     private boolean isUserSignedIn = false;
     private User currentUser;
-    private final ArrayList<User> users = Database.getInstance().getUsers();
+    private ArrayList<User> users = Database.getInstance().getUsers();
 
     private UserHandler() {
     }
@@ -21,15 +21,12 @@ public class UserHandler {
     }
 
     public boolean createUser(String name, String email, String password, Card card){
-        if(users.size() > 0) {
-            for (User user : users) {
-                if (user.getEmail().toLowerCase().equals(email)) {
-                    System.out.println("This email already exists");
-                    return false;
-                }
+/*        for (User user : users) {
+            if (user.getEmail().toLowerCase().equals(email)){
+                System.out.println("This email already exists");
+                return false;
             }
-        }
-
+        }*/
         User user = new User(name, email, password, card);
         users.add(user);
         System.out.println("User created");

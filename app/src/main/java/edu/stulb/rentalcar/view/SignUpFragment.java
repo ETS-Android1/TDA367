@@ -14,14 +14,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tda367.R;
-
-import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.SignUpViewModel;
 
 public class SignUpFragment extends Fragment {
 
     private final SignUpViewModel signUpViewModel = new SignUpViewModel();
-    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
 
     private Button buttonContinuePayment;
     private Button buttonCancelRegistation;
@@ -39,7 +36,7 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (signUpViewModel.isUserSignedIn()){
-            fragmentHandler.loadProfileFragment(getParentFragmentManager());
+            loadProfileFragment();
         }
         View view = LayoutInflater.from(getContext()).inflate(R.layout.new_user_sign_up, container, false);
         buttonContinuePayment = view.findViewById(R.id.buttonSignUp);
@@ -57,16 +54,18 @@ public class SignUpFragment extends Fragment {
             if (!isFieldsEmpty()) {
                 registerUser();
                 makeToast("Sign up success!");
-                fragmentHandler.loadSignInFragment(getParentFragmentManager());
+                loadSignInFragment();
                 return;
             }
             makeToast("You need to fill in all the fields");
             System.out.println("You need to fill in all the fields");
         });
-        buttonCancelRegistation.setOnClickListener(v -> fragmentHandler.loadSignInFragment(getParentFragmentManager()));
+        buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
     }
+
+
 
     private void registerUser(){
         String email = emailInput.getText().toString();
@@ -95,6 +94,17 @@ public class SignUpFragment extends Fragment {
         Toast toast = Toast.makeText(getContext(), message, duration);
         toast.show();
     }
+
+    private void loadSignUpPaymentFragment(){
+        signUpViewModel.loadSignUpPaymentFragment(getParentFragmentManager());
+    }
+
+    private void loadProfileFragment(){
+        signUpViewModel.loadProfileFragment(getParentFragmentManager());
+    }
+    private void loadSignInFragment(){
+        signUpViewModel.loadSignInFragment(getParentFragmentManager());
+    }
     private void checkInputLimitations() {
         if (!checkEmailInput()) {
             makeToast("Email must contain a @");
@@ -108,6 +118,8 @@ public class SignUpFragment extends Fragment {
             makeToast("Passwords must be the same!");
             return;
         }
+        registerUser();
+        loadSignUpPaymentFragment();
     }
 
     private boolean checkPasswordsEqual() {

@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment;
 import com.example.tda367.R;
 
 import edu.stulb.rentalcar.controller.DateSelectorViewModel;
-import edu.stulb.rentalcar.controller.FragmentHandler;
 
 public class DateSelectorFragment extends Fragment {
-    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
     DateSelectorViewModel dateSelectorViewModel = new DateSelectorViewModel();
     String receivedUidString;
 
