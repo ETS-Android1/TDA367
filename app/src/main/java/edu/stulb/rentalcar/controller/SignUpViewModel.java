@@ -30,11 +30,6 @@ public class SignUpViewModel extends ViewModel {
         return userHandler.isUserSignedIn();
     }
 
-    public void registerUserWithEmailAndPassword(String email, String password, String
-            firstName, String surName, String address, String city, String phoneNumber) {
-
-    }
-
     public void loadProfileFragment(FragmentManager fragmentManager) {
         Fragment profileFragment = new ProfileFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();

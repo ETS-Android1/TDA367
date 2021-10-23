@@ -56,15 +56,15 @@ public class HomeFragment extends Fragment {
         nextButton.setOnClickListener(changeNextImage);
         backButton.setOnClickListener(changePreviousImage);
 
-        findCarButton.setOnClickListener(v -> homeViewModel.loadDashboardFragment(getParentFragmentManager()));
+        findCarButton.setOnClickListener(v -> fragmentHandler.loadDashboardFragment(getParentFragmentManager()));
 
         // if logged in, go to add car ad, else go to sign in
         addCarButton.setOnClickListener(v -> {
             if (homeViewModel.getCurrentUser() != null) {
-                homeViewModel.loadAddCarFragment(getParentFragmentManager());
+                fragmentHandler.loadAddCarFragment(getParentFragmentManager());
                 return;
             }
-            homeViewModel.loadSignInFragment(getParentFragmentManager());
+            fragmentHandler.loadSignInFragment(getParentFragmentManager());
             makeToast("You need to log in first!");
         });
 

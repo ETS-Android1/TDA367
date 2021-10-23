@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.profile_user, container, false);
 
         addCarAdButton = view.findViewById(R.id.addCarAdButton);
-        addCarAdButton.setOnClickListener(v -> profileViewModel.loadAddCarAdFragment(getParentFragmentManager()));
+        addCarAdButton.setOnClickListener(v -> fragmentHandler.loadAddCarFragment(getParentFragmentManager()));
 
         logOutButton = view.findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(v -> {
@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
 
     private void signOut(){
         profileViewModel.signOut();
-        profileViewModel.loadSignInFragment(getParentFragmentManager());
+        fragmentHandler.loadSignInFragment(getParentFragmentManager());
     }
 
     private void makeToast(CharSequence message) {
