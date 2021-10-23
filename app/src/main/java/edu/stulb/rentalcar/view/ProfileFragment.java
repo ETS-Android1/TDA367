@@ -15,19 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tda367.R;
 
 import edu.stulb.rentalcar.RecyclerViewAdapter;
-import edu.stulb.rentalcar.controller.FragmentHandler;
 import edu.stulb.rentalcar.controller.ProfileViewModel;
 
 
 public class ProfileFragment extends Fragment {
 
-    private final FragmentHandler fragmentHandler = FragmentHandler.getInstance();
-    private final ProfileViewModel profileViewModel = new ProfileViewModel();
+    private ProfileViewModel profileViewModel = new ProfileViewModel();
 
     private RecyclerViewAdapter recyclerViewAdapter;
     private Button addCarAdButton;
     private Button logOutButton;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.profile_user, container, false);

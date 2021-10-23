@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -20,8 +21,9 @@ import edu.stulb.rentalcar.model.listing.ListingHandler;
 public class CarDetailFragment extends Fragment {
     CarDetailViewModel carDetailViewModel = new CarDetailViewModel();
     EditText carName, carBrand, carModel, carYear, carPrice, carLocation;
+    Button reservationButton;
     private ImageView imageView;
-    String value1;
+    String receivedString;
     ListingHandler listingHandler = ListingHandler.getInstance();
 
 
@@ -31,9 +33,9 @@ public class CarDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_car_detail, container, false);
         Bundle bundle = getArguments();
         if (bundle != null){
-            value1 = bundle.getString("listingId");
+            receivedString = bundle.getString("listingId");
         }
-        Listing clickedListing = carDetailViewModel.getClickedListing(value1);
+        Listing clickedListing = carDetailViewModel.getClickedListing(receivedString);
 
 
         carName = (EditText) view.findViewById(R.id.carName);
@@ -43,6 +45,7 @@ public class CarDetailFragment extends Fragment {
         carPrice = (EditText) view.findViewById(R.id.carPrice);
         carLocation = (EditText) view.findViewById(R.id.carLocation);
         imageView = (ImageView) view.findViewById(R.id.imageView);
+        reservationButton = (Button) view.findViewById(R.id.reservationButton);
     if (clickedListing!=null){
         carName.setText(clickedListing.getCar().getCarManufacturer().getManufacturer() + " " + clickedListing.getCar().getCarModel());
         carBrand.setText(clickedListing.getCar().getCarManufacturer().getManufacturer());
@@ -51,6 +54,10 @@ public class CarDetailFragment extends Fragment {
         carPrice.setText(String.valueOf(clickedListing.getPricePerDay()));
         carLocation.setText(clickedListing.getLocation().getCity());
     }
+    reservationButton.setOnClickListener(v -> {
+        carDetailViewModel.loadDateSelectorFragment(getParentFragmentManager(), receivedString);
+
+    });
 
 
         return view;

@@ -15,12 +15,11 @@ import com.example.tda367.R;
 
 import edu.stulb.rentalcar.RecyclerViewAdapter;
 import edu.stulb.rentalcar.controller.DashboardViewModel;
-import edu.stulb.rentalcar.controller.FragmentHandler;
 
 public class DashboardFragment extends Fragment {
 
     private RecyclerViewAdapter recyclerViewAdapter;
-    private final DashboardViewModel dashboardViewModel = new DashboardViewModel();
+    private DashboardViewModel dashboardViewModel = new DashboardViewModel();
     EditText inputSearch;
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
