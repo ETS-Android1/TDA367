@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tda367.R;
 
 import edu.stulb.rentalcar.RecyclerViewAdapter;
-import edu.stulb.rentalcar.controller.ProfileViewModel;
+import edu.stulb.rentalcar.controller.Profile.ProfileViewModel;
 
 
 public class ProfileFragment extends Fragment {

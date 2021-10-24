@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Browse;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tda367.R;
 
 import edu.stulb.rentalcar.RecyclerViewAdapter;
-import edu.stulb.rentalcar.controller.DashboardViewModel;
+import edu.stulb.rentalcar.controller.Browse.DashboardViewModel;
 
 //implement Radio button and TextWatcher
 public class DashboardFragment extends Fragment implements RadioGroup.OnCheckedChangeListener , TextWatcher {

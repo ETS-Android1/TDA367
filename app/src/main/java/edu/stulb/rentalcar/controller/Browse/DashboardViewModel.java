@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Browse;
 
 import androidx.lifecycle.ViewModel;
 

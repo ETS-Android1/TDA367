@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Browse;
 
 import android.os.Bundle;
 
@@ -11,8 +11,8 @@ import com.example.tda367.R;
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.user.UserHandler;
-import edu.stulb.rentalcar.view.DateSelectorFragment;
-import edu.stulb.rentalcar.view.SignInFragment;
+import edu.stulb.rentalcar.view.Browse.DateSelectorFragment;
+import edu.stulb.rentalcar.view.Profile.SignInFragment;
 
 public class CarDetailViewModel extends ViewModel {
     ListingHandler listingHandler = ListingHandler.getInstance();

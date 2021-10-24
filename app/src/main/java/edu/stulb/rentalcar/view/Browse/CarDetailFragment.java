@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Browse;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.tda367.R;
 
-import edu.stulb.rentalcar.controller.CarDetailViewModel;
+import edu.stulb.rentalcar.controller.Browse.CarDetailViewModel;
 import edu.stulb.rentalcar.model.listing.Listing;
 
 public class CarDetailFragment extends Fragment {

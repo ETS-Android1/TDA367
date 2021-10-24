@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Home;
 
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModel;
 import com.example.tda367.R;
 import edu.stulb.rentalcar.model.user.User;
 import edu.stulb.rentalcar.model.user.UserHandler;
-import edu.stulb.rentalcar.view.AddListingFragment;
-import edu.stulb.rentalcar.view.DashboardFragment;
-import edu.stulb.rentalcar.view.SignInFragment;
+import edu.stulb.rentalcar.view.Browse.AddListingFragment;
+import edu.stulb.rentalcar.view.Browse.DashboardFragment;
+import edu.stulb.rentalcar.view.Profile.SignInFragment;
 
 public class HomeViewModel extends ViewModel {
 

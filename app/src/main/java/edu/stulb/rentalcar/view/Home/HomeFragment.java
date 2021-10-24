@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import edu.stulb.rentalcar.controller.HomeViewModel;
+import edu.stulb.rentalcar.controller.Home.HomeViewModel;
 import com.example.tda367.R;
 
 public class HomeFragment extends Fragment {

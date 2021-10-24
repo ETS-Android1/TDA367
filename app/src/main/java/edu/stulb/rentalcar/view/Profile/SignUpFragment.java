@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Profile;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tda367.R;
-import edu.stulb.rentalcar.controller.SignUpViewModel;
+import edu.stulb.rentalcar.controller.Profile.SignUpViewModel;
 
 public class SignUpFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Browse;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ import edu.stulb.rentalcar.model.listing.DateHandler;
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.listing.Reservation;
-import edu.stulb.rentalcar.view.BookingConfirmationFragment;
+import edu.stulb.rentalcar.view.Browse.BookingConfirmationFragment;
 
 public class DateSelectorViewModel extends ViewModel {
     DateHandler dateHandler = new DateHandler();

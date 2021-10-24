@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Browse;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -22,7 +22,8 @@ import androidx.fragment.app.FragmentManager;
 import com.bumptech.glide.Glide;
 import com.example.tda367.R;
 
-import edu.stulb.rentalcar.controller.ProfileViewModel;
+import edu.stulb.rentalcar.controller.Profile.ProfileViewModel;
+import edu.stulb.rentalcar.view.Profile.ProfileFragment;
 
 public class AddListingFragment extends Fragment {
 

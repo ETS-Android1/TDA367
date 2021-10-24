@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tda367.R;
-import edu.stulb.rentalcar.controller.SignUpViewModel;
+import edu.stulb.rentalcar.controller.Profile.SignUpViewModel;
 
 public class SignUpConfirmationFragment extends Fragment {
 

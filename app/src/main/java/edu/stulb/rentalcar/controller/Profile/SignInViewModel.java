@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Profile;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.tda367.R;
 import edu.stulb.rentalcar.model.user.UserHandler;
-import edu.stulb.rentalcar.view.ProfileFragment;
-import edu.stulb.rentalcar.view.SignUpFragment;
+import edu.stulb.rentalcar.view.Profile.ProfileFragment;
+import edu.stulb.rentalcar.view.Profile.SignUpFragment;
 
 public class SignInViewModel extends ViewModel {
     private final MutableLiveData<String> mText;

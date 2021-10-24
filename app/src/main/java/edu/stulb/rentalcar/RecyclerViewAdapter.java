@@ -23,8 +23,8 @@ import java.util.Collection;
 import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Listing;
-import edu.stulb.rentalcar.view.CarDetailFragment;
-import edu.stulb.rentalcar.view.DashboardFragment;
+import edu.stulb.rentalcar.view.Browse.CarDetailFragment;
+import edu.stulb.rentalcar.view.Browse.DashboardFragment;
 
 /**
  *
@@ -53,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             String searchedText = constraint.toString().toLowerCase().trim();
             ArrayList<Listing> listTemp = new ArrayList<>();
             //if user didn'ot added anything in inputfield
-            if (searchedText.isEmpty() || searchedText.length() == 0) {
+            if (searchedText.isEmpty()) {
 
                 //if user didnot selected any location
                 if (!(DashboardFragment.location == null)) {
@@ -69,6 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
 
             } else {
+                searchedText.length();
                 // if user didnt typed in edittext text
                 for (Listing myList : listFull) {
                     //&& car.getLocation().toString().equals(DashboardFragment.location.toLowerCase()

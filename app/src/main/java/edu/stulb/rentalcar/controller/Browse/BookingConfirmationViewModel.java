@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Browse;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,7 +8,7 @@ import com.example.tda367.R;
 
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
-import edu.stulb.rentalcar.view.HomeFragment;
+import edu.stulb.rentalcar.view.Home.HomeFragment;
 
 public class  BookingConfirmationViewModel extends ViewModel {
     ListingHandler listingHandler = ListingHandler.getInstance();

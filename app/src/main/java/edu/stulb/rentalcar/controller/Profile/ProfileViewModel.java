@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.controller;
+package edu.stulb.rentalcar.controller.Profile;
 
 import android.net.Uri;
 
@@ -16,9 +16,9 @@ import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
 import edu.stulb.rentalcar.model.user.UserHandler;
-import edu.stulb.rentalcar.view.AddListingFragment;
+import edu.stulb.rentalcar.view.Browse.AddListingFragment;
 import edu.stulb.rentalcar.view.EditProfileFragment;
-import edu.stulb.rentalcar.view.SignInFragment;
+import edu.stulb.rentalcar.view.Profile.SignInFragment;
 
 public class ProfileViewModel extends ViewModel {
 

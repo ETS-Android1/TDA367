@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tda367.R;
 
-import edu.stulb.rentalcar.controller.SignInViewModel;
+import edu.stulb.rentalcar.controller.Profile.SignInViewModel;
 
 import android.widget.Toast;
 

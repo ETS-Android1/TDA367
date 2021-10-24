@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="edu.stulb.rentalcar.view.HomeFragment"
+        android:name="edu.stulb.rentalcar.view.Home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="edu.stulb.rentalcar.view.DashboardFragment"
+        android:name="edu.stulb.rentalcar.view.Browse.DashboardFragment"
         android:label="@string/title_Browse"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="edu.stulb.rentalcar.view.SignInFragment"
+        android:name="edu.stulb.rentalcar.view.Profile.SignInFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_signin" />
 </navigation>

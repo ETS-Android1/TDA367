@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Browse;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tda367.R;
 
-import edu.stulb.rentalcar.controller.DateSelectorViewModel;
+import edu.stulb.rentalcar.controller.Browse.DateSelectorViewModel;
 
 public class DateSelectorFragment extends Fragment {
     DateSelectorViewModel dateSelectorViewModel = new DateSelectorViewModel();
