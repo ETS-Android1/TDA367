@@ -1,0 +1,72 @@
+# Peer review
+
+Group: Stulb
+Date: 15-10/2021
+Chair: Hannes
+Participants:  Albert, Hannes, Jamal Johan, Josef och Leo.
+
+
+## Objectives (5 min) 
+
+- Peer review.
+- The other database.
+- Code cleanup.
+
+## Reports (15 min) from previous meeting
+
+- Mostly group work with rollbacks, refactoring and damage control.
+- Fixed the second database, the different versions of the same code.
+- 
+TODO:
+Johan:
+	Strukturera HashMap för .set i firebase,
+	Bygga vidare AddCarAdFragment,
+Logout
+Mer navigering med vid AddCar
+	Göra så annonsen lagras privat hos användaren också(eller referens),
+	Börja kolla på hur kalendern ska strukureras,
+Hannes : 
+        JJunit - börja med tester , sätta sig in.
+        STAN - test sätta mig in i samt börjar testa program med det.*
+        RAD, DoD, User Strories.*
+        SDD
+Josef: 
+	Kunna ladda upp bilder i applikationen så att den kan laddas upp till firebase.
+Albert:
+	Göra klart HomeFragment*
+	Fixa fragment_home.xml*
+	Fixa toasts*
+	Fixa sökfunktionen
+	Börja skumma lite på filtrering (efter sök)
+	Fixa en user guide
+	Finjustera designen, färgscheman och alignments
+Jamal: 
+           RAD & SDD
+           Backend: Add car Firebase
+           Add car_card
+           show required car
+           Search
+
+
+## Discussion items (35 min)
+
+- Discuss the identified issues, and possibly new or more general issues (very
+  short notes and/or keywords).
+- Fix the code smells, how to fix. Set up a time-frame.
+- Problems with the extra database because the code has been messed up. 
+- 
+
+
+## Outcomes and assignments (5 min)
+
+
+- Leo, meeting with Jamal. 
+- Talk to Pelle.
+- Code cleanup fix the model start now (Prio). 
+- TODO:
+
+
+## Wrap up
+
+- Code cleanup fix the model start now (Prio). (View and model).  
+- Last meeting, 10-11, 22-10-2021. 

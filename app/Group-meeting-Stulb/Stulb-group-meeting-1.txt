@@ -1,0 +1,42 @@
+# Create group
+
+Group: Stulb
+Date: 01/09-2021
+Chair: Hannes
+Participants: Albert, Johan, Hannes
+
+
+## Objectives (5 min) 
+
+- Start the group.
+- Figure out project.
+
+
+
+## Reports (15 min) from previous meeting
+
+- First meeting.
+
+
+## Discussion items (35 min)
+
+- Johan presents idea for the project, a airbnb but for cars (dumbed down should be an app which could be easily made with android studio and its emulator. With google Firebase as a cloud database.
+- What would be needed? Quick discussion about home-page, profile-page, search-function etc.
+- Roles, who should be in charge of what and how?
+
+## Outcomes and assignments (5 min)
+
+- Outcomes from discussion items. Write down what's decided and why it was
+- Android studio with java decided, with firebase as a database to have a cloud based database and Googles easy to use login system which follows with firebase, name of the group decided to Stulb. 
+  decided. Sync with other documentation (add terms to wordbook).
+- Groups TODO, start GitHub, start a shared document to write in, find 1 or 2 more group members to fullfil the requirement of being 4-5 persons per group.   
+- Roles decided, we decided to focus on our different strengths to make sure we excel in our project and so that it will be easier to overlook what is going on with the different parts of the project.  
+Projekt-ledare, focus rapport, frontend, - Hannes
+Backend och kod-ledare - Johan
+Backend, frontend - Albert
+
+
+## Wrap up
+
+- Get group members, start documentation and GitHub repository.
+- Friday 03/09-2021

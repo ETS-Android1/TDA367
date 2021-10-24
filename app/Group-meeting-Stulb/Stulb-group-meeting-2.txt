@@ -1,0 +1,48 @@
+# Starting the group 2.0 first meeting with counsellor. 
+
+Group: Stulb
+Date: 03/09-2021
+Chair: Hannes
+Participants: Albert, Jamal, Johan, Josef, Leo, Hannes
+
+
+## Objectives (5 min) 
+
+- Starting the group, first meeting with all members.
+- Discussion about how the group will be formed and what we will do.  
+
+
+## Reports (15 min) from previous meeting
+
+- Github repository created. 
+- Google document started and shared. 
+- Group full, all members have joined.
+
+
+## Discussion items (35 min)
+
+
+- Tell our counsellor Leo and the rest of the group about our idea for the project. (airBnb for cars).
+- Leo says the idea seems nice and possible and would not be over ambitious and to hard to do.
+- Recommendation to start with a mock-application and to start making it easy and later on do extensions as the app is somewhat functional. Focus on the big picture first.
+- User stories, Leo says it will be more clear what we will do and what it is as we will have more lectures.
+- Good to have a clear UML to begin with it makes it easier to work.
+- Documentation on all meetings are good.
+- Roles.
+
+## Outcomes and assignments (5 min)
+
+- We decided to go though with our original app-idea since Leo said it was possible and seemed like a good project.
+- Roles updated.
+Projekt-ledare, fokus rapport, frontend, - Hannes
+Backend och kod-ledare - Johan
+Backend, frontend - Albert
+UI, frontend - Josef
+Frontend, fokus RAD & SDD, Jamal
+
+
+## Wrap up
+
+- Start and discuss about papper sketch.
+- Look att other applications over the weekend for inspiration for User Interface, pre-study UI.
+- Monday 15.15 6/09-2021.

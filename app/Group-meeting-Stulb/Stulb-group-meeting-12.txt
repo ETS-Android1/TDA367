@@ -1,0 +1,38 @@
+# Starting the last week
+
+Group: Stulb
+Date: 18/10-2021
+Chair: Hannes
+Participants: Albert, Johan, Josef, Hannes
+
+
+## Objectives (5 min) 
+
+- Go through project.
+- What should we ask Pelle about. 
+
+## Reports (15 min) from previous meeting
+
+- Each group member reports outcome of assigned issues, see also 'outcomes and
+  assignments'.
+
+
+## Discussion items (35 min)
+
+- Looking forward what should we ask Pelle to be able to finish.
+- Testing
+- Jdepend / PMD or other dependency analys tool.
+- Time-table and planning. 
+- SDD & RAD, RAD almost finished just add Class-responsibility, SDD more left foremost the need of dependency tool, finish UML diagram.  
+- Refactoring
+
+## Outcomes and assignments (5 min)
+
+- Meeting with Pelle time decided, questions to ask Pelle, Jdepend, RecycleView, toast.
+- Group - refactoring and J-Unit testing.
+
+
+## Wrap up
+
+- Refactoring
+- 19/10-2021 Meeting with Pelle 16.00 at Chalmers. Group-work before. 

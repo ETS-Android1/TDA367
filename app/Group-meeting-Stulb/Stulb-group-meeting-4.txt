@@ -1,0 +1,37 @@
+# Finish the week
+
+Group: Stulb
+Date: 10/09-2021
+Chair: Hannes
+Participants: Albert, Jamal, Johan, Josef, Leo, Hannes 
+
+
+## Objectives (5 min) 
+
+-  Talk domain model
+-  User stories 
+- Show figma sketch 
+
+## Reports (15 min) from previous meeting
+
+- Walkthrough figma, evolution from pappersketch.
+
+
+## Discussion items (35 min)
+
+- Design discussion, number of objects in the bottom bar.
+- Following search-bar as a header ?
+- Login button always available ? 
+- Cars availability.
+
+## Outcomes and assignments (5 min)
+
+- Finish the domain model.
+- Finish hifi-sketch in Figma. 
+- Fix profile-view in Figma
+- All views related to profile in figma.
+
+## Wrap up
+
+- Write down any unresolved issues for next meeting. 
+- 14.00 17/09-2021

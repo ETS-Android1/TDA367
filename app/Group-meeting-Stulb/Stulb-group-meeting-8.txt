@@ -1,0 +1,61 @@
+# Meeting Agenda
+
+Group: Stulb
+Date: 24/09-2021
+Chair: Hannes
+Participants: Albert, Jamal, Johan, Josef, Leo, Hannes
+
+
+## Objectives (5 min) 
+
+- New todos
+- Go through old todos.
+- Show Leo app progress and get input.
+
+## Reports (15 min) from previous meeting
+
+- -  Johan-
+	Fixa alla navigationKnappar, gå vidare i flöde och gå tillbaka,
+	Lägga till så paymentSignup skapar ny kollektion i firebase
+        Kolla om användare är inloggad och ändra vyn beroende på användaren,*
+	Gå vidare till profilsidan efter användare loggat in och välkomstsidan på signup,*
+	Lägga upp annons, koppla firebase och frontend,*
+	Fixa indexering för ID till bilderna*
+
+Hannes : 
+Design, standardisering, klara sidor som är fungerade snygga och fixade så att de
+            blir mallar för resterande (Sign Up).*
+Mallar för knappar*
+Create templates för bakgrunden *
+Fixa alla navigationKnappar, gå vidare i flöde och gå tillbaka *
+Josef: 
+Lagra bilder i Firebase och lägga upp/hämta
+Lösa ImageHandler
+Albert:
+	Alla fields är ifyllda i SignUpFragment *
+	Lösenord är samma på signup och signupPayment *
+	Fixa klart klassen ProfileFragment*
+	Fixa profile_user.xml*
+	Fixa create_ad.xml
+
+Jamal: Front End: Filtering och sökbar *
+            RAD & SDD *started
+
+
+## Discussion items (35 min)
+
+- RAD and SDD, format and how they should look/what we need.
+- Code, functionality and how it looks
+- Looking forward what is the next step.  
+
+## Outcomes and assignments (5 min)
+
+- Outcomes from discussion items. Write down what's decided and why it was 
+  decided. Sync with other documentation (add terms to wordbook).
+- (re)Assign to each group member which issues to solve.
+
+
+## Wrap up
+
+- Write down any unresolved issues for next meeting. 
+- Decide a time and location for next meeting.

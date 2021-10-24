@@ -1,0 +1,61 @@
+# Meeting Agenda
+
+Group: Stulban
+Date: 04/10
+Chair: Hannes
+Participants: Albert, Hannes, Jamal Johan, Josef och Leo.
+
+
+## Objectives (5 min) 
+
+- Everyone pushes all their commits so that STAN analysis of the code can be done.
+- Peer review what do we want done? 
+- STAN, analysis help.
+- Problem with communication through slack.
+- (Missed meeting 1/10 because slack was down).
+
+## Reports (15 min) from previous meeting
+
+- Each group member reports outcome of assigned issues, see also 'outcomes and
+  assignments'.
+- Quick TODO list go through. 
+
+
+## Discussion items (35 min)
+
+- Peer review, some cleaning up. Make sure that everything that we have done is with.
+- Fix SDD & RAD so that we can get feedback, what do we want feedback on?.
+- How much of the time should we focus on different task for the peer review.
+- Contact with Pelle about STAN, waiting for answer.
+- Slack not optimal always for phones, suggestion use Discord instead.
+
+## Outcomes and assignments (5 min)
+
+- Start a discord channel and use instead of Zoom and Slack, easier to use, all stored in the same place. Possible to make separate channels for different tasks or part of the project. Easy and good mobile application with push-notices.
+
+- RAD & SDD, group go through before Thursday 07/10.
+- Johan:
+	
+	Göra så annonsen lagras privat hos användaren också(eller referens),
+	Börja kolla på hur kalendern ska strukureras,
+- Hannes : 
+        STAN - test sätta mig in i samt börjar testa program med det.
+        RAD: User stories & DOD
+-Josef: 
+	Kunna ladda upp bilder i applikationen så att den kan laddas upp till firebase.
+-Albert:
+	Arbeta på UML
+        Göra klart HomeFragment
+	Fixa fragment_home.xml
+-Jamal: 
+         RAD & SDD
+         Backend: Add car Firebase
+         Add car_card
+           
+
+## Wrap up
+
+- Check RAD & SDD make sure they look good and are ready for peer review 07/10, have it ready to get some new eyes on it.
+- Friday 08/10 17:00 at Chalmers.
+
+

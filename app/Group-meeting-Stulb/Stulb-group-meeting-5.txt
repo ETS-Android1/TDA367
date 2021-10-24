@@ -1,0 +1,60 @@
+# Start ot the week meeting. (Week 2 of work).
+
+Group: Stulb
+Date: 13/09-2021
+Chair: Hannes
+Participants: Albert, Hannes, Jamal, Johan, Josef 
+
+
+## Objectives (5 min) 
+
+- Resolve any issues preventing the team to continue.
+- Short clear descriptions.
+
+
+## Reports (15 min) from previous meeting
+
+
+- Finished the domain model.
+- Finished hifi-sketch in Figma. 
+- Fixed profile-view in Figma
+- All views related to profile in figma fixed.
+
+
+## Discussion items (35 min)
+
+- App- function  - (1)Browse-page,(filter, list of cars), (2) Page for to add ads
+(3)Account-page (log-in, “your pages”, history), (4)User-page, 
+
+Filter and search funtcion over all cars (geogrhapical area?, modell, time, price), list of result(picture, namne, price, place)
+page to add a car for rent (picture, model, time, price, when rented)
+Account login (Firebase login), previously rented, rating?
+See what ads the car-owner has, see what rating the tenant has 
+
+
+## Outcomes and assignments (5 min)
+
+-3 pages, "Home", "Browse" and "Profile"
+- Featured (Prototype of geogrhapical area, nearby location) in home page.
+-  
+- Skip beacuse to big to implement " See what ads the car-owner has, see what rating the tenant has "
+
+
+- TODO:
+Johan:
+	Backend till Signup och linka allt
+Hannes : 
+front end registrera payment / bekräftelse sida 
+Josef: 
+Carmodel klassen - lägga till bilder och strukturera den så det blir en annons.
+Albert:
+	Carousel view och hemskärmen
+Jamal:
+           Front end: Bläddra - Drop down meny för filtrering
+           RAD
+
+
+## Wrap up
+
+- Write down any unresolved issues for next meeting. 
+- Friday 17/09-2021

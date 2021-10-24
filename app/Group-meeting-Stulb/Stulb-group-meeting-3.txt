@@ -1,0 +1,44 @@
+# Starting the project
+
+Group: Stulb
+Date:06/09-2021
+Chair: Hannes
+Participants: Albert, Jamal, Johan, Josef, Hannes
+
+## Objectives (5 min) 
+
+- Monday-start meeting. 
+- Go through the week to come.
+
+Måndagsstartmöte, genomgång av veckan
+
+## Reports (15 min) from previous meeting
+
+- Each group member reports outcome of assigned issues, see also 'outcomes and
+  assignments'.
+- Talked about Sketches
+- Showed som easy sketches that hade been hand-draw as a start mock-up.
+
+
+
+## Discussion items (35 min)
+
+- Should start with Sigma UI- sketch, easy to use and easy to transfer over to Android Studio.
+- Rad, what is it, what needs do be done, how should we do it?
+- User stories same as RAD
+- Sketches , and inspiration from other applications.
+- Attributes needed and function wanted for the app. Search-bar, features, profile side etc.
+
+Hannes - Rotation of the chair at the meeting protocol, proposition rolling schedule so everyone has some time. Starting from today.
+
+## Outcomes and assignments (5 min)
+
+- Decided to have group-meetings every monday at 15.15 after our lecture to kick off the week and se what needs to be done. Also decided to have a meeting with our counsellor every friday with different scheduled time depending on the week. Friday- meeting the end of the week, go through everything that we have done during the week and what could be done during the weekend.
+- To have a rotation of the chair at the meeting protocol. 
+- Go from papper - sketch to working on Figma (whole group).
+
+
+## Wrap up
+
+- Start working with user stories, RAD and figma.
+- Meeting tomorrow tuesday at 9.00.

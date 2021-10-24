@@ -1,0 +1,49 @@
+# Meeting with Pelle, code cleanup.
+
+Group: Stulb
+Date: 19/10-2021
+Chair: Hannes
+Participants: Albert, Jamal, Johan, Josef, Hannes, Pelle 
+
+
+## Objectives (5 min) 
+
+- Show Pelle our code-design and ask for guidance and help.
+- Depend.
+
+
+## Reports (15 min) from previous meeting
+
+- NA
+
+
+## Discussion items (35 min)
+
+- Change packages names. 
+- Brands models under 10 k manufactures less than 200 , should not be string, car model class, should 
+have class for cars , instead of ads. hirechy Car, model, year. (Makes search easier). 
+- Ads as generate hash map , classes, camelCases. CarId should be carId camel. 
+- Should not have null, Setters, Getters, Ad Class allows nulls overall, ((method, not type safe , running safe, objects.reqiuered not null)). 
+- Man skulle vilja abstrahera databasen. (Med något passande interface). (Öka abstraktionen). 
+- Mockito kan lätt bli för mycket mocking, istället göra enkla, triviala databas substitut med minima l test klass.   
+-
+- Login Email, i modelen (inte där den är nu). (Ligger segmenterad lite fel bara). (Om vi nu kastar bort firebase helt och hållet, hur blir konsekvenserna?). (Tight coupling, lite skumt). 
+- Genteratehashmap, generate map istället. 
+- All attributes and variabels private. 
+- Add JavaDocs and comments. (All over private).  
+- Dependency not in packages, packades to needy ot others. (Could be legitime, if controllers and view)
+- Static array-list, programme against an interface and not implementation. 
+- Bilen lyser med frånvaro i modell. (all over 2 inputs is not nice), cars defined by manufactures, years and modell. Hierarchy. 
+-
+
+
+## Outcomes and assignments (5 min)
+
+- IntelliJ, matrix dependency works well and can be used.  
+- Fix model, and firebase-handler.
+- Fix common interfaces. 
+
+
+## Wrap up
+
+- Friday 22/10-2021, last meeting with counsellor.  

@@ -1,0 +1,77 @@
+# Meeting with counsellor 
+
+Group:Stulb
+Date: 17/09-2021
+Chair: Hannes
+Participants: Albert, Jamal, Johan, Josef, Hannes
+
+
+## Objectives (5 min) 
+
+- What should we focus on now?
+- Start with RAD and SDD
+
+## Reports (15 min) from previous meeting
+
+
+TODO:
+Johan:
+	Backend till Signup och linka allt - Done
+Hannes : 
+front end registrera payment / bekräftelse sida - DONE
+Josef: 
+Carmodel klassen - lägga till bilder och strukturera den så det blir en annons. - Started
+Albert:
+	Carousel view och hemskärmen - Done
+Jamal:
+           Front end: Bläddra - Drop down meny för filtrering - Not done
+           RAD
+
+
+- Vi hittade inget grupprum men vi pratade med Leo lite, gick inte igenom något speciellt men vi ska börja på ett uml klassdiagram
+
+
+## Discussion items (35 min)
+
+- UML, classes how should it look.
+- Using external database. (download and upload images). 
+- Navigation between views. 
+- How should ads be?
+- Standardisation , templets Front end.
+- Database connect to front end.
+-
+
+## Outcomes and assignments (5 min)
+
+- Group to do UML, so that we have a blueprint for the model of the project architecture.  
+-  Johan-
+	Fixa alla navigationKnappar, gå vidare i flöde och gå tillbaka,
+	Lägga till så paymentSignup skapar ny kollektion i firebase
+Kolla om användare är inloggad och ändra vyn beroende på användaren,*
+	Gå vidare till profilsidan efter användare loggat in och välkomstsidan på signup,*
+	Lägga upp annons, koppla firebase och frontend,*
+	Fixa indexering för ID till bilderna*
+
+Hannes : 
+Design, standardisering, klara sidor som är fungerade snygga och fixade så att de
+            blir mallar för resterande (Sign Up).
+Mallar för knappar
+Create templates för bakgrunden
+Fixa alla navigationKnappar, gå vidare i flöde och gå tillbaka,
+Josef: 
+Lagra bilder i Firebase och lägga upp/hämta
+Lösa ImageHandler
+Albert:
+	Alla fields är ifyllda i SignUpFragment
+	Lösenord är samma på signup och signupPayment
+	Fixa klart klassen ProfileFragment
+	Fixa profile_user.xml
+	Fixa create_ad.xml
+
+Jamal: Front End: Filtering och sökbar
+            RAD & SDD
+
+## Wrap up
+
+
+- Friday 11.00, 24/09-2021 

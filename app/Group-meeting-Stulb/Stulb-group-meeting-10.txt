@@ -1,0 +1,51 @@
+# Counsellor meeting - pre-peer-review  
+
+Group: Stulb
+Date: 08/10-2021
+Chair: Hannes
+Participants: Leo, Josef, Hannes, Jamal (Albert och Johan missing because airplane was late)
+
+
+## Objectives (5 min) 
+
+- STAN if not working, intelliJ having ultimate student licenses is a possibility.
+- Peer review questions to Leo.
+- Show progress so far. 
+
+## Reports (15 min) from previous meeting
+
+- talked to Pelle, he said without STAN its hard to find program that is equally good for free.
+- Each group member reports outcome of assigned issues, see also 'outcomes and
+  assignments'.
+
+Josef- Har lagt till så att det går att att lägga upp bilder från kamera albument som kopplas till databasen. 
+
+Hannes- Fixat i Rad dokumentet, introduktion, User stories, DoD, och databas i SDD.
+
+Albert- Göra klart HomeFragment*
+	Fixa fragment_home.xml*
+	Fixa toasts*
+Jamal-
+
+Johan- 
+
+
+## Discussion items (35 min)
+
+-Mock-up tests because it will probably be difficult to test with an external database (Firebase), Leo will check with Pelle for help with STAN / JJUnit at the beginning of the week (12/13) -10 ish. Think about how we should do it.
+
+-peer review should see something it is unclear, small details that are easy to fix. Do you understand the stuff
+it is clear and easy to understand.
+
+-Write down where small detail implementations are needed / should be so you get an overview and know where they should be in the end when you implement it.
+
+## Outcomes and assignments (5 min)
+
+
+- TODO next week, Peer review, Calendar, search function & filtering, detail view of car, start with JJ-Unit tests (balance out so everyone gets enough commits / lines of code).
+
+
+## Wrap up
+
+- Check how to fix the testes with JJ-unit (Extern database).
+- Group meeting with counsellor, 15/10, 14 till 15.

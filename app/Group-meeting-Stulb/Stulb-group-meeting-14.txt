@@ -1,0 +1,42 @@
+# Final meeting with counsellor 
+
+Group: Stulb
+Date: 22/10-2021
+Chair: Hannes
+Participants: Albert, Hannes, Jamal Johan, Josef och Leo.
+
+
+## Objectives (5 min) 
+
+- Go through the project
+- Show RAD, SDD and presentation
+-ß
+
+
+## Reports (15 min) from previous meeting
+
+- Hannes, RAD, SDD, presentation, Refactoring  
+- Johan, Refactoring, new model  
+- Josef, Refactoring, new model   
+- Albert, RAD, presentation, Filtrering
+- Jamal, Activity to Fragment 
+ 
+
+## Discussion items (35 min)
+
+- Everything should be uploaded to GitHub, meeting protocols, RAD, SDD, Peer review.  
+- MVC-pattern, show model, log at the logic. 
+-
+-
+
+## Outcomes and assignments (5 min)
+
+- Fix the rest, finish the work
+- Add read.me att git, look att find bugs, pmd, 
+- (re)Assign to each group member which issues to solve.
+
+
+## Wrap up
+
+- Find bugs, 
+- Time for last meeting, 24/10-2021, last day before submitting the work 10.00 am.

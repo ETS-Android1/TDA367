@@ -1,0 +1,64 @@
+# Final meeting before  
+
+Group: Stulb
+Date: 24/10-2021
+Chair: Hannes
+Participants: Albert, Hannes, Jamal Johan, Josef.
+
+
+## Objectives (5 min) 
+
+- Finishing touches to code, RAD, SDD, group-meeting protocols.
+- User tests.
+
+
+## Reports (15 min) from previous meeting
+
+- Add read.me att git, look att find bugs, pmd, 
+
+## Discussion items (35 min)
+
+- New user confirmation not used. 
+- Edit_profile not used
+- button how do i do
+- Final touches RAD and SDD.
+- Non enabled fields. 
+
+
+## Outcomes and assignments (5 min)
+
+- TODO KOD: 
+
+Home: Byta bilder karusell på home. (Home) 
+Button “How Do I do?” - scratch it, not in any user story and not worth to do (time-wast).
+
+
+Missing picture of car ´ in detail view. Calendar already booked slots should come up a toast.
+
+Profile:connect Edit profile-knapp to edit profile.xml 
+Connect New user confirmation 
+
+Model- JJunit tester - finish  
+JavaDoc - finish
+
+Do final pmd and buggfinder test
+and last dependency matrix analysis 
+
+TODO RAD: 
+
+3.1 Class responsibilities 
+Explanation of responsibilities of classes in diagram. 
+4 References 
+List all references to external tools, platforms, libraries, papers, etc. 
+Uppdatera alla screenshots av appens design, uppdatera class responsibilities.
+TODO SDD:  Vad som mer exakt ska göras med punkterna står längst ner i SDD
+Punkterna:
+ 2, (System architectureThe most overall, top level description of your application.)
+3(System design Draw an UML package diagram) ,
+ 5(Quality Describe how you test your application and where to find these tests.  If appli-cable, give a link to your continuous integration) 
+6(referenser)
+
+
+## Wrap up
+l
+- N/A
