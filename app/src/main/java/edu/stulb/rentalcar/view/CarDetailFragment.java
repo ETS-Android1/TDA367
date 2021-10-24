@@ -12,14 +12,11 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.tda367.R;
 
 import edu.stulb.rentalcar.controller.CarDetailViewModel;
-import edu.stulb.rentalcar.controller.ProfileViewModel;
-import edu.stulb.rentalcar.controller.SignInViewModel;
 import edu.stulb.rentalcar.model.listing.Listing;
-import edu.stulb.rentalcar.model.listing.ListingHandler;
-
 
 public class CarDetailFragment extends Fragment {
     CarDetailViewModel carDetailViewModel = new CarDetailViewModel();
@@ -27,7 +24,6 @@ public class CarDetailFragment extends Fragment {
     Button reservationButton;
     private ImageView imageView;
     String receivedString;
-    ListingHandler listingHandler = ListingHandler.getInstance();
 
 
     @SuppressLint("SetTextI18n")
@@ -56,6 +52,7 @@ public class CarDetailFragment extends Fragment {
         carYear.setText(clickedListing.getCar().getCarYear());
         carPrice.setText(String.valueOf(clickedListing.getPricePerDay()));
         carLocation.setText(clickedListing.getLocation().getCity());
+        Glide.with(getContext()).load(clickedListing.getImagePath()).into(imageView);
     }
     reservationButton.setOnClickListener(v -> {
         if (!carDetailViewModel.isUserSignedIn()) {

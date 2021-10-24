@@ -128,6 +128,7 @@ public class SignUpFragment extends Fragment {
     private void loadProfileFragment(){
         signUpViewModel.loadProfileFragment(getParentFragmentManager());
     }
+
     private void loadSignInFragment(){
         signUpViewModel.loadSignInFragment(getParentFragmentManager());
     }

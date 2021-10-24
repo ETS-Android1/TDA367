@@ -44,8 +44,8 @@
 
                 <ImageView
                     android:id="@+id/myImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="187dp"
+                    android:layout_width="330dp"
+                    android:layout_height="195dp"
                     android:layout_gravity="center_horizontal"
                     android:scaleType="fitXY"
                     tools:src="@tools:sample/backgrounds/scenic" />
