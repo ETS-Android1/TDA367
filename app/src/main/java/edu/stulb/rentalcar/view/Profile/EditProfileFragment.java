@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.view;
+package edu.stulb.rentalcar.view.Profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

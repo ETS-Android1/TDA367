@@ -18,7 +18,7 @@ import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
 import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.Browse.AddListingFragment;
-import edu.stulb.rentalcar.view.EditProfileFragment;
+import edu.stulb.rentalcar.view.Profile.EditProfileFragment;
 import edu.stulb.rentalcar.view.Profile.SignInFragment;
 
 public class ProfileViewModel extends ViewModel {
