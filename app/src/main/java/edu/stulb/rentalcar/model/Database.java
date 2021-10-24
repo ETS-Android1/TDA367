@@ -12,10 +12,12 @@ import java.util.Objects;
 import edu.stulb.rentalcar.model.listing.Car;
 import edu.stulb.rentalcar.model.listing.CarManufacturer;
 import edu.stulb.rentalcar.model.listing.Listing;
+import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
 import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.user.User;
+import edu.stulb.rentalcar.model.user.UserHandler;
 
 /**
  * Singleton Database class
@@ -99,6 +101,7 @@ public class Database implements IQueryManager{
                 listings.add(listing);
             }
         }
+        ListingHandler.getInstance().setListings(listings);
     }
 
     /**
@@ -114,6 +117,7 @@ public class Database implements IQueryManager{
                 users.add(fillUser(documentSnapshot));
             }
         }
+        UserHandler.getInstance().setUsers(users);
     }
 
     private User fillUser(QueryDocumentSnapshot documentSnapshot){

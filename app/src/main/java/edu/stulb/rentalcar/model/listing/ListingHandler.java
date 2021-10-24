@@ -3,13 +3,14 @@ package edu.stulb.rentalcar.model.listing;
 import java.util.ArrayList;
 
 import edu.stulb.rentalcar.model.Database;
+import edu.stulb.rentalcar.model.user.User;
 
 /**
  * Singleton ListingHandler class to handle Listings
  */
 public class ListingHandler {
     private static final ListingHandler instance = new ListingHandler();
-    private final ArrayList<Listing> listings = Database.getInstance().getListings();
+    private ArrayList<Listing> listings = new ArrayList<>();
 
 
     /**
@@ -142,5 +143,9 @@ public class ListingHandler {
             }
         }
         return usersListing;
+    }
+
+    public void setListings(ArrayList<Listing> listings){
+        this.listings = listings;
     }
 }

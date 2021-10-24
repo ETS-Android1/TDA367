@@ -1,6 +1,7 @@
 package edu.stulb.rentalcar.model.user;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.stulb.rentalcar.model.Database;
 
@@ -11,7 +12,7 @@ public class UserHandler {
     private static final UserHandler instance = new UserHandler();
     private boolean isUserSignedIn = false;
     private User currentUser;
-    private final ArrayList<User> users = Database.getInstance().getUsers();
+    private ArrayList<User> users = new ArrayList<>();
 
 
     /**
@@ -106,5 +107,9 @@ public class UserHandler {
      */
     public ArrayList<User> getUsers() {
         return users;
+    }
+
+    public void setUsers(ArrayList<User> users){
+        this.users = users;
     }
 }
