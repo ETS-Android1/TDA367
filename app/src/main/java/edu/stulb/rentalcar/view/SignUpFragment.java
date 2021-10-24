@@ -50,9 +50,7 @@ public class SignUpFragment extends Fragment {
         cardDateInput = view.findViewById(R.id.dateInput);
         cardCVVInput = view.findViewById(R.id.cvvInput);
 
-        buttonContinuePayment.setOnClickListener(v -> {
-            checkContinuePayment();
-        });
+        buttonContinuePayment.setOnClickListener(v -> checkContinuePayment());
         buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
@@ -94,7 +92,6 @@ public class SignUpFragment extends Fragment {
             }
         }
         makeToast("You need to fill in all the fields");
-        System.out.println("You need to fill in all the fields");
     }
 
     private void registerUser(){

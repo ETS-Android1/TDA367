@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class SignInFragment extends Fragment {
 
-    private SignInViewModel signInViewModel = new SignInViewModel();
+    private final SignInViewModel signInViewModel = new SignInViewModel();
 
     private Button buttonLogIn;
     private Button buttonSignup;
@@ -28,6 +28,7 @@ public class SignInFragment extends Fragment {
     private EditText editPasswordText;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        signInViewModel.signIn("hannes@gmail.com", "Stulb123");
         if(signInViewModel.isUserLoggedIn()){
             signInViewModel.loadProfileFragment(getParentFragmentManager());
         }
@@ -63,7 +64,6 @@ public class SignInFragment extends Fragment {
     private void makeToast(CharSequence message) {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(getContext(), message, duration);
-        View view = toast.getView();
         toast.show();
     }
 

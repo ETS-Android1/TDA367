@@ -6,7 +6,7 @@ package edu.stulb.rentalcar.model.listing;
  * @author Josef Ngo
  */
 public class CarManufacturer {
-    private String manufacturer;
+    private final String manufacturer;
 
     /**
      * Constructor to create a manafacturer
@@ -18,7 +18,6 @@ public class CarManufacturer {
             this.manufacturer = manufacturer.toLowerCase();
         } else {
             this.manufacturer = "N/A";
-            System.out.println("Manufacturer not found");
         }
 
     }
@@ -31,10 +30,9 @@ public class CarManufacturer {
     }
 
     private boolean checkValidManufacturer(String manufacturer){
-        String manufacturerL = manufacturer;
         String[] validManufacturers = getManufacturers();
         for (String validManufacturer : validManufacturers) {
-            if (validManufacturer.equalsIgnoreCase(manufacturerL)) {
+            if (validManufacturer.equalsIgnoreCase(manufacturer)) {
                 return true;
             }
         }

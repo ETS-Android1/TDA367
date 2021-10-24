@@ -26,7 +26,7 @@ import edu.stulb.rentalcar.controller.ProfileViewModel;
 
 public class AddListingFragment extends Fragment {
 
-    private ProfileViewModel profileViewModel = new ProfileViewModel();
+    private final ProfileViewModel profileViewModel = new ProfileViewModel();
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private Button saveListingButton;

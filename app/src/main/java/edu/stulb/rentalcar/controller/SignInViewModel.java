@@ -12,8 +12,8 @@ import edu.stulb.rentalcar.view.ProfileFragment;
 import edu.stulb.rentalcar.view.SignUpFragment;
 
 public class SignInViewModel extends ViewModel {
-    private MutableLiveData<String> mText;
-    private UserHandler userHandler = UserHandler.getInstance();
+    private final MutableLiveData<String> mText;
+    private final UserHandler userHandler = UserHandler.getInstance();
 
     public SignInViewModel() {
         mText = new MutableLiveData<>();

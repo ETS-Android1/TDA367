@@ -7,13 +7,13 @@ import java.util.HashMap;
  *  @author Josef Ngo
  */
 public class Listing {
-    private Car car;
-    private int pricePerDay;
-    private Location location;
-    private String userEmail;
+    private final Car car;
+    private final int pricePerDay;
+    private final Location location;
+    private final String userEmail;
     private final String uid;
-    private Reservation reservation;
-    private String imagePath;
+    private final Reservation reservation;
+    private final String imagePath;
 
     public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath) {
         this.car = car;

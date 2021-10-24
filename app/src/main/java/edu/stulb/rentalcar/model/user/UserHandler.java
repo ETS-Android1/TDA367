@@ -8,10 +8,10 @@ import edu.stulb.rentalcar.model.Database;
  * Singleton UserHandler class to handle currentUser and user sign in
  */
 public class UserHandler {
-    private static UserHandler instance = new UserHandler();
+    private static final UserHandler instance = new UserHandler();
     private boolean isUserSignedIn = false;
     private User currentUser;
-    private ArrayList<User> users = Database.getInstance().getUsers();
+    private final ArrayList<User> users = Database.getInstance().getUsers();
 
     private UserHandler() {
     }
@@ -29,7 +29,6 @@ public class UserHandler {
         }*/
         User user = new User(name, email, password, card);
         users.add(user);
-        System.out.println("User created");
         return true;
     }
 
@@ -39,12 +38,10 @@ public class UserHandler {
                 if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password)) {
                     currentUser = user;
                     isUserSignedIn = true;
-                    System.out.println("Sign in success");
                     return true;
                 }
             }
         }
-        System.out.println("Sign in failed");
         return false;
     }
 

@@ -20,7 +20,7 @@ import edu.stulb.rentalcar.controller.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
 
-    private ProfileViewModel profileViewModel = new ProfileViewModel();
+    private final ProfileViewModel profileViewModel = new ProfileViewModel();
 
     private RecyclerViewAdapter recyclerViewAdapter;
     private Button addCarAdButton;

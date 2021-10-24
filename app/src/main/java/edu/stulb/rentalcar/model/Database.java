@@ -22,11 +22,11 @@ import edu.stulb.rentalcar.model.user.User;
  */
 public class Database implements IQueryManager{
 
-    private static Database instance = new Database();
-    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private static final Database instance = new Database();
+    private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-    private ArrayList<User> users = new ArrayList<>();
-    private ArrayList<Listing> listings = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
+    private final ArrayList<Listing> listings = new ArrayList<>();
 
     private Database() {
 

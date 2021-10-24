@@ -25,7 +25,6 @@ public class DateSelectorViewModel extends ViewModel {
 
     public boolean clickedDate(int year, int month, int dayOfMonth){
         Long clickedDate = dateHandler.convertToMillis(dateHandler.formatDate(year, month, dayOfMonth));
-        System.out.println(clickedDate);
         if (!listingsReservedDates.contains(clickedDate)){
             if (clickedDatesList.contains(clickedDate)){
                 clickedDatesList.remove(clickedDate);

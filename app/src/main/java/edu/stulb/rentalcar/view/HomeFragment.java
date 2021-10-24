@@ -18,7 +18,7 @@ import edu.stulb.rentalcar.controller.HomeViewModel;
 import com.example.tda367.R;
 
 public class HomeFragment extends Fragment {
-    private HomeViewModel homeViewModel = new HomeViewModel();
+    private final HomeViewModel homeViewModel = new HomeViewModel();
 
     private ImageButton nextButton;
     private ImageButton backButton;
