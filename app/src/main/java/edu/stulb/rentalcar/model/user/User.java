@@ -58,10 +58,13 @@ public class User {
         return password;
     }
 
+    /**
+     * Creates HashMap of given User
+     * @return HashMap of users information
+     */
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> userHashMap = new HashMap<>();
 
-        //KEYS gives String to field inside document
         userHashMap.put("Name", this.getName());
         userHashMap.put("Email", this.getEmail());
         userHashMap.put("Password", this.getPassword());
