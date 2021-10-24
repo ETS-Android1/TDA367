@@ -20,10 +20,14 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
     int[] images = {
-            R.drawable.ic_launcher_foreground,
-            R.drawable.ic_launcher_background,
-            R.drawable.ic_home_black_24dp,
-            R.drawable.ic_dashboard_black_24dp,
+            R.drawable.car_featured_1,
+            R.drawable.car_featured_2,
+            R.drawable.car_featured_3,
+            R.drawable.car_featured_4,
+            R.drawable.car_featured_5,
+            R.drawable.car_featured_6,
+            R.drawable.car_featured_7,
+            R.drawable.car_featured_8
     };
 
     int currentImage = 0;
