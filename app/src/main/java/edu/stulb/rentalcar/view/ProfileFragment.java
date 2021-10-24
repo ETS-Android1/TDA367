@@ -25,6 +25,7 @@ public class ProfileFragment extends Fragment {
     private RecyclerViewAdapter recyclerViewAdapter;
     private Button addCarAdButton;
     private Button logOutButton;
+    private Button editButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.profile_user, container, false);
@@ -37,6 +38,11 @@ public class ProfileFragment extends Fragment {
             signOut();
             makeToast("You have been logged out!");
         });
+
+        editButton = view.findViewById(R.id.editButton);
+        editButton.setOnClickListener(v ->
+                profileViewModel.loadEditProfileFragment(getParentFragmentManager()));
+
         setAdapter(view);
         return view;
     }
