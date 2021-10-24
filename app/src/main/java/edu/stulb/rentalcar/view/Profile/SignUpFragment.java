@@ -87,7 +87,6 @@ public class SignUpFragment extends Fragment {
             else {
                 registerUser();
                 makeToast("Sign up successful!");
-                loadSignUpConfirmationFragment();
                 return;
             }
         }
@@ -120,10 +119,6 @@ public class SignUpFragment extends Fragment {
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(getContext(), message, duration);
         toast.show();
-    }
-
-    private void loadSignUpConfirmationFragment(){
-        signUpViewModel.loadSignUpConfirmationFragment(getParentFragmentManager());
     }
 
     private void loadProfileFragment(){
