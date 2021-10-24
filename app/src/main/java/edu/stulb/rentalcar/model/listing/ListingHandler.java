@@ -45,6 +45,25 @@ public class ListingHandler {
         return new ArrayList<>();
     }
 
+    public int getListingPricePerDay(String listingId){
+        for (Listing listing: listings) {
+            if (listing.getUid().equals(listingId)){
+                return listing.getPricePerDay();
+            }
+        }
+        return 0;
+    }
+
+    public String getCarTitle(String listingId){
+        for (Listing listing: listings) {
+            if (listing.getUid().equals(listingId)){
+                return listing.getCar().getCarManufacturer().getManufacturer()+" "
+                        +listing.getCar().getCarModel();
+            }
+        }
+        return "";
+    }
+
     public Listing getListingFromUid(String uid){
         for (Listing listing:listings) {
             if (listing.getUid().equals(uid)){
