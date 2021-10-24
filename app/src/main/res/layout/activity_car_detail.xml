@@ -7,7 +7,7 @@
     android:fillViewport="true"
     android:id="@+id/carDetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -35,7 +35,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="12dp"
-            android:enabled="false"
             android:text="Car Name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -48,10 +47,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:enabled="false"
             android:text="Car Brand"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bookedDates" />
+            app:layout_constraintTop_toBottomOf="@+id/carName" />
 
         <TextView
             android:id="@+id/textView3"
@@ -60,10 +58,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:enabled="false"
             android:text="Car Model"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carTitleBookingConfirmation" />
+            app:layout_constraintTop_toBottomOf="@+id/carBrand" />
 
         <TextView
             android:id="@+id/textView4"
@@ -72,7 +69,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:enabled="false"
             android:text="Car Year"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/carModel" />
@@ -84,7 +80,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:enabled="false"
             android:text="Car Price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/carYear" />
@@ -96,19 +91,17 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:enabled="false"
             android:text="Car Location"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carPricePerDay" />
+            app:layout_constraintTop_toBottomOf="@+id/carPrice" />
 
         <EditText
-            android:id="@+id/bookedDates"
+            android:id="@+id/carName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:text="Car Name"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -116,13 +109,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <EditText
-            android:id="@+id/carTitleBookingConfirmation"
+            android:id="@+id/carBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:text="Car Brand"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -136,7 +128,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:text="Car Model"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -150,7 +141,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:text="Car Year"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -158,13 +148,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <EditText
-            android:id="@+id/carPricePerDay"
+            android:id="@+id/carPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:text="Car Price"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -172,13 +161,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <EditText
-            android:id="@+id/totalPrice"
+            android:id="@+id/carLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:text="Car Location"
             android:textColor="@android:color/black"
             android:textSize="20sp"
@@ -186,7 +174,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <Button
-            android:id="@+id/homeButton"
+            android:id="@+id/reservationButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -194,12 +182,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:background="@drawable/rounded_button"
+            android:background="@android:color/holo_green_dark"
             android:text="Book Now"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/carLocation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
