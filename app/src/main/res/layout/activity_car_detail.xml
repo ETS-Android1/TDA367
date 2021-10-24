@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -9,7 +10,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-44dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -45,13 +48,13 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:enabled="false"
             android:text="Car Brand"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <TextView
             android:id="@+id/textView3"
@@ -63,19 +66,19 @@
             android:enabled="false"
             android:text="Car Model"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carBrand" />
+            app:layout_constraintTop_toBottomOf="@+id/carName" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:enabled="false"
             android:text="Car Year"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carModel" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carBrand" />
 
         <TextView
             android:id="@+id/textView5"
@@ -85,21 +88,21 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:enabled="false"
-            android:text="Car Price"
+            android:text="Car Price Per Day"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carYear" />
+            app:layout_constraintTop_toBottomOf="@+id/carModel" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:enabled="false"
             android:text="Car Location"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carPrice" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/carYear" />
 
         <EditText
             android:id="@+id/carName"
@@ -119,14 +122,14 @@
             android:id="@+id/carBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:enabled="false"
             android:text="Car Brand"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <EditText
@@ -147,14 +150,14 @@
             android:id="@+id/carYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:enabled="false"
             android:text="Car Year"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <EditText
@@ -175,14 +178,14 @@
             android:id="@+id/carLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:background="@android:color/transparent"
             android:enabled="false"
             android:text="Car Location"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <Button
@@ -191,7 +194,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/rounded_button"
