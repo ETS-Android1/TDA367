@@ -14,7 +14,7 @@ Magnetixaft - Johan\
 j-chalmers - Josef\
 albertwickman - Albert\
 MhdJamal - Jamal\
-hannemanne - Hannes\
+hannemanne - Hannes
 
 ### Travis
 Travis did not run with our project as we did not have a paid plan.
