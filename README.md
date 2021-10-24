@@ -10,11 +10,11 @@ Requires android device or android emulator.
 3. JDK 16 is used in the application.
 
 ### Github Users
-Magnetixaft - Johan
-j-chalmers - Josef
-albertwickman - Albert
-MhdJamal - Jamal
-hannemanne - Hannes
+Magnetixaft - Johan\
+j-chalmers - Josef\
+albertwickman - Albert\
+MhdJamal - Jamal\
+hannemanne - Hannes\
 
 ### Travis
 Travis did not run with our project as we did not have a paid plan.
