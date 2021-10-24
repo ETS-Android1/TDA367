@@ -1,6 +1,8 @@
 package edu.stulb.rentalcar.controller.Browse;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,17 +25,18 @@ public class DateSelectorViewModel extends ViewModel {
     String listingId;
     ArrayList<Long> listingsReservedDates;
 
-    public boolean clickedDate(int year, int month, int dayOfMonth){
+    public void clickedDate(int year, int month, int dayOfMonth, Context context){
         Long clickedDate = dateHandler.convertToMillis(dateHandler.formatDate(year, month, dayOfMonth));
         if (!listingsReservedDates.contains(clickedDate)){
             if (clickedDatesList.contains(clickedDate)){
                 clickedDatesList.remove(clickedDate);
+                makeToast("removed date", context);
             } else {
                 clickedDatesList.add(clickedDate);
-                return true;
             }
+        } if (listingsReservedDates.contains(clickedDate)){
+            makeToast("Date unavailable", context);
         }
-        return false;
     }
     public String displayClickedDates(){
         return dateHandler.getClickedDatesString(clickedDatesList);
@@ -81,5 +84,11 @@ public class DateSelectorViewModel extends ViewModel {
         Fragment bookingConfirmationFragment = new BookingConfirmationFragment();
         bookingConfirmationFragment.setArguments(args);
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, bookingConfirmationFragment).commit();
+    }
+
+    public void makeToast(CharSequence message, Context context) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
     }
 }

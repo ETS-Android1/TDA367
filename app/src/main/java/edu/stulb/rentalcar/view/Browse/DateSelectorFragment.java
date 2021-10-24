@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -46,11 +45,9 @@ public class DateSelectorFragment extends Fragment {
         calendarView.setMinDate(System.currentTimeMillis());
         calendarView.setOnDateChangeListener((view1, year, month, dayOfMonth) -> {
             //Adds the clicked date to clickedDatesList
-            if (dateSelectorViewModel.clickedDate(year, month, dayOfMonth)){
-                makeToast("Added date");
-            } else {
-                makeToast("Date unavailable");
-            }
+        dateSelectorViewModel.clickedDate(year, month, dayOfMonth, getContext());
+
+
             //Sets textview to view the clicked dates
             selectedDatesTextView.setText(dateSelectorViewModel.displayClickedDates());
             totalCostBooking.setText(dateSelectorViewModel.getTotalCost());
@@ -61,7 +58,7 @@ public class DateSelectorFragment extends Fragment {
                 dateSelectorViewModel.confirmBooking();
                 dateSelectorViewModel.loadBookingConfirmationFragment(getParentFragmentManager(), receivedUidString, dateSelectorViewModel.displayClickedDates());
             }if (dateSelectorViewModel.isListEmpty()){
-                makeToast("You need to select dates");
+                dateSelectorViewModel.makeToast( "You need to select dates", getContext());
             }
 
         });
@@ -69,12 +66,6 @@ public class DateSelectorFragment extends Fragment {
         return view;
     }
 
-
-    private void makeToast(CharSequence message) {
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(getContext(), message, duration);
-        toast.show();
-    }
 
 
 }
