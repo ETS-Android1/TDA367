@@ -140,7 +140,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Listing listing = listingsList.get(position);
         holder.carBrand.setText(listing.getCar().getCarManufacturer().getManufacturer());
         holder.carModel.setText(listing.getCar().getCarModel());
-        holder.carYear.setText(listing.getCar().getCarModel());
+        holder.carYear.setText(listing.getCar().getCarYear());
         holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer() + " " + listing.getCar().getCarModel());
         holder.carLocation.setText(listing.getLocation().getCity());
         holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));

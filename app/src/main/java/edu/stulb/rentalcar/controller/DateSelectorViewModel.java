@@ -65,6 +65,11 @@ public class DateSelectorViewModel extends ViewModel {
         return String.valueOf(listingHandler.getListingPricePerDay(listingId)*clickedDatesList.size());
     }
 
+    public Boolean isListEmpty(){
+        return clickedDatesList.isEmpty();
+
+    }
+
     public String getCarTitle(){
         return listingHandler.getCarTitle(listingId);
     }
