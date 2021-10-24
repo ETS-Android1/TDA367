@@ -19,6 +19,8 @@ import edu.stulb.rentalcar.model.user.User;
 
 /**
  * Singleton Database class
+ * This class acts as a local database in the memory before
+ * publishing the Listings or Users to firebase
  */
 public class Database implements IQueryManager{
 
@@ -28,30 +30,56 @@ public class Database implements IQueryManager{
     private final ArrayList<User> users = new ArrayList<>();
     private final ArrayList<Listing> listings = new ArrayList<>();
 
+    /**
+     * Private constructor to limit instances of this class.
+     */
     private Database() {
 
     }
 
+    /**
+     * Getter for the single instance of Database
+     * @return Database instance
+     */
     public static Database getInstance() {
         return instance;
     }
 
+    /**
+     * @return ArrayList of the current Users in Database
+     */
     public ArrayList<User> getUsers() {
         return users;
     }
 
+
+    /**
+     * @return ArrayList of the current Listings in Database
+     */
     public ArrayList<Listing> getListings() {
         return listings;
     }
 
+
+    /**
+     * Sends a Listing to firebase
+     * @param listing Given Listing
+     */
     public void publishListing(Listing listing) {
         firestore.collection("listings").document(listing.getUid()).set(listing.toHashMap());
     }
 
+    /**
+     * Sends a User to firebase
+     * @param user Given User
+     */
     public void publishUser(User user) {
         firestore.collection("users").document(user.getEmail()).set(user.toHashMap());
     }
 
+    /**
+     * Async function to fill listings variable with Listings from firebase
+     */
     public void fetchListings() {
         firestore.collection("listings").get().addOnCompleteListener(this::onListingsComplete);
     }
@@ -73,6 +101,9 @@ public class Database implements IQueryManager{
         }
     }
 
+    /**
+     * Async function to fill user variable with Users from firebase
+     */
     public void fetchUsers(){
         firestore.collection("users").get().addOnCompleteListener(this::onFetchUsersComplete);
     }
