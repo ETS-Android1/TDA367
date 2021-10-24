@@ -2,9 +2,6 @@ package edu.stulb.rentalcar.model.listing;
 
 import java.util.ArrayList;
 
-import edu.stulb.rentalcar.model.Database;
-import edu.stulb.rentalcar.model.user.User;
-
 /**
  * Singleton ListingHandler class to handle Listings
  */

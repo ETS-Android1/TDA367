@@ -1,9 +1,6 @@
 package edu.stulb.rentalcar.model.user;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import edu.stulb.rentalcar.model.Database;
 
 /**
  * Singleton UserHandler class to handle currentUser and user sign in

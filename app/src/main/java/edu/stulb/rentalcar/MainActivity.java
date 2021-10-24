@@ -11,7 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import edu.stulb.rentalcar.model.Database;
+import edu.stulb.rentalcar.database.Database;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.database;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;

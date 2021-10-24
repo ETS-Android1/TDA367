@@ -1,4 +1,4 @@
-package edu.stulb.rentalcar.model;
+package edu.stulb.rentalcar.database;
 
 import java.util.List;
 
