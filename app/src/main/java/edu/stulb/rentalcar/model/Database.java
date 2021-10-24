@@ -20,7 +20,7 @@ import edu.stulb.rentalcar.model.user.User;
 /**
  * Singleton Database class
  */
-public class Database {
+public class Database implements IQueryManager{
 
     private static Database instance = new Database();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
