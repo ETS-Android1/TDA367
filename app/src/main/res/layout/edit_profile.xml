@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    >
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_margin="15dp"
         android:ems="10"
-        android:minHeight="48dp">
+        android:minHeight="48dp"
+        android:orientation="vertical">
 
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="Edit Profile"
             android:textSize="24sp" />
 
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="First Name - Prototyp not working"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
@@ -47,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="Surname - Prototyp not working"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
@@ -57,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="Address -Prototyp not working"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
@@ -67,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:ems="10"
+            android:enabled="false"
             android:hint="Change City - Prototyp not working"
             android:inputType="textPersonName"
             android:minHeight="48dp" />
@@ -77,7 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:ems="10"
-            android:hint="Enter new Phonenumber"
+            android:enabled="false"
+            android:hint="Enter new Phonenumber - Prototyp not working"
             android:inputType="phone"
             android:maxLength="12"
             android:minHeight="48dp" />
@@ -88,7 +93,8 @@
             android:layout_height="48dp"
             android:layout_margin="15dp"
             android:background="@drawable/rounded_button"
-            android:text="Save" />
+            android:enabled="false"
+            android:text="Save-Prototyp not working" />
 
         <Button
             android:id="@+id/buttonCancelEdit"
@@ -104,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:ems="10" />
+            android:ems="10"
+            android:enabled="false" />
 
         <EditText
             android:id="@+id/editTextTextPersonName3"
