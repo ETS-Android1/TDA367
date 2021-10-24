@@ -15,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:enabled="false"
         android:text="Booked Dates"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bookingConfirmed" />
 
@@ -49,10 +50,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:enabled="false"
         android:text="Car Title"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
@@ -65,6 +67,7 @@
         android:layout_marginTop="60dp"
         android:enabled="false"
         android:text="Car Price Per Day"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carTitleBookingConfirmation" />
 
@@ -77,6 +80,7 @@
         android:layout_marginTop="60dp"
         android:enabled="false"
         android:text="Total price"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carPricePerDay" />
 
