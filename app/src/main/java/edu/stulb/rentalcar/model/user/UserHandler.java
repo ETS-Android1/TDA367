@@ -31,6 +31,7 @@ public class UserHandler {
 
 
     /**
+     *
      * @param name name of the User
      * @param email email of the User
      * @param password password of the User
