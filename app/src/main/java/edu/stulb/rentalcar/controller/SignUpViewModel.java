@@ -68,11 +68,6 @@ public class SignUpViewModel extends ViewModel {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signInFragment).commit();
     }
 
-    public void loadSignUpPaymentFragment(FragmentManager fragmentManager) {
-        Fragment signUpPaymentFragment = new SignUpPaymentFragment();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpPaymentFragment).commit();
-    }
-
     public void addCarAdFragment(FragmentManager fragmentManager) {
         Fragment addCarAdFragment = new AddCarAdFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
