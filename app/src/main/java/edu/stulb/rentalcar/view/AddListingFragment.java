@@ -23,7 +23,7 @@ import com.example.tda367.R;
 
 import edu.stulb.rentalcar.controller.ProfileViewModel;
 
-public class AddCarAdFragment extends Fragment {
+public class AddListingFragment extends Fragment {
 
     private ProfileViewModel profileViewModel = new ProfileViewModel();
 

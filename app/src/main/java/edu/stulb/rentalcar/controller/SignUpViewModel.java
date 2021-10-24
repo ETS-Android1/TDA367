@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.tda367.R;
 import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.user.UserHandler;
-import edu.stulb.rentalcar.view.AddCarAdFragment;
+import edu.stulb.rentalcar.view.AddListingFragment;
 import edu.stulb.rentalcar.view.ProfileFragment;
 import edu.stulb.rentalcar.view.SignInFragment;
 import edu.stulb.rentalcar.view.SignUpConfirmationFragment;
@@ -28,11 +28,6 @@ public class SignUpViewModel extends ViewModel {
         return userHandler.isUserSignedIn();
     }
 
-    public void registerUserWithEmailAndPassword(String email, String password, String
-            firstName, String surName, String address, String city, String phoneNumber) {
-
-    }
-
     public void loadProfileFragment(FragmentManager fragmentManager) {
         Fragment profileFragment = new ProfileFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, profileFragment).commit();
@@ -49,7 +44,7 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public void addCarAdFragment(FragmentManager fragmentManager) {
-        Fragment addCarAdFragment = new AddCarAdFragment();
+        Fragment addCarAdFragment = new AddListingFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
     }
 
