@@ -31,10 +31,10 @@ public class CarManufacturer {
     }
 
     private boolean checkValidManufacturer(String manufacturer){
-        String manufacturerL = manufacturer.toLowerCase();
+        String manufacturerL = manufacturer;
         String[] validManufacturers = getManufacturers();
         for (String validManufacturer : validManufacturers) {
-            if (validManufacturer.equals(manufacturerL)) {
+            if (validManufacturer.equalsIgnoreCase(manufacturerL)) {
                 return true;
             }
         }
@@ -44,19 +44,19 @@ public class CarManufacturer {
     private String[] getManufacturers() {
 
         return new String[]{
-                "volvo",
-                "volkswagen",
-                "kia",
-                "toyota",
-                "bmw",
-                "audi",
-                "mercedes",
-                "skoda",
-                "renault",
-                "peugeot",
-                "nissan",
-                "seat",
-                "ford"
+                "Volvo",
+                "Volkswagen",
+                "Kia",
+                "Toyota",
+                "BMW",
+                "Audi",
+                "Mercedes",
+                "Skoda",
+                "Renault",
+                "Peugeot",
+                "Nissan",
+                "Seat",
+                "Ford"
         };
     }
 }
