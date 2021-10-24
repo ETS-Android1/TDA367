@@ -1,6 +1,8 @@
 package edu.stulb.rentalcar;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 
@@ -77,7 +79,7 @@ public class ModelTest {
         assertEquals(listingHashMap, hashMapToTest);
     }
 
-    @Test
+   @Test
     public void signInAndCarCreationIsCorrect(){
         Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
         UserHandler.getInstance().createUser("Hannes", "hannes@gmail.com", "Stulb123", card);
@@ -110,4 +112,111 @@ public class ModelTest {
         assertEquals(dateAsString, "2020/10/24");
     }
 
+    @Test
+    public void updateIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        Car car = new Car("XC90", carManufacturer,"2000");
+        Location location = new Location("Stockholm");
+        Reservation reservation = new Reservation();
+        ArrayList<Long> reservationList = new ArrayList<>();
+        Reservation reservation1 = new Reservation(reservationList);
+        Card card = new Card("Albert Wickman", "123456789123456", "12/34", "123");
+        User user = new User("Albert", "hannes@gmail.com","Stulb123", card);
+        Listing listing = new Listing(car,250, location, user.getEmail(), reservation,"StökoPath");
+        ListingHandler.getInstance().updateListingReservation(listing, reservation);
+    }
+
+    @Test
+    public void listingReservationIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        ListingHandler listingHandler = new ListingHandler();
+        Car car = new Car("v90", carManufacturer, "2005");
+        Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
+        ArrayList<Long> reservationList = new ArrayList<>();
+        Reservation reservation1 = new Reservation(reservationList);
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "StökoPath", "id");
+        listingHandler.getListingReservation(listing.getUid());
+    }
+
+    @Test
+    public void pricePerDayIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        ListingHandler listingHandler = new ListingHandler();
+        Car car = new Car("v90", carManufacturer, "2005");
+        Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
+        ArrayList<Long> reservationList = new ArrayList<>();
+        Reservation reservation1 = new Reservation(reservationList);
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "StökoPath", "id");
+        listingHandler.getListingPricePerDay(listing.getUid());
+        assertEquals(listing.getPricePerDay(), 200);
+    }
+
+    @Test
+    public void carTitleIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        ListingHandler listingHandler = new ListingHandler();
+        Car car = new Car("v90", carManufacturer, "2005");
+        Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
+        ArrayList<Long> reservationList = new ArrayList<>();
+        Reservation reservation1 = new Reservation(reservationList);
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "StökoPath", "id");
+        listingHandler.getCarTitle(listing.getUid());
+
+    }
+
+    @Test
+    public void uidIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        ListingHandler listingHandler = new ListingHandler();
+        Car car = new Car("v90", carManufacturer, "2005");
+        Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com","Stulb123", card);
+        ArrayList<Long> reservationList = new ArrayList<>();
+        Reservation reservation1 = new Reservation(reservationList);
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "StökoPath", "id");
+        listingHandler.getListingFromUid(listing.getUid());
+        assertEquals(listing.getUid(), "id");
+    }
+
+    @Test
+    public void userListingIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        ListingHandler listingHandler = new ListingHandler();
+        Car car = new Car("v90", carManufacturer, "2005");
+        Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com", "Stulb123", card);
+        ArrayList<Long> reservationList = new ArrayList<>();
+        Reservation reservation1 = new Reservation(reservationList);
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "StökoPath", "id");
+        listingHandler.getUserListings(listing.getUid());
+        listing.getReservation().getReservationsDatesList();
+    }
+
+    @Test
+    public void setterIsCorrect() {
+        CarManufacturer carManufacturer = new CarManufacturer("Volvo");
+        ListingHandler listingHandler = new ListingHandler();
+        Car car = new Car("v90", carManufacturer, "2005");
+        Location location = new Location("Göteborg");
+        Reservation reservation = new Reservation();
+        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
+        User user = new User("Hannes", "Hannes@gmail.com", "Stulb123", card);
+        Listing listing = new Listing(car, 200, location, user.getEmail(), reservation, "StökoPath", "id");
+        listingHandler.getUserListings(listing.getUid());
+        listing.getReservation().getReservationsDatesList();
+        listingHandler.setListings(listingHandler.getListings());
+    }
 }
