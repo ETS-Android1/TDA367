@@ -16,7 +16,7 @@ import edu.stulb.rentalcar.view.SignInFragment;
 
 public class CarDetailViewModel extends ViewModel {
     ListingHandler listingHandler = ListingHandler.getInstance();
-    private UserHandler userHandler = UserHandler.getInstance();
+    private final UserHandler userHandler = UserHandler.getInstance();
 
     public Listing getClickedListing(String uid){
         return listingHandler.getListingFromUid(uid);

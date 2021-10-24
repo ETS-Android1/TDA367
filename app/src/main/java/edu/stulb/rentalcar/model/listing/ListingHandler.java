@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import edu.stulb.rentalcar.model.Database;
 
 public class ListingHandler {
-    private static ListingHandler instance = new ListingHandler();
-    private ArrayList<Listing> listings = Database.getInstance().getListings();
+    private static final ListingHandler instance = new ListingHandler();
+    private final ArrayList<Listing> listings = Database.getInstance().getListings();
 
     private ListingHandler(){
     }
@@ -18,7 +18,6 @@ public class ListingHandler {
     public boolean createListing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath){
         Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
         listings.add(listing);
-        System.out.println("Listing created");
         return true;
     }
 
@@ -30,14 +29,12 @@ public class ListingHandler {
         listings.remove(listing);
         Listing updatedListing = new Listing(listing.getCar(), listing.getPricePerDay(), listing.getLocation(), listing.getUserEmail(),reservation ,listing.getImagePath(), listing.getUid());
         listings.add(updatedListing);
-        System.out.println("Listing created");
         return true;
     }
 
     public ArrayList<Long> getListingReservation(String listingId){
         for (Listing listing: listings) {
             if (listing.getUid().equals(listingId)){
-                System.out.println("Hittade rätt id");
                 return (ArrayList<Long>) listing.getReservation().getReservationsDatesList();
             }
         }
@@ -75,8 +72,9 @@ public class ListingHandler {
     public ArrayList<Listing> getUserListings(String userEmail){
         ArrayList<Listing> usersListing = new ArrayList<>();
         //Nullcatch
-        if (userEmail == null)
+        if (userEmail == null){
             return usersListing;
+        }
         for (Listing listing: listings) {
             if (listing.getUserEmail().equalsIgnoreCase(userEmail)){
                 usersListing.add(listing);

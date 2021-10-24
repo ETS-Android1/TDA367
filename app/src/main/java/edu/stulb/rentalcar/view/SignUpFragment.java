@@ -50,9 +50,7 @@ public class SignUpFragment extends Fragment {
         cardDateInput = view.findViewById(R.id.dateInput);
         cardCVVInput = view.findViewById(R.id.cvvInput);
 
-        buttonContinuePayment.setOnClickListener(v -> {
-            checkContinuePayment();
-        });
+        buttonContinuePayment.setOnClickListener(v -> checkContinuePayment());
         buttonCancelRegistation.setOnClickListener(v -> loadSignInFragment());
         return view;
 
@@ -89,12 +87,11 @@ public class SignUpFragment extends Fragment {
             else {
                 registerUser();
                 makeToast("Sign up successful!");
-                loadSignInFragment();
+                loadSignUpConfirmationFragment();
                 return;
             }
         }
         makeToast("You need to fill in all the fields");
-        System.out.println("You need to fill in all the fields");
     }
 
     private void registerUser(){
@@ -120,9 +117,13 @@ public class SignUpFragment extends Fragment {
     }
 
     private void makeToast(CharSequence message) {
-        int duration = Toast.LENGTH_SHORT;
+        int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(getContext(), message, duration);
         toast.show();
+    }
+
+    private void loadSignUpConfirmationFragment(){
+        signUpViewModel.loadSignUpConfirmationFragment(getParentFragmentManager());
     }
 
     private void loadProfileFragment(){

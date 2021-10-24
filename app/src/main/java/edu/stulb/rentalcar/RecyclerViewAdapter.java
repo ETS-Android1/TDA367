@@ -30,7 +30,7 @@ import edu.stulb.rentalcar.view.DashboardFragment;
  *
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> implements Filterable {
-    private ArrayList<Listing> listingsList;
+    private final ArrayList<Listing> listingsList;
     List<Listing> listFull;
     Context context;
 
@@ -56,9 +56,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             if (searchedText.isEmpty() || searchedText.length() == 0) {
 
                 //if user didnot selected any location
-                if (!DashboardFragment.location.equals(null)) {
+                if (!(DashboardFragment.location == null)) {
                     for (Listing mylist : listFull) {
-                        if (mylist.getLocation().getCity().toString().toLowerCase().contains(DashboardFragment.location)) {
+                        if (mylist.getLocation().getCity().toLowerCase().contains(DashboardFragment.location)) {
                             listTemp.add(mylist);
                         }
                     }
@@ -72,12 +72,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 // if user didnt typed in edittext text
                 for (Listing myList : listFull) {
                     //&& car.getLocation().toString().equals(DashboardFragment.location.toLowerCase()
-                    if (DashboardFragment.location.equals(null)) {
-                        if (myList.getCar().getCarManufacturer().getManufacturer().toString().toLowerCase().contains(searchedText)) {
+                    if (DashboardFragment.location == null) {
+                        if (myList.getCar().getCarManufacturer().getManufacturer().toLowerCase().contains(searchedText)) {
                             listTemp.add(myList);
                         }
                     } else {
-                        if (myList.getCar().getCarManufacturer().getManufacturer().toString().toLowerCase().contains(searchedText) && myList.getLocation().getCity().toString().toLowerCase().contains(DashboardFragment.location)) {
+                        if (myList.getCar().getCarManufacturer().getManufacturer().toLowerCase().contains(searchedText) && myList.getLocation().getCity().toLowerCase().contains(DashboardFragment.location)) {
                             listTemp.add(myList);
                         }
                     }
@@ -106,13 +106,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView carBrand;
-        private TextView carModel;
-        private TextView carYear;
-        private TextView carTitle;
-        private TextView carLocation;
-        private TextView carPrice;
-        private TextView carID;
+        private final TextView carBrand;
+        private final TextView carModel;
+        private final TextView carYear;
+        private final TextView carTitle;
+        private final TextView carLocation;
+        private final TextView carPrice;
         ImageView imageView;
 
         public MyViewHolder(final View view) {
@@ -144,7 +143,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer() + " " + listing.getCar().getCarModel());
         holder.carLocation.setText(listing.getLocation().getCity());
         holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));
-        System.out.println(listing.getImagePath());
         Glide.with(context).load(listing.getImagePath()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {

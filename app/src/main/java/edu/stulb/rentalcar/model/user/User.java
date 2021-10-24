@@ -7,10 +7,10 @@ import java.util.HashMap;
  * @author Johan Sandberg
  */
 public class User {
-    private String name;
-    private String email;
-    private String password;
-    private Card card;
+    private final String name;
+    private final String email;
+    private final String password;
+    private final Card card;
 
     /**
      * Constructor to create a new user

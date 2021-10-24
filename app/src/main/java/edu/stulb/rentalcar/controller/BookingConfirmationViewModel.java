@@ -33,7 +33,6 @@ public class  BookingConfirmationViewModel extends ViewModel {
     }
 
     public String displayTotalPrice(int numDaysBooked){
-        System.out.println(numDaysBooked);
         int totalPrice = bookedListing.getPricePerDay()*numDaysBooked;
         return String.valueOf(totalPrice);
     }

@@ -16,8 +16,8 @@ import edu.stulb.rentalcar.view.SignInFragment;
 
 public class HomeViewModel extends ViewModel {
 
-    private UserHandler userHandler = UserHandler.getInstance();
-    private MutableLiveData<String> mText;
+    private final UserHandler userHandler = UserHandler.getInstance();
+    private final MutableLiveData<String> mText;
 
     int[] images = {
             R.drawable.car_featured_1,

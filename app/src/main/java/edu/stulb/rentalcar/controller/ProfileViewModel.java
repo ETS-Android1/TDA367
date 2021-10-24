@@ -17,6 +17,7 @@ import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
 import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.AddListingFragment;
+import edu.stulb.rentalcar.view.EditProfileFragment;
 import edu.stulb.rentalcar.view.SignInFragment;
 
 public class ProfileViewModel extends ViewModel {
@@ -47,6 +48,11 @@ public class ProfileViewModel extends ViewModel {
     public void loadAddCarAdFragment(FragmentManager fragmentManager) {
         Fragment addCarAdFragment = new AddListingFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarAdFragment).commit();
+    }
+
+    public void loadEditProfileFragment(FragmentManager fragmentManager) {
+        Fragment editProfileFragment = new EditProfileFragment();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, editProfileFragment).commit();
     }
 
     public void signOut(){

@@ -24,11 +24,11 @@ import edu.stulb.rentalcar.controller.DashboardViewModel;
 public class DashboardFragment extends Fragment implements RadioGroup.OnCheckedChangeListener , TextWatcher {
 
     private RecyclerViewAdapter recyclerViewAdapter;
-    private DashboardViewModel dashboardViewModel = new DashboardViewModel();
+    private final DashboardViewModel dashboardViewModel = new DashboardViewModel();
 
     EditText inputSearch;
     RadioGroup radioGroup;
-    public static String location=null;
+    public static String location = null;
 
     public View onCreateView(@NonNull LayoutInflater inflater,@NonNull ViewGroup container, @NonNull Bundle savedInstanceState) {
 
@@ -40,9 +40,9 @@ public class DashboardFragment extends Fragment implements RadioGroup.OnCheckedC
         //init radio button .
         radioGroup=view.findViewById(R.id.radioGroup);
 
-        //setTExtwatcher on edittext
+        //settextwatcher on edittext
         inputSearch.addTextChangedListener(this);
-        //add check changed listner when user click on radio button
+        //add check changed listener when user click on radio button
         radioGroup.setOnCheckedChangeListener(this);
 
 
@@ -61,7 +61,7 @@ public class DashboardFragment extends Fragment implements RadioGroup.OnCheckedC
 
         //when user click on any radio button from radio group this onCheckedCHnaged listner invoke
         RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
-        location= radioButton.getText().toString().toLowerCase();
+        location = radioButton.getText().toString().toLowerCase();
         recyclerViewAdapter.getFilter().filter(inputSearch.getText().toString());
 
 
@@ -79,7 +79,7 @@ public class DashboardFragment extends Fragment implements RadioGroup.OnCheckedC
 
     }
 
-    //when seccessfully aded text insearchbar
+    //when successfully added text in search bar
     @Override
     public void afterTextChanged(Editable s) {
         recyclerViewAdapter.getFilter().filter(s.toString());
