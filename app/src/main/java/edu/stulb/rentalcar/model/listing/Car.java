@@ -46,9 +46,4 @@ public class Car {
     public String getCarYear() {
         return carYear;
     }
-
-    public static Car createCar(String carModel, String carBrand, String carYear){
-        CarManufacturer carManufacturer = new CarManufacturer(carBrand);
-        return new Car(carModel, carManufacturer, carYear);
-    }
 }

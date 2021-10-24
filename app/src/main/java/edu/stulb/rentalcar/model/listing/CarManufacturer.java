@@ -39,6 +39,10 @@ public class CarManufacturer {
         return false;
     }
 
+
+    /**
+     * @return Array of strings containing valid manufacturers
+     */
     private String[] getManufacturers() {
 
         return new String[]{

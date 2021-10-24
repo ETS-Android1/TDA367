@@ -11,7 +11,6 @@ import edu.stulb.rentalcar.model.user.UserHandler;
 import edu.stulb.rentalcar.view.Browse.AddListingFragment;
 import edu.stulb.rentalcar.view.Profile.ProfileFragment;
 import edu.stulb.rentalcar.view.Profile.SignInFragment;
-import edu.stulb.rentalcar.view.SignUpConfirmationFragment;
 import edu.stulb.rentalcar.view.Profile.SignUpFragment;
 
 public class SignUpViewModel extends ViewModel {
@@ -71,11 +70,6 @@ public class SignUpViewModel extends ViewModel {
     public void loadSignUpFragment(FragmentManager fragmentManager) {
         Fragment signUpFragment = new SignUpFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpFragment).commit();
-    }
-
-    public void loadSignUpConfirmationFragment(FragmentManager fragmentManager) {
-        Fragment signUpConfirmationFragment = new SignUpConfirmationFragment();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, signUpConfirmationFragment).commit();
     }
 
     public void createUser(String email, String password, String name, String cardNumber, String cardName, String cardDate, String cardCVV) {

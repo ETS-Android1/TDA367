@@ -11,6 +11,7 @@ import com.example.tda367.R;
 import java.util.ArrayList;
 
 import edu.stulb.rentalcar.model.listing.Car;
+import edu.stulb.rentalcar.model.listing.CarManufacturer;
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.listing.ListingHandler;
 import edu.stulb.rentalcar.model.listing.Location;
@@ -34,7 +35,7 @@ public class ProfileViewModel extends ViewModel {
     }
 
     public void createListing(String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage){
-        Car car = Car.createCar(carModel, carBrand, carYear);
+        Car car = new Car(carModel, new CarManufacturer(carBrand), carYear);
         Location location = new Location(carLocation);
         String email = userHandler.getCurrentUser().getEmail();
         listingHandler.createListing(car, carPrice, location, email, new Reservation(), selectedImage.toString());

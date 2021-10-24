@@ -15,7 +15,16 @@ public class Listing {
     private final Reservation reservation;
     private final String imagePath;
 
-    public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath) {
+    /**
+     * Constructor to create a Listing
+     * @param car a Car object
+     * @param pricePerDay pricePerDay for the listing
+     * @param location location where listing is available
+     * @param userEmail listing creator's email
+     * @param reservation a Reservation object
+     * @param imagePath local path to load image
+     */
+    public Listing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath) {
         this.car = car;
         this.pricePerDay = pricePerDay;
         this.location = location;
@@ -24,6 +33,10 @@ public class Listing {
         this.reservation = reservation;
         this.imagePath = imagePath;
     }
+
+    /**
+     * Constructor to recreate a listing that already exists (therefore takes a unique identifier String)
+     */
     public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath, String uid) {
         this.car = car;
         this.pricePerDay = pricePerDay;
@@ -74,18 +87,32 @@ public class Listing {
         return userEmail;
     }
 
+
+    /**
+     * Getter for listing reservation
+     * @return a Reservation for the listing.
+     */
     public Reservation getReservation() {
         return reservation;
     }
 
+
+    /**
+     * Getter for path to listings image
+     * @return a String with the path to listings image
+     */
     public String getImagePath() {
         return imagePath;
     }
 
+
+    /**
+     * Creates a HashMap of a Listing object for uploading to firebase.
+     * @return A HashMap of the Listing
+     */
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> listingHashMap = new HashMap<>();
 
-        //KEYS gives String to field inside document
         listingHashMap.put("ListingId", this.getUid());
         listingHashMap.put("CarManufacturer", this.getCar().getCarManufacturer().getManufacturer());
         listingHashMap.put("CarModel", this.getCar().getCarModel());
