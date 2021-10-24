@@ -125,10 +125,6 @@ public class SignUpFragment extends Fragment {
         toast.show();
     }
 
-    private void loadSignUpPaymentFragment(){
-        signUpViewModel.loadSignUpPaymentFragment(getParentFragmentManager());
-    }
-
     private void loadProfileFragment(){
         signUpViewModel.loadProfileFragment(getParentFragmentManager());
     }
