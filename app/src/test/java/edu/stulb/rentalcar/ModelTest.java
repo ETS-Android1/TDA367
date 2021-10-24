@@ -38,17 +38,7 @@ public class ModelTest {
         List<Long> testList = new ArrayList<>();
         assertEquals(reservation.getReservationsDatesList(), testList);
     }
-    @Test
-    public void userIsCorrect() {
-        Card card = new Card("Hannes Thörn", "5355830012341234", "11/25", "111");
-        User user = new User("Hannes", "Hannes@gmail.com", "Stulb123", card);
-        assertEquals(user.getName(), "Hannes");
-        assertEquals(user.getEmail(), "Hannes@gmail.com");
-        assertEquals(user.getCard().getCardName(), "Hannes Thörn");
-        assertEquals(user.getCard().getCardCvv(), "111");
-        assertEquals(user.getCard().getCardDate(), "11/25");
-        assertEquals(user.getCard().getCardNumber(), "5355830012341234");
-    }
+
     @Test
     public void listingIsCorrect(){
         CarManufacturer carManufacturer = new CarManufacturer("Volvo");
