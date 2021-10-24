@@ -5,15 +5,11 @@ import edu.stulb.rentalcar.model.user.User;
 
 public interface IQueryManager {
 
-    User getUser();
+    void publishUser();
 
-    void createUser();
+    void publishListing();
 
-    void createListing();
+    Listing getListings();
 
-    boolean isUserSignedIn();
-
-    void signOut();
-
-    Listing getListing();
+    User getUsers();
 }
