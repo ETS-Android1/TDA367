@@ -19,6 +19,10 @@ public class DateSelectorFragment extends Fragment {
     String receivedUidString;
 
     TextView selectedDatesTextView;
+    TextView carTitleListing;
+    TextView totalCostBooking;
+
+    Button confirmDateBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,8 +34,12 @@ public class DateSelectorFragment extends Fragment {
         }
         dateSelectorViewModel.getCurrentUid(receivedUidString);
 
-        Button confirmDateBtn = view.findViewById(R.id.confirmDateBtn);
-        TextView selectedDatesTextView = view.findViewById(R.id.selectedDatesTextView);
+        confirmDateBtn = view.findViewById(R.id.confirmDateBtn);
+        selectedDatesTextView = view.findViewById(R.id.selectedDatesTextView);
+        carTitleListing = view.findViewById(R.id.carTitleListing);
+        totalCostBooking = view.findViewById(R.id.totalCostBooking);
+
+        carTitleListing.setText(dateSelectorViewModel.getCarTitle());
 
         CalendarView calendarView = view.findViewById(R.id.calendarView);
         calendarView.setMinDate(System.currentTimeMillis());
@@ -44,6 +52,7 @@ public class DateSelectorFragment extends Fragment {
             }
             //Sets textview to view the clicked dates
             selectedDatesTextView.setText(dateSelectorViewModel.displayClickedDates());
+            totalCostBooking.setText(dateSelectorViewModel.getTotalCost());
 
         });
         confirmDateBtn.setOnClickListener(v -> {

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.tda367.R;
 import edu.stulb.rentalcar.model.user.User;
 import edu.stulb.rentalcar.model.user.UserHandler;
-import edu.stulb.rentalcar.view.AddCarAdFragment;
+import edu.stulb.rentalcar.view.AddListingFragment;
 import edu.stulb.rentalcar.view.DashboardFragment;
 import edu.stulb.rentalcar.view.SignInFragment;
 
@@ -39,7 +39,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void loadAddCarFragment(FragmentManager fragmentManager){
-        Fragment addCarFragment = new AddCarAdFragment();
+        Fragment addCarFragment = new AddListingFragment();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, addCarFragment).commit();
     }
 

@@ -110,7 +110,7 @@
                         android:text="cancel" />
 
                     <Button
-                        android:id="@+id/saveAdButton"
+                        android:id="@+id/saveListingButton"
                         android:layout_width="182dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="16dp"

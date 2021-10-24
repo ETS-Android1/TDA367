@@ -23,12 +23,12 @@ import com.example.tda367.R;
 
 import edu.stulb.rentalcar.controller.ProfileViewModel;
 
-public class AddCarAdFragment extends Fragment {
+public class AddListingFragment extends Fragment {
 
     private ProfileViewModel profileViewModel = new ProfileViewModel();
 
     private static final int RESULT_LOAD_IMAGE = 1;
-    private Button saveAdButton;
+    private Button saveListingButton;
     private Button uploadImageButton;
     private Button cancelAdButton;
     private EditText brandEditText;
@@ -50,7 +50,7 @@ public class AddCarAdFragment extends Fragment {
         modelEditText = view.findViewById(R.id.modelEditText);
         yearEditText = view.findViewById(R.id.yearEditText);
         priceEditText = view.findViewById(R.id.priceEditText);
-        saveAdButton = view.findViewById(R.id.saveAdButton);
+        saveListingButton = view.findViewById(R.id.saveListingButton);
         uploadImageButton = view.findViewById(R.id.uploadImageButton);
         cancelAdButton = view.findViewById(R.id.cancelAdButton);
         spinnerLocation = view.findViewById(R.id.spinnerLocation);
@@ -66,7 +66,7 @@ public class AddCarAdFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinnerLocation.setAdapter(adapter);
 
-        saveAdButton.setOnClickListener(v -> createListing());
+        saveListingButton.setOnClickListener(v -> createListing());
         uploadImageButton.setOnClickListener(v -> loadGallery());
         cancelAdButton.setOnClickListener(v -> loadProfileFragment(getParentFragmentManager()));
 
@@ -93,16 +93,6 @@ public class AddCarAdFragment extends Fragment {
             selectedImage = data.getData();
             Glide.with(getContext()).load(selectedImage).into(carPreview);
             carPreview.setVisibility(View.VISIBLE);//Makes preview visible
-            /*Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), selectedImage);
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }*/
         }
     }
 
