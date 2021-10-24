@@ -16,7 +16,6 @@ public class ListingHandler {
     }
 
     public boolean createListing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath){
-        //TODO kolla om den är med kanske?
         Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
         listings.add(listing);
         System.out.println("Listing created");

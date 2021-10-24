@@ -6,5 +6,6 @@ Built on three diffrent views, a home-page with featuered cars, a browse section
 
 ### Running the application
 Requires android device or android emulator.
-1. Build application with Gradle.
-2. Run application on device/emulator.
+1. Build application with Gradle. Gradle version used 7.0.2 ,   minSdkVersion 16 - targetSdkVersion 30. 
+2. Run application on device/emulator. Emulator used Pixel 4 API 30.
+3. JDK 16 is used in the application.
