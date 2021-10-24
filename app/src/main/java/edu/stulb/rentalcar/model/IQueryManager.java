@@ -1,15 +1,17 @@
 package edu.stulb.rentalcar.model;
 
+import java.util.List;
+
 import edu.stulb.rentalcar.model.listing.Listing;
 import edu.stulb.rentalcar.model.user.User;
 
 public interface IQueryManager {
 
-    void publishUser();
+    void publishUser(User user);
 
-    void publishListing();
+    void publishListing(Listing listing);
 
-    Listing getListings();
+    List<Listing> getListings();
 
-    User getUsers();
+    List<User> getUsers();
 }
