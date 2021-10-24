@@ -20,7 +20,7 @@ import edu.stulb.rentalcar.model.listing.Listing;
 
 public class CarDetailFragment extends Fragment {
     CarDetailViewModel carDetailViewModel = new CarDetailViewModel();
-    EditText carName, carBrand, carModel, carYear, carPrice, carLocation;
+    EditText carName, carBrand, carModel, carYear, carPrice, carLocation, contactEmail;
     Button reservationButton;
     private ImageView imageView;
     String receivedString;
@@ -44,14 +44,17 @@ public class CarDetailFragment extends Fragment {
         carPrice = (EditText) view.findViewById(R.id.carPrice);
         carLocation = (EditText) view.findViewById(R.id.carLocation);
         imageView = (ImageView) view.findViewById(R.id.imageView);
+        contactEmail = (EditText) view.findViewById(R.id.contactEmail) ;
         reservationButton = (Button) view.findViewById(R.id.reservationButton);
+
     if (clickedListing!=null){
         carName.setText(clickedListing.getCar().getCarManufacturer().getManufacturer() + " " + clickedListing.getCar().getCarModel());
         carBrand.setText(clickedListing.getCar().getCarManufacturer().getManufacturer());
         carModel.setText(clickedListing.getCar().getCarModel());
         carYear.setText(clickedListing.getCar().getCarYear());
-        carPrice.setText(String.valueOf(clickedListing.getPricePerDay()));
+        carPrice.setText(String.valueOf(clickedListing.getPricePerDay())+" kr");
         carLocation.setText(clickedListing.getLocation().getCity());
+        contactEmail.setText(clickedListing.getUserEmail());
         Glide.with(getContext()).load(clickedListing.getImagePath()).into(imageView);
     }
     reservationButton.setOnClickListener(v -> {

@@ -143,7 +143,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carYear.setText(listing.getCar().getCarYear());
         holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer() + " " + listing.getCar().getCarModel());
         holder.carLocation.setText(listing.getLocation().getCity());
-        holder.carPrice.setText(String.valueOf(listing.getPricePerDay()));
+        holder.carPrice.setText(String.valueOf(listing.getPricePerDay())+" kr/day");
         Glide.with(context).load(listing.getImagePath()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
