@@ -60,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 //if user didnot selected any location
                 if (!(DashboardFragment.location == null)) {
                     for (Listing mylist : listFull) {
-                        if (mylist.getLocation().getCity().toLowerCase().contains(DashboardFragment.location)) {
+                        if (mylist.getProduct().getLocation().getCity().toLowerCase().contains(DashboardFragment.location)) {
                             listTemp.add(mylist);
                         }
                     }
@@ -76,11 +76,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 for (Listing myList : listFull) {
                     //&& car.getLocation().toString().equals(DashboardFragment.location.toLowerCase()
                     if (DashboardFragment.location == null) {
-                        if (myList.getCar().getCarManufacturer().getManufacturer().toLowerCase().contains(searchedText)) {
+                        if (myList.getProduct().getName().toLowerCase().contains(searchedText)) {
                             listTemp.add(myList);
                         }
                     } else {
-                        if (myList.getCar().getCarManufacturer().getManufacturer().toLowerCase().contains(searchedText) && myList.getLocation().getCity().toLowerCase().contains(DashboardFragment.location)) {
+                        if (myList.getProduct().getName().toLowerCase().contains(searchedText) && myList.getProduct().getLocation().getCity().toLowerCase().contains(DashboardFragment.location)) {
                             listTemp.add(myList);
                         }
                     }
@@ -140,13 +140,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Listing listing = listingsList.get(position);
-        holder.carBrand.setText(listing.getCar().getCarManufacturer().getManufacturer());
-        holder.carModel.setText(listing.getCar().getCarModel());
-        holder.carYear.setText(listing.getCar().getCarYear());
-        holder.carTitle.setText(listing.getCar().getCarManufacturer().getManufacturer() + " " + listing.getCar().getCarModel());
-        holder.carLocation.setText(listing.getLocation().getCity());
-        holder.carPrice.setText(String.valueOf(listing.getPricePerDay())+" kr/day");
-        Glide.with(context).load(listing.getImagePath()).into(holder.imageView);
+        holder.carYear.setText(listing.getProduct().getDescription());
+        holder.carTitle.setText(listing.getProduct().getName());
+        holder.carLocation.setText(listing.getProduct().getLocation().getCity());
+        holder.carPrice.setText(String.valueOf(listing.getProduct().getPricePerDay())+" kr/day");
+        Glide.with(context).load(listing.getProduct().getImagePath()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
@@ -155,7 +153,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             CarDetailFragment carDetailFragment = new CarDetailFragment();
 
             carDetailFragment.setArguments(args);
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, carDetailFragment).commit();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_fragment, carDetailFragment).commit();
 
         });
     }
