@@ -5,7 +5,7 @@ package edu.stulb.rentalcar.model.listing;
  *  CarModel is a class to represent the model (model name, manufacturer and manufacturing year) of a Car
  *  @author Josef Ngo
  */
-public class Car {
+public class Car extends Product {
     private final String carModel;
     private final CarManufacturer carManufacturer;
     private final String carYear;
