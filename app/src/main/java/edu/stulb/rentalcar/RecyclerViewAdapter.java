@@ -20,6 +20,7 @@ import com.example.tda367.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Listing;
@@ -36,7 +37,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     public RecyclerViewAdapter(ArrayList<Listing> listingsList, Context context) {
-        this.listingsList = listingsList;
+        ArrayList<Listing> listingscopy = (ArrayList<Listing>) listingsList.clone();
+        this.listingsList = listingscopy;
         listFull = new ArrayList<>(listingsList);
         this.context = context;
     }

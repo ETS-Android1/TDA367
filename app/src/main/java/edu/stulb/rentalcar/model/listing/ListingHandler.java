@@ -2,6 +2,9 @@ package edu.stulb.rentalcar.model.listing;
 
 import java.util.ArrayList;
 
+import edu.stulb.rentalcar.database.Firebase;
+import edu.stulb.rentalcar.database.IDatabase;
+
 /**
  * Singleton ListingHandler class to handle Listings
  */
@@ -9,11 +12,14 @@ public class ListingHandler {
     private static final ListingHandler instance = new ListingHandler();
     private ArrayList<Listing> listings = new ArrayList<>();
 
+    private IDatabase database = Firebase.getInstance();
+
 
     /**
      * Private constructor to limit instances of the class
      */
     private ListingHandler(){
+
     }
 
 
@@ -37,7 +43,7 @@ public class ListingHandler {
      */
     public boolean createListing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath){
         Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
-        listings.add(listing);
+        database.createListing(listing);
         return true;
         //Have not implemented a case where method fails.
     }
@@ -48,6 +54,7 @@ public class ListingHandler {
      * @return ArrayList<String>
      */
     public ArrayList<Listing> getListings(){
+        update();
         return listings;
     }
 
@@ -115,6 +122,7 @@ public class ListingHandler {
      * @return the Listing that was asked for with uid.
      */
     public Listing getListingFromUid(String uid){
+        update();
         for (Listing listing:listings) {
             if (listing.getUid().equals(uid)){
                 return listing;
@@ -129,6 +137,7 @@ public class ListingHandler {
      * @return ArrayList<Listing> for that User
      */
     public ArrayList<Listing> getUserListings(String userEmail){
+        update();
         ArrayList<Listing> usersListing = new ArrayList<>();
         //Nullcatch
         if (userEmail == null){
@@ -140,6 +149,10 @@ public class ListingHandler {
             }
         }
         return usersListing;
+    }
+
+    private void update() {
+        listings = database.getListings();
     }
 
     public void setListings(ArrayList<Listing> listings){

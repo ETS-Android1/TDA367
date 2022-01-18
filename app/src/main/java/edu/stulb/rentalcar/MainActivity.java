@@ -11,14 +11,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import edu.stulb.rentalcar.database.Database;
+import edu.stulb.rentalcar.database.Firebase;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Database.getInstance().fetchListings();
-        Database.getInstance().fetchUsers();
+        Firebase.getInstance();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -30,11 +30,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Database.getInstance().writeToFirebase();
     }
 }

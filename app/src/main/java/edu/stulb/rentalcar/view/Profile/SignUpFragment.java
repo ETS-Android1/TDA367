@@ -102,6 +102,7 @@ public class SignUpFragment extends Fragment {
         String cardDate = cardDateInput.getText().toString();
         String cardCVV = cardCVVInput.getText().toString();
         signUpViewModel.createUser(email, password, name, cardNumber, cardName, cardDate, cardCVV);
+        loadSignInFragment();
     }
 
     private boolean isFieldsEmpty() {
