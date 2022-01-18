@@ -41,8 +41,8 @@ public class ListingHandler {
      * @param imagePath path to the image of the listing
      * @return boolean if successful otherwise false
      */
-    public boolean createListing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath){
-        Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath);
+    public boolean createCarListing(Product product, String userEmail, Reservation reservation){
+        Listing listing = new Listing(product, userEmail, reservation);
         database.createListing(listing);
         return true;
         //Have not implemented a case where method fails.
@@ -66,7 +66,7 @@ public class ListingHandler {
      */
     public boolean updateListingReservation(Listing listing, Reservation reservation){
         listings.remove(listing);
-        Listing updatedListing = new Listing(listing.getCar(), listing.getPricePerDay(), listing.getLocation(), listing.getUserEmail(),reservation ,listing.getImagePath(), listing.getUid());
+        Listing updatedListing = new Listing(listing.getProduct(), listing.getUserEmail(), reservation, listing.getUid());
         listings.add(updatedListing);
         return true;
         //Have not implemented a case where method fails.
@@ -95,7 +95,7 @@ public class ListingHandler {
     public int getListingPricePerDay(String listingId){
         for (Listing listing: listings) {
             if (listing.getUid().equals(listingId)){
-                return listing.getPricePerDay();
+                return listing.getProduct().getPricePerDay();
             }
         }
         return 0;
@@ -109,8 +109,7 @@ public class ListingHandler {
     public String getCarTitle(String listingId){
         for (Listing listing: listings) {
             if (listing.getUid().equals(listingId)){
-                return listing.getCar().getCarManufacturer().getManufacturer()+" "
-                        +listing.getCar().getCarModel();
+                return listing.getProduct().getName();
             }
         }
         return "";

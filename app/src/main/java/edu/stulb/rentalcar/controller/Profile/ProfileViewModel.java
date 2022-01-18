@@ -35,10 +35,10 @@ public class ProfileViewModel extends ViewModel {
     }
 
     public void createListing(String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage){
-        Car car = new Car(carModel, new CarManufacturer(carBrand), carYear);
         Location location = new Location(carLocation);
+        Car car = new Car(carBrand+" "+carModel, selectedImage.toString(), carYear, location, carPrice, carModel, new CarManufacturer(carBrand), carYear);
         String email = userHandler.getCurrentUser().getEmail();
-        listingHandler.createListing(car, carPrice, location, email, new Reservation(), selectedImage.toString());
+        listingHandler.createCarListing(car, email, new Reservation());
     }
 
     public void loadSignInFragment(FragmentManager fragmentManager) {

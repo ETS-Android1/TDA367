@@ -24,16 +24,15 @@ public class  BookingConfirmationViewModel extends ViewModel {
     }
 
     public String displayCarTitle(){
-        return bookedListing.getCar().getCarManufacturer().getManufacturer()+" "+
-                bookedListing.getCar().getCarModel();
+        return bookedListing.getProduct().getName();
     }
 
     public String displayPricePerDay(){
-        return String.valueOf(bookedListing.getPricePerDay());
+        return String.valueOf(bookedListing.getProduct().getPricePerDay());
     }
 
     public String displayTotalPrice(int numDaysBooked){
-        int totalPrice = bookedListing.getPricePerDay()*numDaysBooked;
+        int totalPrice = bookedListing.getProduct().getPricePerDay()*numDaysBooked;
         return String.valueOf(totalPrice);
     }
     public void loadHomeFragment(FragmentManager fragmentManager){
