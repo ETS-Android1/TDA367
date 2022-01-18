@@ -2,6 +2,9 @@ package edu.stulb.rentalcar.model.user;
 
 import java.util.ArrayList;
 
+import edu.stulb.rentalcar.database.Firebase;
+import edu.stulb.rentalcar.database.IDatabase;
+
 /**
  * Singleton UserHandler class to handle currentUser and user sign in
  */
@@ -11,6 +14,7 @@ public class UserHandler {
     private User currentUser;
     private ArrayList<User> users = new ArrayList<>();
 
+    private IDatabase database = Firebase.getInstance();
 
     /**
      * Private constructor to limit instances of the class
@@ -46,7 +50,7 @@ public class UserHandler {
         }
 
         User user = new User(name, email, password, card);
-        users.add(user);
+        database.createUser(user);
         return true;
     }
 
@@ -57,6 +61,7 @@ public class UserHandler {
      * @return boolean returns True if successful sign in otherwise False
      */
     public boolean signIn(String email, String password) {
+        update();
         if (!isUserSignedIn) {
             for (User user : users) {
                 if (user.getEmail().equalsIgnoreCase(email) && user.getPassword().equals(password)) {
@@ -103,10 +108,15 @@ public class UserHandler {
      * @return ArrayList containing Users
      */
     public ArrayList<User> getUsers() {
+        update();
         return users;
     }
 
     public void setUsers(ArrayList<User> users){
         this.users = users;
+    }
+
+    private void update() {
+        users = database.getUsers();
     }
 }

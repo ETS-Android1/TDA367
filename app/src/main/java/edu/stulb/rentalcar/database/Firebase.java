@@ -1,5 +1,8 @@
 package edu.stulb.rentalcar.database;
 
+
+
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -12,38 +15,40 @@ import java.util.Objects;
 import edu.stulb.rentalcar.model.listing.Car;
 import edu.stulb.rentalcar.model.listing.CarManufacturer;
 import edu.stulb.rentalcar.model.listing.Listing;
-import edu.stulb.rentalcar.model.listing.ListingHandler;
+
 import edu.stulb.rentalcar.model.listing.Location;
 import edu.stulb.rentalcar.model.listing.Reservation;
 import edu.stulb.rentalcar.model.user.Card;
 import edu.stulb.rentalcar.model.user.User;
-import edu.stulb.rentalcar.model.user.UserHandler;
+
 
 /**
- * Singleton Database class
- * This class acts as a local database in the memory before
- * publishing the Listings or Users to firebase
+ * Firebase class to interact with the Firebase service
+ * Singleton class
  */
-public class Database implements IQueryManager{
+public class Firebase implements IDatabase{
 
-    private static final Database instance = new Database();
+    private static final Firebase instance = new Firebase();
     private final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-    private final ArrayList<User> users = new ArrayList<>();
-    private final ArrayList<Listing> listings = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<Listing> listings = new ArrayList<>();
 
     /**
      * Private constructor to limit instances of this class.
+     * Initiates listeners and initiates users and listings arrays.
      */
-    private Database() {
-
+    private Firebase() {
+        fetchUsers();
+        fetchListings();
+        initListeners();
     }
 
     /**
      * Getter for the single instance of Database
      * @return Database instance
      */
-    public static Database getInstance() {
+    public static Firebase getInstance() {
         return instance;
     }
 
@@ -67,7 +72,7 @@ public class Database implements IQueryManager{
      * Sends a Listing to firebase
      * @param listing Given Listing
      */
-    public void publishListing(Listing listing) {
+    public void createListing(Listing listing) {
         firestore.collection("listings").document(listing.getUid()).set(listing.toHashMap());
     }
 
@@ -75,49 +80,54 @@ public class Database implements IQueryManager{
      * Sends a User to firebase
      * @param user Given User
      */
-    public void publishUser(User user) {
+    public void createUser(User user) {
         firestore.collection("users").document(user.getEmail()).set(user.toHashMap());
     }
 
     /**
      * Async function to fill listings variable with Listings from firebase
      */
-    public void fetchListings() {
+    private void fetchListings() {
         firestore.collection("listings").get().addOnCompleteListener(this::onListingsComplete);
     }
 
     private void onListingsComplete(Task<QuerySnapshot> task) {
         if (task.isSuccessful()) {
+            ArrayList<Listing> newlistings = new ArrayList<>();
             for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
-                CarManufacturer carManufacturer = new CarManufacturer(documentSnapshot.getString("CarManufacturer"));
-                Car car = new Car(documentSnapshot.getString("CarModel"), carManufacturer, documentSnapshot.getString("CarYear"));
-                int pricePerDay = (int) (long) documentSnapshot.get("ListingPricePerDay");
-                String userEmail = documentSnapshot.getString("UserEmail");
-                Location location = new Location(documentSnapshot.getString("ListingLocation"));
-                Reservation reservation = new Reservation((List<Long>) documentSnapshot.get("ReservationBookedDates"));
-                String imagePath = documentSnapshot.getString("ImagePath");
-                String uid = documentSnapshot.getString("ListingId");
-                Listing listing = new Listing(car, pricePerDay, location, userEmail, reservation, imagePath, uid);
-                listings.add(listing);
+                Listing listing = fillListing(documentSnapshot);
+                newlistings.add(listing);
             }
+            listings = newlistings;
         }
-        ListingHandler.getInstance().setListings(listings);
+
+        //ListingHandler.getInstance().setListings(listings);
+    }
+
+    public void deleteUser(User user) {
+        /*Not implemented*/
+    }
+
+    public void deleteListing(Listing listing) {
+        /*Not implemented*/
     }
 
     /**
      * Async function to fill user variable with Users from firebase
+     * Only used on application start
      */
-    public void fetchUsers(){
+    private void fetchUsers(){
         firestore.collection("users").get().addOnCompleteListener(this::onFetchUsersComplete);
     }
 
     private void onFetchUsersComplete(Task<QuerySnapshot> task){
         if (task.isSuccessful()) {
+            ArrayList<User> newusers = new ArrayList<>();
             for (QueryDocumentSnapshot documentSnapshot : Objects.requireNonNull(task.getResult())) {
-                users.add(fillUser(documentSnapshot));
+                newusers.add(fillUser(documentSnapshot));
             }
+            users = newusers;
         }
-        UserHandler.getInstance().setUsers(users);
     }
 
     private User fillUser(QueryDocumentSnapshot documentSnapshot){
@@ -132,20 +142,36 @@ public class Database implements IQueryManager{
         return new User(name, email, password, card);
     }
 
-    private void writeUsers() {
-        for (User user: users) {
-            publishUser(user);
-        }
+    private Listing fillListing(QueryDocumentSnapshot documentSnapshot){
+        CarManufacturer carManufacturer = new CarManufacturer(documentSnapshot.getString("CarManufacturer"));
+        Car car = new Car(documentSnapshot.getString("CarModel"), carManufacturer, documentSnapshot.getString("CarYear"));
+        int pricePerDay = (int) (long) documentSnapshot.get("ListingPricePerDay");
+        String userEmail = documentSnapshot.getString("UserEmail");
+        Location location = new Location(documentSnapshot.getString("ListingLocation"));
+        Reservation reservation = new Reservation((List<Long>) documentSnapshot.get("ReservationBookedDates"));
+        String imagePath = documentSnapshot.getString("ImagePath");
+        String uid = documentSnapshot.getString("ListingId");
+        return new Listing(car, pricePerDay, location, userEmail, reservation, imagePath, uid);
     }
 
-    private void writeListings() {
-        for (Listing listing: listings) {
-            publishListing(listing);
-        }
-    }
 
-    public void writeToFirebase(){
-        writeUsers();
-        writeListings();
+    private void initListeners(){
+        firestore.collection("listings").addSnapshotListener((value, e) -> {
+            ArrayList<Listing> newlistings = new ArrayList<>();
+            for (QueryDocumentSnapshot doc : value){
+                Listing listing = fillListing(doc);
+                newlistings.add(listing);
+            }
+            listings = newlistings;
+        });
+
+        firestore.collection("users").addSnapshotListener((value, e) -> {
+            ArrayList<User> newusers = new ArrayList<>();
+            for (QueryDocumentSnapshot doc : value){
+                User user = fillUser(doc);
+                newusers.add(user);
+            }
+            users = newusers;
+        });
     }
 }
