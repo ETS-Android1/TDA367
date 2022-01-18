@@ -7,10 +7,10 @@ import java.util.HashMap;
  *  @author Josef Ngo
  */
 public class Listing {
-    private final Car car;
     private final String userEmail;
     private final String uid;
     private final Reservation reservation;
+    private final Product product;
 
     /**
      * Constructor to create a Listing
@@ -18,8 +18,8 @@ public class Listing {
      * @param userEmail listing creator's email
      * @param reservation a Reservation object
      */
-    public Listing(Car car, String userEmail, Reservation reservation) {
-        this.car = car;
+    public Listing(Product product, String userEmail, Reservation reservation) {
+        this.product = product;
         this.userEmail = userEmail;
         this.uid = java.util.UUID.randomUUID().toString();
         this.reservation = reservation;
@@ -28,8 +28,8 @@ public class Listing {
     /**
      * Constructor to recreate a listing that already exists (therefore takes a unique identifier String)
      */
-    public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath, String uid) {
-        this.car = car;
+    public Listing(Product product, String userEmail, Reservation reservation, String uid) {
+        this.product = product;
         this.userEmail = userEmail;
         this.uid = uid;
         this.reservation = reservation;
@@ -47,8 +47,8 @@ public class Listing {
      * Getter for Listings car.
      * @return the Car in the listing.
      */
-    public Car getCar() {
-        return car;
+    public Product getProduct() {
+        return product;
     }
 
     /**
@@ -92,16 +92,13 @@ public class Listing {
      */
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> listingHashMap = new HashMap<>();
-
         listingHashMap.put("ListingId", this.getUid());
-        listingHashMap.put("CarManufacturer", this.getCar().getCarManufacturer().getManufacturer());
-        listingHashMap.put("CarModel", this.getCar().getCarModel());
-        listingHashMap.put("CarYear", this.getCar().getCarYear());
-        listingHashMap.put("ListingPricePerDay", this.getPricePerDay());
-        listingHashMap.put("ListingLocation", this.getLocation().getCity());
+        listingHashMap.put("ProductDescription", this.getProduct().getDescription());
+        listingHashMap.put("ProductPricePerDay", this.getProduct().getPricePerDay());
+        listingHashMap.put("ProductLocation", this.getProduct().getLocation().getCity());
         listingHashMap.put("UserEmail", this.getUserEmail());
         listingHashMap.put("ReservationBookedDates", this.getReservation().getReservationsDatesList());
-        listingHashMap.put("ImagePath", this.getImagePath());
+        listingHashMap.put("ImagePath", this.getProduct().getImagePath());
         return listingHashMap;
     }
 }

@@ -7,6 +7,14 @@ abstract public class Product {
     Location location;
     int pricePerDay;
 
+    public Product(String name, String imagePath, String description, Location location, int pricePerDay) {
+        this.name = name;
+        this.imagePath = imagePath;
+        this.description = description;
+        this.location = location;
+        this.pricePerDay = pricePerDay;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -23,10 +31,10 @@ abstract public class Product {
         return pricePerDay;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    String location;
+
 
 }

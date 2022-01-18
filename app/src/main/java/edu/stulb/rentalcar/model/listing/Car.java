@@ -16,34 +16,40 @@ public class Car extends Product {
      * @param carManufacturer CarManufacturer
      * @param carYear year the car was manufactured
      */
-    public Car(String carModel, CarManufacturer carManufacturer, String carYear) {
+
+    public Car(String name, String imagePath, String description, Location location, int pricePerDay, String carModel, CarManufacturer carManufacturer, String carYear) {
+        super(name, imagePath, description, location, pricePerDay);
         this.carModel = carModel;
         this.carManufacturer = carManufacturer;
         this.carYear = carYear;
+    }
+
+    @Override
+    public String getDescription() {
+        return carYear;
+    }
+
+    @Override
+    public String getName() {
+        return carManufacturer.getManufacturer()+" "+carModel;
     }
 
     /**
      * getter for carModelName
      * @return the name of the carModel
      */
-    public String getCarModel() {
-        return carModel;
-    }
+
 
 
     /**
      * getter for carManufacturer
      * @return a CarManufacturer for the specific carModel
      */
-    public CarManufacturer getCarManufacturer() {
-        return carManufacturer;
-    }
+
 
     /**
      * getter for what year the car was manufactured
      * @return An int with the year of manufacturing
      */
-    public String getCarYear() {
-        return carYear;
-    }
+
 }
