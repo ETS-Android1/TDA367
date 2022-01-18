@@ -8,30 +8,21 @@ import java.util.HashMap;
  */
 public class Listing {
     private final Car car;
-    private final int pricePerDay;
-    private final Location location;
     private final String userEmail;
     private final String uid;
     private final Reservation reservation;
-    private final String imagePath;
 
     /**
      * Constructor to create a Listing
      * @param car a Car object
-     * @param pricePerDay pricePerDay for the listing
-     * @param location location where listing is available
      * @param userEmail listing creator's email
      * @param reservation a Reservation object
-     * @param imagePath local path to load image
      */
-    public Listing(Car car, int pricePerDay, Location location, String userEmail, Reservation reservation, String imagePath) {
+    public Listing(Car car, String userEmail, Reservation reservation) {
         this.car = car;
-        this.pricePerDay = pricePerDay;
-        this.location = location;
         this.userEmail = userEmail;
         this.uid = java.util.UUID.randomUUID().toString();
         this.reservation = reservation;
-        this.imagePath = imagePath;
     }
 
     /**
@@ -39,12 +30,9 @@ public class Listing {
      */
     public Listing(Car car, int pricePerDay, Location location, String userEmail,Reservation reservation, String imagePath, String uid) {
         this.car = car;
-        this.pricePerDay = pricePerDay;
-        this.location = location;
         this.userEmail = userEmail;
         this.uid = uid;
         this.reservation = reservation;
-        this.imagePath = imagePath;
     }
 
     /**
@@ -67,17 +55,12 @@ public class Listing {
      * Getter for listings pricePerDay
      * @return an int for pricePerDay
      */
-    public int getPricePerDay() {
-        return pricePerDay;
-    }
 
     /**
      * Getter for listings location
      * @return a Location that represent location for listing.
      */
-    public Location getLocation() {
-        return location;
-    }
+
 
     /**
      * Getter for listings user
@@ -101,9 +84,6 @@ public class Listing {
      * Getter for path to listings image
      * @return a String with the path to listings image
      */
-    public String getImagePath() {
-        return imagePath;
-    }
 
 
     /**
