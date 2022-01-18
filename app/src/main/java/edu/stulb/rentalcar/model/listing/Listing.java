@@ -93,6 +93,7 @@ public class Listing {
     public HashMap<String, Object> toHashMap() {
         HashMap<String, Object> listingHashMap = new HashMap<>();
         listingHashMap.put("ListingId", this.getUid());
+        listingHashMap.put("ProductName", this.getProduct().getName());
         listingHashMap.put("ProductDescription", this.getProduct().getDescription());
         listingHashMap.put("ProductPricePerDay", this.getProduct().getPricePerDay());
         listingHashMap.put("ProductLocation", this.getProduct().getLocation().getCity());
