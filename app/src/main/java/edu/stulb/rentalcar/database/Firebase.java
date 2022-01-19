@@ -9,6 +9,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -142,15 +143,16 @@ public class Firebase implements IDatabase{
         return new User(name, email, password, card);
     }
     private Listing fillListing(QueryDocumentSnapshot documentSnapshot){
-        String carModel = documentSnapshot.getString("CarModel");
-        CarManufacturer carManufacturer = new CarManufacturer(documentSnapshot.getString("CarManufacturer"));
-        String carName = carManufacturer.getManufacturer()+" "+carModel;
+        HashMap<String, Object> extraInfo = (HashMap<String, Object>) documentSnapshot.get("ExtraInfo");
+        assert extraInfo != null;
+        String carModel = (String) extraInfo.get("CarModel");
+        CarManufacturer carManufacturer = new CarManufacturer((String) extraInfo.get("CarManufacturer"));
+        String carName = documentSnapshot.getString("ProductName");
         String imagePath = documentSnapshot.getString("ImagePath");
         Location location = new Location(documentSnapshot.getString("ProductLocation"));
-        int pricePerDay = (int) (long) documentSnapshot.get("ListingPricePerDay");
-        String carYear = documentSnapshot.getString("CarYear");
+        int pricePerDay = (int) (long) documentSnapshot.get("ProductPricePerDay");
+        String carYear = (String) extraInfo.get("CarYear");
         Car car = new Car(carName, imagePath, "", location, pricePerDay, carYear, carModel, carManufacturer);
-
         String userEmail = documentSnapshot.getString("UserEmail");
         Reservation reservation = new Reservation((List<Long>) documentSnapshot.get("ReservationBookedDates"));
         String uid = documentSnapshot.getString("ListingId");

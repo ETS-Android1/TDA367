@@ -37,8 +37,6 @@ public class CarDetailFragment extends Fragment {
             receivedString = bundle.getString("listingId");
         }
         Listing clickedListing = carDetailViewModel.getClickedListing(receivedString);
-
-
         carName = (EditText) view.findViewById(R.id.carName);
         carBrand = (EditText) view.findViewById(R.id.carBrand);
         carModel = (EditText) view.findViewById(R.id.carModel);
