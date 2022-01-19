@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.tda367.R;
 
+import java.util.Objects;
+
 import edu.stulb.rentalcar.controller.Browse.CarDetailViewModel;
 import edu.stulb.rentalcar.model.listing.Listing;
 
@@ -48,14 +50,14 @@ public class CarDetailFragment extends Fragment {
         reservationButton = (Button) view.findViewById(R.id.reservationButton);
 
     if (clickedListing!=null){
-        carName.setText(clickedListing.getCar().getCarManufacturer().getManufacturer() + " " + clickedListing.getCar().getCarModel());
-        carBrand.setText(clickedListing.getCar().getCarManufacturer().getManufacturer());
-        carModel.setText(clickedListing.getCar().getCarModel());
-        carYear.setText(clickedListing.getCar().getCarYear());
-        carPrice.setText(String.valueOf(clickedListing.getPricePerDay())+" kr");
-        carLocation.setText(clickedListing.getLocation().getCity());
+        carName.setText(clickedListing.getProduct().getName());
+        carBrand.setText(Objects.requireNonNull(clickedListing.getProduct().getExtraInfo().get("CarManufacturer")).toString());
+        carModel.setText(Objects.requireNonNull(clickedListing.getProduct().getExtraInfo().get("CarModel")).toString());
+        carYear.setText(Objects.requireNonNull(Objects.requireNonNull(clickedListing.getProduct().getExtraInfo().get("CarYear")).toString()));
+        carPrice.setText(String.valueOf(clickedListing.getProduct().getPricePerDay())+" kr");
+        carLocation.setText(clickedListing.getProduct().getLocation().getCity());
         contactEmail.setText(clickedListing.getUserEmail());
-        Glide.with(getContext()).load(clickedListing.getImagePath()).into(imageView);
+        Glide.with(getContext()).load(clickedListing.getProduct().getImagePath()).into(imageView);
     }
     reservationButton.setOnClickListener(v -> {
         if (!carDetailViewModel.isUserSignedIn()) {

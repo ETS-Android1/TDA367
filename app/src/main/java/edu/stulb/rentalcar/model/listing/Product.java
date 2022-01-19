@@ -1,11 +1,14 @@
 package edu.stulb.rentalcar.model.listing;
 
+import java.util.HashMap;
+
 abstract public class Product {
     String name;
     String imagePath;
     String description;
     Location location;
     int pricePerDay;
+
 
     public Product(String name, String imagePath, String description, Location location, int pricePerDay) {
         this.name = name;
@@ -33,5 +36,9 @@ abstract public class Product {
 
     public Location getLocation() {
         return location;
+    }
+
+    public HashMap<String, Object> getExtraInfo(){
+        return new HashMap<>();
     }
 }

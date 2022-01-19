@@ -146,7 +146,7 @@ public class Firebase implements IDatabase{
         CarManufacturer carManufacturer = new CarManufacturer(documentSnapshot.getString("CarManufacturer"));
         String carName = carManufacturer.getManufacturer()+" "+carModel;
         String imagePath = documentSnapshot.getString("ImagePath");
-        Location location = new Location(documentSnapshot.getString("ListingLocation"));
+        Location location = new Location(documentSnapshot.getString("ProductLocation"));
         int pricePerDay = (int) (long) documentSnapshot.get("ListingPricePerDay");
         String carYear = documentSnapshot.getString("CarYear");
         Car car = new Car(carName, imagePath, "", location, pricePerDay, carYear, carModel, carManufacturer);

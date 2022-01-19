@@ -1,6 +1,8 @@
 package edu.stulb.rentalcar.model.listing;
 
 
+import java.util.HashMap;
+
 /**
  *  CarModel is a class to represent the model (model name and manufacturer) of a Car
  *  @author Josef Ngo
@@ -34,4 +36,12 @@ public class Car extends Vehicle {
         return carManufacturer;
     }
 
+    @Override
+    public HashMap<String, Object> getExtraInfo() {
+        HashMap<String, Object> extraInfo = new HashMap<>();
+        extraInfo.put("CarModel", carModel);
+        extraInfo.put("CarManufacturer", getCarManufacturer().getManufacturer());
+        extraInfo.put("CarYear", this.getVehicleYear());
+        return extraInfo;
+    }
 }
