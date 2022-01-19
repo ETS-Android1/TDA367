@@ -36,7 +36,7 @@ public class ProfileViewModel extends ViewModel {
 
     public void createListing(String carBrand, String carModel, String carYear, int carPrice, String carLocation, Uri selectedImage){
         Location location = new Location(carLocation);
-        Car car = new Car(carBrand+" "+carModel, selectedImage.toString(), carYear, location, carPrice, carModel, carModel, new CarManufacturer(carBrand));
+        Car car = new Car(carBrand+" "+carModel, selectedImage.toString(), "", location, carPrice, carYear, carModel, new CarManufacturer(carBrand));
         String email = userHandler.getCurrentUser().getEmail();
         listingHandler.createCarListing(car, email, new Reservation());
     }
