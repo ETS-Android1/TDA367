@@ -67,7 +67,9 @@ public class ListingHandler {
     public boolean updateListingReservation(Listing listing, Reservation reservation){
         listings.remove(listing);
         Listing updatedListing = new Listing(listing.getProduct(), listing.getUserEmail(), reservation, listing.getUid());
+        database.createListing(updatedListing);
         listings.add(updatedListing);
+
         return true;
         //Have not implemented a case where method fails.
     }
