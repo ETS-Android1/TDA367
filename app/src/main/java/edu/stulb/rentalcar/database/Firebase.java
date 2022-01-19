@@ -141,18 +141,23 @@ public class Firebase implements IDatabase{
         Card card = new Card(cardName, cardNumber, cardDate, cardCVV);
         return new User(name, email, password, card);
     }
-
     private Listing fillListing(QueryDocumentSnapshot documentSnapshot){
+        String carModel = documentSnapshot.getString("CarModel");
         CarManufacturer carManufacturer = new CarManufacturer(documentSnapshot.getString("CarManufacturer"));
-        Car car = new Car(documentSnapshot.getString("CarModel"), carManufacturer, documentSnapshot.getString("CarYear"));
-        int pricePerDay = (int) (long) documentSnapshot.get("ListingPricePerDay");
-        String userEmail = documentSnapshot.getString("UserEmail");
-        Location location = new Location(documentSnapshot.getString("ListingLocation"));
-        Reservation reservation = new Reservation((List<Long>) documentSnapshot.get("ReservationBookedDates"));
+        String carName = carManufacturer.getManufacturer()+" "+carModel;
         String imagePath = documentSnapshot.getString("ImagePath");
+        Location location = new Location(documentSnapshot.getString("ListingLocation"));
+        int pricePerDay = (int) (long) documentSnapshot.get("ListingPricePerDay");
+        String carYear = documentSnapshot.getString("CarYear");
+        Car car = new Car(carName, imagePath, "", location, pricePerDay, carYear, carModel, carManufacturer);
+
+        String userEmail = documentSnapshot.getString("UserEmail");
+        Reservation reservation = new Reservation((List<Long>) documentSnapshot.get("ReservationBookedDates"));
         String uid = documentSnapshot.getString("ListingId");
-        return new Listing(car, pricePerDay, location, userEmail, reservation, imagePath, uid);
+        return new Listing(car, userEmail, reservation, uid);
     }
+
+
 
 
     private void initListeners(){
