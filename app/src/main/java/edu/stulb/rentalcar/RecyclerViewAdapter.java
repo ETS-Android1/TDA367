@@ -20,7 +20,6 @@ import com.example.tda367.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import edu.stulb.rentalcar.model.listing.Listing;
@@ -140,7 +139,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Listing listing = listingsList.get(position);
-        holder.carYear.setText(listing.getProduct().getDescription());
+        holder.carYear.setText((CharSequence) listing.getProduct().getExtraInfo().get("CarYear"));
         holder.carTitle.setText(listing.getProduct().getName());
         holder.carLocation.setText(listing.getProduct().getLocation().getCity());
         holder.carPrice.setText(String.valueOf(listing.getProduct().getPricePerDay())+" kr/day");
