@@ -35,7 +35,10 @@ public class Car extends Vehicle {
     public CarManufacturer getCarManufacturer() {
         return carManufacturer;
     }
-
+    /**
+     * getter for extraInfo
+     * @return all the extra info associated with a Car
+     */
     @Override
     public HashMap<String, Object> getExtraInfo() {
         HashMap<String, Object> extraInfo = new HashMap<>();
