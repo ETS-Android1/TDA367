@@ -112,10 +112,17 @@ public class UserHandler {
         return users;
     }
 
+    /**
+     * Setter for the list containing all Users
+     * @param users list containing users
+     */
     public void setUsers(ArrayList<User> users){
         this.users = users;
     }
 
+    /**
+     * Update method, updates the list of users to the users stored in firebase
+     */
     private void update() {
         users = database.getUsers();
     }

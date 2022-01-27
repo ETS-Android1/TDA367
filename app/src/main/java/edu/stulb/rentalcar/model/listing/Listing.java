@@ -14,7 +14,7 @@ public class Listing {
 
     /**
      * Constructor to create a Listing
-     * @param car a Car object
+     * @param product a listing's Product
      * @param userEmail listing creator's email
      * @param reservation a Reservation object
      */
@@ -35,6 +35,7 @@ public class Listing {
         this.reservation = reservation;
     }
 
+
     /**
      * Returns uid for listing.
      * @return String of unique identifier for listing.
@@ -43,23 +44,14 @@ public class Listing {
         return uid;
     }
 
+
     /**
-     * Getter for Listings car.
+     * Getter for Product product.
      * @return the Car in the listing.
      */
     public Product getProduct() {
         return product;
     }
-
-    /**
-     * Getter for listings pricePerDay
-     * @return an int for pricePerDay
-     */
-
-    /**
-     * Getter for listings location
-     * @return a Location that represent location for listing.
-     */
 
 
     /**
@@ -79,13 +71,6 @@ public class Listing {
         return reservation;
     }
 
-
-    /**
-     * Getter for path to listings image
-     * @return a String with the path to listings image
-     */
-
-
     /**
      * Creates a HashMap of a Listing object for uploading to firebase.
      * @return A HashMap of the Listing
@@ -103,4 +88,5 @@ public class Listing {
         listingHashMap.put("ImagePath", this.getProduct().getImagePath());
         return listingHashMap;
     }
+
 }

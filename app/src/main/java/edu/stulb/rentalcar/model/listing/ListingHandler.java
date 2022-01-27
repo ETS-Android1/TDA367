@@ -9,7 +9,7 @@ import edu.stulb.rentalcar.database.IDatabase;
  * Singleton ListingHandler class to handle Listings
  */
 public class ListingHandler {
-    private static final ListingHandler instance = new ListingHandler();
+    public static final ListingHandler instance = new ListingHandler();
     private ArrayList<Listing> listings = new ArrayList<>();
 
     private IDatabase database = Firebase.getInstance();
@@ -18,7 +18,7 @@ public class ListingHandler {
     /**
      * Private constructor to limit instances of the class
      */
-    private ListingHandler(){
+    public ListingHandler(){
 
     }
 
@@ -33,12 +33,9 @@ public class ListingHandler {
 
     /**
      * Method to create a Listing and adds it to listings
-     * @param car a Car object
-     * @param pricePerDay int pricePerDay of the listing
-     * @param location Location where listing is available
+     * @param product a Product which Vehicle & Car extends from
      * @param userEmail email of user creating the listing
      * @param reservation Reservation of the listing
-     * @param imagePath path to the image of the listing
      * @return boolean if successful otherwise false
      */
     public boolean createCarListing(Product product, String userEmail, Reservation reservation){
@@ -152,10 +149,17 @@ public class ListingHandler {
         return usersListing;
     }
 
+    /**
+     * Update method, updates the list of listings to the listings stored in firebase
+     */
     private void update() {
         listings = database.getListings();
     }
 
+    /**
+     * Setter for the list containing all listings
+     * @return ArrayList<Listing> for that User
+     */
     public void setListings(ArrayList<Listing> listings){
         this.listings = listings;
     }
