@@ -158,7 +158,6 @@ public class ListingHandler {
 
     /**
      * Setter for the list containing all listings
-     * @return ArrayList<Listing> for that User
      */
     public void setListings(ArrayList<Listing> listings){
         this.listings = listings;
